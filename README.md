@@ -2,7 +2,7 @@
 
 A classic-style, single-player browser Tetris game developed in TypeScript.
 
-The first playable milestone provides falling blocks, arrow-key movement/clockwise rotation/soft drop, next-tick locking, row clearing, shuffled bags, and game over. Focus the game to use the arrow keys; reload to begin again. This checkpoint uses fixed one-second gravity. Scoring, visible preview, pause/restart, interruption handling, and full failure handling are planned in later milestones.
+Milestone 1.2 provides falling blocks, arrow-key movement/clockwise rotation/soft drop, next-tick locking, row clearing, shuffled bags, game over, score/line/level counters, increasing gravity speed, and an orientation-zero next-piece preview. Focus the game to use the arrow keys; reload to begin again. Pause/restart, interruption handling, and full failure handling are planned in later milestones.
 
 ## Development setup
 
