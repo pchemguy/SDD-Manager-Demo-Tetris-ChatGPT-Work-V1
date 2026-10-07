@@ -34,15 +34,26 @@ export class Game {
   return {board:this.board.map(row=>row.slice()),active:this.active?{...this.active}:null,
    ghost:this.active?landing(this.board,this.active):null,preview:this.preview,held:this.held,holdAvailable:this.holdAvailable,status:this.status,score:this.score,lines:this.lines,level:this.level};
  }
- /** Apply a semantic action; moves/drop preserve time, hold starts a fresh interval. Only a blocked gravity tick locks. */
+ /** Apply an action; first manual landing and successful hold start a full interval.
+  * Continuously grounded/rejected actions preserve time. Only a blocked tick locks.
+  */
  action(action: Action): void {
   if(this.status!=='running'||!this.active) return;
   if(action==='hold'){this.hold();return;}
-  if(action==='hard-drop'){this.active=landing(this.board,this.active);return;}
-  if(action==='rotate'){const candidate=kickedRotation(this.board,this.active);if(candidate)this.active=candidate;return;}
+  if(action==='hard-drop'){this.move(landing(this.board,this.active));return;}
+  if(action==='rotate'){const candidate=kickedRotation(this.board,this.active);if(candidate)this.move(candidate);return;}
   const candidate={...this.active,
    x:this.active.x+(action==='left'?-1:action==='right'?1:0),y:this.active.y+(action==='down'?1:0)};
-  if(canPlace(this.board,candidate)) this.active=candidate;
+  if(canPlace(this.board,candidate)) this.move(candidate);
+ }
+ /** Commit a legal manual placement, restarting time only at first contact.
+  * Gravity placements already occur at tick boundaries; resetting there would
+  * discard actual post-tick elapsed time in a bulk advance call.
+  */
+ private move(candidate:Piece):void {
+  const airborne=this.active&&canPlace(this.board,{...this.active,y:this.active.y+1});
+  if(airborne&&!canPlace(this.board,{...candidate,y:candidate.y+1}))this.accumulator=0;
+  this.active=candidate;
  }
  /** Advance active elapsed milliseconds, retaining fractions and promotion residuals.
   * @throws RangeError for negative/nonfinite input before mutation, even when inactive.

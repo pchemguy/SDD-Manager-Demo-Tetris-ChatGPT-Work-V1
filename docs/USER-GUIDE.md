@@ -8,7 +8,7 @@ Open the locally served game in a desktop browser. A new session starts with an 
 | --- | --- |
 | Left / Right | Move one cell; holding the key uses your browser's normal repeat. |
 | Down | Soft drop one cell; holding repeats. A blocked drop does not lock. |
-| Space | Move to the ghost position once per press; locking waits for the next blocked gravity tick. |
+| Space | Move to the ghost position once per press; landing gives a full gravity interval before locking. |
 | Up | Rotate clockwise once per press; ordered wall and floor kicks try the first legal placement. |
 | C | Hold or swap once per lock cycle; incoming piece starts at its normal spawn. |
 | P | Pause or resume once per press. |
@@ -20,7 +20,7 @@ Keys outside the gameplay region, editable fields, and Ctrl/Alt/Meta shortcuts a
 
 ## Falling, locking and scoring
 
-Gravity begins at one step per second and accelerates every ten cleared lines. A piece that reaches the floor or stack remains movable until the next scheduled gravity tick cannot move it down. Moving or rotating never resets that tick; moving off a ledge can allow it to descend. A ghost outline shows the lowest downward-reachable position; solid active cells cover it when grounded. Hard drop moves to the ghost without resetting the gravity remainder; you can still adjust before the next blocked tick. A successful hold starts a fresh gravity interval; the next legal lock restores hold availability. Clockwise rotation uses ordered SRS wall/floor kicks without resetting gravity; every occupied cell must remain within the visible board. There is no movement queue.
+Gravity begins at one step per second and accelerates every ten cleared lines. A piece that first reaches the floor or stack gets a full gravity interval to adjust before locking (one second at level 1). Moves and rotations that keep it grounded do not extend that delay; moving off a ledge permits descent, and landing again starts a fresh interval. A ghost outline shows the lowest downward-reachable position; solid active cells cover it when grounded. Hard drop moves to the ghost and grants the same full interval before locking. Pressing Space again while grounded does not extend it. A successful hold starts a fresh gravity interval; the next legal lock restores hold availability. Clockwise rotation uses ordered SRS wall/floor kicks and the same first-landing timing rule; every occupied cell must remain within the visible board. There is no movement queue.
 
 Complete rows clear together and remaining rows fall in their original order. One, two, three or four cleared rows award 100, 300, 500 or 800 points respectively, multiplied by the level before that clear. Dropping earns no extra points. Level starts at 1 and rises after every ten cleared lines. Gravity reaches a minimum interval of 100 ms.
 

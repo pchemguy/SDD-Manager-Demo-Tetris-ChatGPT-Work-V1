@@ -36,3 +36,8 @@ it('partitioned elapsed calls agree across a clear, promotion and level change',
  expect(a.snapshot()).toEqual(b.snapshot());expect(a.snapshot()).toMatchObject({level:2,active:{kind:'T',y:2}});
  a.advance(799.75);b.advance(799.75);expect(a.snapshot()).toEqual(b.snapshot());expect(a.snapshot().active?.y).toBe(3);
 });
+it.each([{level:2,interval:800},{level:12,interval:100}])('first hard-drop landing at level $level grants a full $interval ms',({level,interval})=>{
+ const game=levelGame(level);game.advance(interval-1);game.action('hard-drop');const board=game.snapshot().board;
+ game.advance(interval-1);expect(game.snapshot().board).toEqual(board);expect(game.snapshot().active?.kind).toBe('O');
+ game.advance(1);expect(game.snapshot().active?.kind).toBe('T');
+});

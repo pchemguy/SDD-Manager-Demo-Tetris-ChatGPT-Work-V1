@@ -52,3 +52,8 @@ it('repeated disposal cancels a frame and permanently disables an instance',()=>
  const {controller,scheduler,game,events}=setup();controller.start();const stale=[...scheduler.pending.values()][0]!;controller.dispose();controller.dispose();controller.start();controller.command('down');
  const before=game.snapshot();stale(10000);expect(game.snapshot()).toEqual(before);expect(scheduler.pending.size).toBe(0);expect(events.window.subscriptions+events.document.subscriptions).toBe(0);
 });
+it('frames after a near-tick hard drop retain the full delay and pause freezes it',()=>{
+ const {game,scheduler,controller}=setup();controller.start();scheduler.step(0);scheduler.step(999);controller.command('hard-drop');scheduler.step(1000);
+ expect(game.snapshot().board.flat().filter(Boolean)).toHaveLength(0);scheduler.step(1500);controller.command('pause');scheduler.step(90000);controller.command('pause');scheduler.step(100000);scheduler.step(100498);
+ expect(game.snapshot().board.flat().filter(Boolean)).toHaveLength(0);scheduler.step(100499);expect(game.snapshot().board.flat().filter(Boolean)).toHaveLength(4);
+});

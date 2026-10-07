@@ -1,6 +1,6 @@
 # Browser Tetris
 
-A classic-style, single-player TypeScript game with Canvas rendering, shuffled seven-piece bags, ghost landing outlines, hold, delayed-lock hard drop, clockwise wall/floor kicks, a next-piece preview, score and level progression, pause/resume, restart and game over. It runs entirely in the browser without a gameplay server or saved state.
+A classic-style, single-player TypeScript game with Canvas rendering, shuffled seven-piece bags, ghost landing outlines, hold, hard drop with a full gravity interval to adjust after landing, clockwise wall/floor kicks, a next-piece preview, score and level progression, pause/resume, restart and game over. It runs entirely in the browser without a gameplay server or saved state.
 
 The complete piece-control extension is integrated and published in `main` through explicit merge `65a8e8c`. Locked installation, strict checking, 278 unit tests and 66 Chromium checks pass, including the merged production page. All 42 original task issues and eleven milestones are closed. [Player guide](docs/USER-GUIDE.md) explains all controls and scheduled locking; [final feature report](docs/dev/features/001_a043a43/IMPLEMENTATION-REPORT.md) records complete verification/publication evidence.
 
