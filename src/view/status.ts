@@ -3,7 +3,8 @@ import type { Snapshot } from '../engine/types';
 export interface Controls {pause:HTMLButtonElement;restart:HTMLButtonElement}
 export interface Counters {score:HTMLElement;level:HTMLElement;lines:HTMLElement}
 /** Update text and command availability from the same snapshot used for Canvas rendering. */
-export function showStatus(element:HTMLElement,snapshot:Snapshot,counters?:Counters,controls?:Controls):void {
+export function showStatus(element:HTMLElement,snapshot:Snapshot,counters?:Counters,controls?:Controls,holdState?:HTMLElement):void {
+ if(holdState)holdState.textContent=(snapshot.held===null?'Empty · ':'')+(snapshot.holdAvailable?'Available':snapshot.status==='game-over'?'Unavailable':'Unavailable until lock');
  element.dataset.state=snapshot.status;
  if(counters)for(const key of ['score','level','lines'] as const)counters[key].textContent=String(snapshot[key]);
  if(controls){controls.pause.textContent=snapshot.status==='paused'?'Resume':'Pause';controls.pause.disabled=snapshot.status==='game-over';}

@@ -8,27 +8,29 @@ Open the locally served game in a desktop browser. A new session starts with an 
 | --- | --- |
 | Left / Right | Move one cell; holding the key uses your browser's normal repeat. |
 | Down | Soft drop one cell; holding repeats. A blocked drop does not lock. |
-| Up | Rotate clockwise once per press; rotations have no wall kicks. |
+| Space | Move to the ghost position once per press; locking waits for the next blocked gravity tick. |
+| Up | Rotate clockwise once per press; ordered wall and floor kicks try the first legal placement. |
+| C | Hold or swap once per lock cycle; incoming piece starts at its normal spawn. |
 | P | Pause or resume once per press. |
 | R | Start a fresh game once per press. |
 | Pause / Resume button | The same pause/resume command; Tab then Enter or Space activates it. |
 | Restart button | Start a fresh game from running, paused or game over. |
 
-Keys outside the gameplay region, editable fields, and Ctrl/Alt/Meta shortcuts are ignored. Handled arrows prevent page scrolling even during pause or game over. Up/P/R repeat events are ignored. The O piece does not change shape when rotated.
+Keys outside the gameplay region, editable fields, and Ctrl/Alt/Meta shortcuts are ignored. Handled arrows and Space prevent page scrolling even during pause or game over. Up/Space/C/P/R repeat events are ignored. The O piece does not change shape when rotated.
 
 ## Falling, locking and scoring
 
-Gravity begins at one step per second and accelerates every ten cleared lines. A piece that reaches the floor or stack remains movable until the next scheduled gravity tick cannot move it down. Moving or rotating never resets that tick; moving off a ledge can allow it to descend. There is no hard drop, ghost, hold or movement queue.
+Gravity begins at one step per second and accelerates every ten cleared lines. A piece that reaches the floor or stack remains movable until the next scheduled gravity tick cannot move it down. Moving or rotating never resets that tick; moving off a ledge can allow it to descend. A ghost outline shows the lowest downward-reachable position; solid active cells cover it when grounded. Hard drop moves to the ghost without resetting the gravity remainder; you can still adjust before the next blocked tick. A successful hold starts a fresh gravity interval; the next legal lock restores hold availability. Clockwise rotation uses ordered SRS wall/floor kicks without resetting gravity; every occupied cell must remain within the visible board. There is no movement queue.
 
 Complete rows clear together and remaining rows fall in their original order. One, two, three or four cleared rows award 100, 300, 500 or 800 points respectively, multiplied by the level before that clear. Dropping earns no extra points. Level starts at 1 and rises after every ten cleared lines. Gravity reaches a minimum interval of 100 ms.
 
-The preview shows the piece that will become active after the current piece locks. Every shuffled bag contains the seven kinds exactly once; adjacent bags can repeat a kind at their boundary.
+The Next preview shows the piece promoted after a lock. The Hold panel stores a kind, independently of Next. An empty hold stores the outgoing piece and promotes Next, drawing one successor preview. A populated swap consumes no new source piece and leaves Next unchanged. The incoming held piece always starts unrotated at its normal spawn. Hold becomes available after a legal lock; Space alone does not restore it. Every shuffled bag contains the seven kinds exactly once; adjacent bags can repeat a kind at their boundary.
 
 ## Pause, interruption and game over
 
 Pause freezes the board, counters and remaining gravity time. Losing window focus or hiding the tab pauses running play. Returning to it leaves the game paused; explicitly choose Resume or press P. Resume is ignored while the document is hidden or unfocused. Starting/restarting in that state produces a paused session.
 
-If a newly promoted piece cannot spawn, Game over appears and the final board/counters remain visible. Arrows and Pause have no effect. Restart clears the board, counters and timing and creates a fresh random bag; it need not produce the same sequence. Reloading the page also starts fresh, and no progress is saved.
+If a promoted or held incoming piece cannot spawn, Game over appears and the final board/counters remain visible. Arrows and Pause have no effect. Restart clears the board, held slot, counters and timing and creates a fresh random bag; it need not produce the same sequence. Reloading the page also starts fresh, and no progress is saved.
 
 An initialization or internal fault shows an error instead of game over. Processing stops, and unsafe recovery controls are disabled. Reload the page to try a new application instance. Error messages do not reveal internal exception details.
 

@@ -10,13 +10,13 @@ Success means a playable game whose rules can be checked independently of the br
 
 - TypeScript browser application with desktop keyboard controls.
 - Falling pieces, rotation, collision, line clearing, scoring, increasing speed, and game over.
-- Next-piece preview, pause, and restart.
+- Ghost landing outlines, hold, hard drop with scheduled gravity locking, clockwise wall/floor kicks, next-piece preview, pause, and restart.
 - Plain TypeScript and Canvas rendering.
 - A game engine separated from the session controller and presentation.
 
 ## Non-goals
 
-Mobile touch controls, multiplayer, accounts, server-side gameplay, online leaderboards, ghost pieces, hold, hard drop, wall kicks, and exact reproduction of a particular commercial edition are outside the initial scope. The game uses its own visual presentation.
+Mobile touch controls, multiplayer, accounts, server-side gameplay, online leaderboards, counterclockwise/180-degree controls, audio, saved games, spin/combo/drop bonuses, and exact reproduction of a particular commercial edition are outside the initial scope. The game uses its own visual presentation.
 
 ## Development context
 

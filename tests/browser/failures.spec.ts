@@ -14,3 +14,9 @@ test('disposal releases all owned browser subscriptions and ignores stale input'
  await page.goto('/tests/fixtures/failures.html?mode=dispose');await page.getByRole('button',{name:'Dispose',exact:true}).click();await expect(page.locator('#resources')).toHaveText('{"listeners":0,"frames":0}');
  const before=await page.locator('#snapshot').textContent();await page.locator('#game').focus();await page.keyboard.press('ArrowLeft');await page.getByRole('button',{name:'Advance',exact:true}).click();expect(await page.locator('#snapshot').textContent()).toBe(before);
 });
+
+for(const mode of ['invalid','exhausted'])test(`hold ${mode} source stops subscriptions and retains last drawing`,async({page})=>{
+ await page.goto('/tests/fixtures/failures.html?mode='+mode);const before=await page.locator('#board').evaluate(c=>(c as HTMLCanvasElement).toDataURL());
+ await page.keyboard.press('c');await expect(page.getByRole('status')).toContainText('Game stopped');await expect(page.locator('#resources')).toHaveText('{"listeners":0,"frames":0}');
+ expect(await page.locator('#board').evaluate(c=>(c as HTMLCanvasElement).toDataURL())).toBe(before);await page.keyboard.press('c');await page.keyboard.press('Space');expect(await page.locator('#board').evaluate(c=>(c as HTMLCanvasElement).toDataURL())).toBe(before);
+});

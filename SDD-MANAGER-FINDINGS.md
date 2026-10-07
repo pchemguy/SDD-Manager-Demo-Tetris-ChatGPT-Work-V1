@@ -31,8 +31,11 @@ Priority reflects impact on workflow correctness and developer intervention, rat
 | SDD-F004 | Agent explanations confuse policy, authorization and observed state | Observed error; proposed supporting amendment | High | Proposed; not separately accepted |
 | SDD-F005 | Amendment notes lack a durable, accurately reported register | Developer's current collection request; proposed generalization | Medium | This report establishes the demo register; plugin guidance proposed |
 | SDD-F006 | Environment recovery needs representative capability evidence and proactive alternatives | Demo evidence; developer accepts addition and flags placement | Medium | Consumer repairs verified; general/specific placement proposed; plugin revision outstanding |
+| SDD-F007 | Campaign directories omit the descriptive branch slug | Developer observation during feature preparation; proposed convention amendment | Medium | Recorded; naming and compatibility rules proposed; implementation outstanding |
+| SDD-F008 | Project positioning omits its learning-by-doing purpose and related projects | Explicit developer amendment; positioning wording proposed | Medium | Record experimental framing and cited context; implementation outstanding |
+| SDD-F009 | Manager does not create and maintain a concise AGENTS.md orientation entry point | Explicit developer amendment | High | Mandatory creation/maintenance requested; ownership and safeguards proposed; implementation outstanding |
 
-All six plugin findings remain open. Operational recovery in the consumer repository is not verification of amended plugin behavior.
+All nine plugin findings remain open. Operational recovery in the consumer repository is not verification of amended plugin behavior.
 
 ## SDD-F001 — Require proactive coordination throughout the manager
 
@@ -177,13 +180,97 @@ Use progressive disclosure: core instructions carry the general obligations and 
 
 Validate both layers: a non-browser tooling failure must trigger scoped recovery without loading browser guidance; an engine-only task must not acquire browser/font/Canvas prerequisites. For relevant browser work, validate an unavailable download route with a supported alternative, malformed HTTP-200 artifacts, successive-context failure, DOM text without glyph pixels and fresh-cache reproduction as applicable to the planned checks. Review ownership and routing for gaps or duplicate policy. These amended-plugin scenarios remain unexecuted; the consumer evidence establishes the motivating failures and repairs only.
 
+## SDD-F007 — Preserve descriptive slugs in campaign directory names
+
+### Context and consequence
+
+During preparation of the piece-control extension, the branch was named `feature/001_a043a43-piece-controls`, while its package directory was `docs/dev/features/001_a043a43/`. The developer asked why the directory omitted `piece-controls` and whether this was a template defect, then requested that the concern be added to this register.
+
+The installed 0.14.9 workflow-identity convention explicitly uses `feature/<campaign>-<slug>` for branches and `docs/dev/features/<campaign>/` for directories. The agent followed that convention; the mismatch is a convention-design concern rather than an execution naming error. The campaign identity `001_a043a43` carries sequence and baseline, while `piece-controls` conveys purpose. Omitting the slug from the directory makes feature packages harder to identify in directory listings and requires opening their README for context.
+
+### Proposed amendment and compatibility
+
+> New feature package directories SHOULD include the same descriptive slug as their associated working branch: `feature/<campaign>-<slug>` maps to `docs/dev/features/<campaign>-<slug>/`. Keep `<campaign>` as the stable sequence/baseline identity, separately from the descriptive slug. Record the actual branch, directory, target and full baseline in the package README.
+
+For this example, the proposed directory is `docs/dev/features/001_a043a43-piece-controls/`, with stable campaign ID `001_a043a43`. This is a proposed convention change, not an instruction already present in the installed plugin. The developer requested recording the finding; no directory rename or installed-plugin revision is performed by this report update.
+
+Review equivalent naming for formal review/revision and phase-nested steering directories before selecting a consistent cross-workflow policy. Their inclusion is a design question for plugin revision, not an automatically accepted expansion. Phase-number directory conventions need not acquire a campaign identity.
+
+Allocation and discovery must parse the stable campaign prefix, preserve the repository-wide sequence across workflows, and detect duplicate campaign reservations despite differing slugs. When a branch requires a collision suffix, establish and record the corresponding descriptive directory name without reallocating the campaign. Preserve established packages and explicit naming overrides on continuation; do not rename existing paths automatically. An explicitly selected rename must repair incoming/outgoing links, archive paths and retained references atomically and verify that active sources remain discoverable.
+
+### Proposed ownership and validation
+
+- **sdd-conventions:** canonical identity, branch/directory mapping, slug and collision rules, and compatibility for established names.
+- **sdd-manage:** allocation, setup, discovery and continuation using the actual recorded association.
+- **sdd-integrate-feature:** incorporation/archive paths and navigation repair using that association.
+- **Dependent references/templates:** reconcile package examples, handoffs and path assumptions without creating a separate registry.
+
+Validate creation of a new descriptive package; allocation beside existing unsuffixed packages; continuation of legacy and explicitly overridden names; duplicate sequence identities with different slugs; collision suffixes; archive/link integrity; and an explicitly requested rename. Verify that campaign ID stays stable as HEAD or descriptive context changes. No amended-plugin scenario has been run for this finding.
+
+## SDD-F008 — Explain project positioning and learning-by-doing purpose
+
+### Context and consequence
+
+The developer identified missing positioning of SDD Manager as probably a learning-by-doing experiment and requested citation of leading related projects such as GitHub Spec Kit and Superpowers. This concerns the SDD Manager project's public description, not a redefinition of the Tetris game's product purpose. The demo supplies practical workflow evidence and findings that can inform that positioning.
+
+Without a clear purpose and maturity statement, readers can mistake a developing experiment for an established comprehensive methodology. Conversely, describing only a collection of capabilities omits why this project exists and how practical consumer runs inform its development. The developer's tentative experimental characterization should become reviewable wording rather than an invented account of the author's historical intentions.
+
+### Proposed amendment and references
+
+Proposed public positioning:
+
+> SDD Manager is a learning-by-doing experiment in specification-driven development with coding agents. It explores how modular skills can coordinate design, specifications, planning, implementation, verification and Git-based checkpoints, with practical project runs informing its refinement.
+
+Accompany the introduction with a concise related-projects section linking [GitHub Spec Kit](https://github.com/github/spec-kit) and [Superpowers](https://github.com/obra/superpowers). Their official English-language repositories were inspected on 2026-10-07: Spec Kit presents structured processes, reusable templates and documented outcomes for coding agents; Superpowers presents a composable-skills development methodology. These descriptions establish relevant comparison context, not endorsement, affiliation, compatibility, superiority or a claim that SDD Manager was derived from either project.
+
+Explain actual SDD Manager scope and demonstrated maturity separately from intended capabilities. Identify these projects as references for readers; claim inspiration, reuse or provenance only where author/repository evidence supports that relationship. The developer's term “leading” motivates selecting the references and is not a benchmark or ranking established by this report. Exact introduction wording and the experimental status statement remain proposals for maintainer review.
+
+### Proposed ownership and validation
+
+Public positioning belongs in the plugin repository README and consistent manifest/interface descriptions where space permits. sdd-manage's own project-design/brief guidance should help establish purpose, learning objectives and evidence-backed status when applicable, without labeling every consumer project an experiment. Shared reporting and documentation guidance should prevent promotional or unsupported maturity claims.
+
+Validate that a new reader can identify purpose, intended audience, experimental character and observed capability without campaign-number narration. Verify links against the actual named projects and distinguish related work from dependencies or attribution. Check consistency across README, project brief and manifest text; do not introduce unsupported comparative claims. This findings update changes none of those plugin artifacts.
+
+## SDD-F009 — Create and maintain AGENTS.md for quick agent orientation
+
+### Context and consequence
+
+The developer requires SDD Manager to create and maintain AGENTS.md as a quick orientation entry point. The inspected Tetris repository has no root AGENTS.md despite SDD adoption, completed phase 1 and active feature preparation. Orientation currently requires discovering the usage notice, brief, governing documents, task owners and commands independently. The installed sdd-orient reads existing governing instructions but does not authorize creating them; read-only inspection alone cannot fulfill the requested maintenance obligation.
+
+### Proposed mandatory behavior
+
+> During authorized SDD repository adoption/bootstrap, sdd-manage MUST ensure that a root AGENTS.md provides concise, accurate agent orientation. If absent, create it; if present, integrate the required orientation while preserving applicable human-authored instructions. The manager MUST coordinate updates when material project structure, commands, governing sources, execution ownership or workflow constraints change, and verify it before affected workflow handoffs are finalized.
+
+The entry point should identify project purpose and source/test/document locations; authoritative design/SPEC/PLAN/layout/task entry points; active feature/task-owner navigation when applicable; validated setup/check commands and shell constraints; verification/commit/publication expectations under established authorization; and how to discover relevant path-scoped instructions. Link to canonical owners instead of duplicating detailed rules, requirements, task checklists or progress records.
+
+Keep current branch/HEAD and rapidly changing task status discoverable through Git and owning evidence rather than embedding stale snapshots. Clearly separate durable operational instructions from document navigation. No credential value, credential-file content, or transient helper path belongs in AGENTS.md. Generic vendor-neutral instructions must not promise identical automatic discovery in every host; explicitly load the file where the host does not discover it.
+
+An existing AGENTS.md can contain controlling instructions. The manager must read it before edits, preserve manual content and scope, and resolve actual conflicts under the governing instruction hierarchy. A maintained orientation section can have clear boundaries when that prevents accidental overwrite; it must not give generated text authority to weaken existing rules or manufacture user decisions. Add nested AGENTS.md only when genuine path-specific guidance is needed, not by default throughout the tree.
+
+### Proposed SDD placement and handoff
+
+- **sdd-manage:** bootstrap creation and coordination of subsequent maintenance within authorized repository edits.
+- **sdd-orient:** read root/applicable nested instructions, assess discoverability/currency, and report missing/stale orientation without mutation.
+- **sdd-docs:** maintain concise instructions/navigation and verify commands/links when implementation changes relevant facts; route governing-policy decisions to their owner.
+- **sdd-plan / sdd-integrate-feature:** recognize AGENTS.md physical ownership and refresh navigation during accepted structure/task-owner changes and archive integration.
+- **sdd-implement / sdd-steer:** include affected orientation updates in their own verified work checkpoints, without creating a second journal or approval flow.
+
+### Behavioral validation and boundary
+
+Exercise a missing root file at adoption; a populated human-authored file with scoped instructions; material command/layout changes; active feature ownership and archive transfer; nested instruction discovery; interruption/resumption; and a host that requires explicit file loading. Verify preservation of manual instructions, canonical working links, truthful commands, concise orientation, no duplicate executable checklist, and secret exclusion. A clean startup with current instructions should cause no gratuitous rewrite or commit.
+
+This is a requested plugin amendment. Recording it does not itself create AGENTS.md in the consumer repository or modify the installed plugin; those actions require their selected implementation scope. The manager's read-only orientation skill remains read-only.
+
 ## Consolidated revision handoff
 
 1. Strengthen proactive coordination and explicit optional-capability decision handling (SDD-F001/F002). Apply the latest default-enabled-on-token policy with explicit activation confirmation; retain the earlier opt-in exchange as finding context.
 2. Strengthen scoped-authorization recognition, automatic reviewer context and supported continuation examples (SDD-F003). Retain platform-control boundaries and secret handling.
 3. Align diagnosis and reporting language with actual decisions/evidence (SDD-F004/F005). Existing records must not manufacture user decisions.
 4. Review SDD-F006 placement before implementation: put general recovery coordination in sdd-manage and evidence adequacy in sdd-verify; route technical execution and conditionally loaded browser guidance without duplicating policy. Reuse the demo evidence without imposing browser checks on unrelated projects or claiming general compatibility.
-5. Review cross-skill consistency and run consumer-behavior scenarios before marking plugin amendments verified. Structural text checks alone do not prove proactive coordination or correct review responses.
+5. Align descriptive feature branch/package naming while preserving stable campaign identity and existing packages (SDD-F007); review allocation, collision, discovery and archive consumers together.
+6. Establish honest learning-by-doing positioning and cite relevant reference projects without unsupported provenance or maturity claims (SDD-F008).
+7. Add bootstrap and ongoing AGENTS.md orientation maintenance with preserved governing instructions and explicit read-only inspection ownership (SDD-F009).
+8. Review cross-skill consistency and run consumer-behavior scenarios before marking plugin amendments verified. Structural text checks alone do not prove proactive coordination or correct review responses.
 
 The principle of proactivity, token-triggered default tracking with confirmation, and authorization/reviewer-response obligations were explicitly requested or clarified by the developer. Detailed wording, cross-file placement and the supporting recommendations remain proposals. This report is not an accepted plugin revision plan and does not change the installed version.
 
@@ -214,3 +301,11 @@ This is a late activation and evidence reconciliation; no claim is made that tra
 The developer subsequently requested implementation of the rest of phase 1. T-013–T-026 completed the consumer product and review evidence. Explicit merge `81943b1c6f1c244315e9b87a0c3e100f4d4953c4` into main passed 85 unit / 45 browser checks plus typecheck/build, was pushed and was read back from the remote. All 26 task issues and six milestones are closed; phase-parent completion follows that observed publication. Current acceptance and lifecycle state belong to [TASKS](docs/dev/TASKS.md), the [phase report](docs/dev/reports/phases/1/PHASE-REPORT.md) and [implementation report](docs/dev/reports/IMPLEMENTATION-REPORT.md). Historical tracking counts and pause statements above describe their original checkpoints.
 
 The installed plugin remains 0.14.9, and all six plugin findings remain open. This continuation supplies further consumer evidence for SDD-F006's conditional browser placement; it neither revises plugin sources nor verifies amended manager behavior.
+
+## Feature-preparation findings follow-up
+
+SDD-F007 was added during preparation of [piece controls](docs/dev/features/001_a043a43/README.md), after the published phase 1 completion described above. At that checkpoint, the register contained seven open plugin findings. This update records the naming concern and proposed remedy; it does not rename the consumer package or change the installed plugin.
+
+## Positioning and orientation amendments follow-up
+
+The developer subsequently requested SDD-F008 and SDD-F009 during feature preparation. The register contains nine open plugin findings. Related-project references were checked against official repositories; proposed positioning and AGENTS.md lifecycle behavior are recorded above. No plugin description or consumer instruction file was changed by this report-only update.

@@ -1,14 +1,14 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><title>Initialization failure fixture</title></head><body>
-<section id="game" tabindex="0"><canvas id="board"></canvas><canvas id="preview"></canvas><p id="status" role="status"></p><span id="score"></span><span id="level"></span><span id="lines"></span><button id="pause">Pause</button><button id="restart">Restart</button></section>
+<section id="game" tabindex="0"><canvas id="board"></canvas><canvas id="preview"></canvas><canvas id="held"></canvas><p id="hold-state"></p><p id="status" role="status"></p><span id="score"></span><span id="level"></span><span id="lines"></span><button id="pause">Pause</button><button id="restart">Restart</button></section>
 <div id="resources">0</div>
 <script>
 const mode=new URLSearchParams(location.search).get('mode');
 if(mode==='canvas')HTMLCanvasElement.prototype.getContext=()=>null;
-else if(mode==='board-context'||mode==='preview-context'){
+else if(mode==='board-context'||mode==='preview-context'||mode==='held-context'){
  const getContext=HTMLCanvasElement.prototype.getContext;
  HTMLCanvasElement.prototype.getContext=function(...args){return this.id===mode.split('-')[0]?null:getContext.apply(this,args);};
-}else if(mode==='wrong-board'||mode==='wrong-pause'){
- const id=mode.split('-')[1],wrong=document.createElement('div');wrong.id=id;document.getElementById(id).replaceWith(wrong);
+}else if(mode==='wrong-board'||mode==='wrong-pause'||mode==='wrong-held'||mode==='wrong-hold-state'){
+ const id=mode.slice(6),wrong=document.createElement('div');wrong.id=id;document.getElementById(id).replaceWith(wrong);
 }else document.getElementById(mode)?.remove();
 // Observe application subscription/scheduling effects without product debug hooks.
 let resources=0;const output=document.getElementById('resources');

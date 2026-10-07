@@ -1,53 +1,24 @@
-# Specification review report
+# Specification conformance review
 
 ## Current gate
 
-**State: Ready for planning on document-quality and design-conformance criteria.** No confirmed finding remains open. Product implementation has not started, and this report makes no claim that gameplay acceptance has passed. The user accepted the written specification on 2026-10-07. Revision 1 records the governing-input navigation recheck.
-
-Scope: [SPEC](SPEC.md), [gameplay](spec/gameplay.md), and [session/presentation](spec/session.md), against [PROJECT](PROJECT.md), [ARCHITECTURE](ARCHITECTURE.md), and [DECOMPOSITION](DECOMPOSITION.md). Review date: 2026-10-07. Reviewer: the main agent applying SDD Manager 0.14.9's sdd-specify procedure; no independent reviewer was used.
-
-The starting Git checkpoint is `790ebe2513c39e5b63246ade361a878f03db9ac6`. Exact reviewed pending-file identities use SHA-256:
+Ready on incorporated-document conformance. Reviewed 2026-10-07 by the main agent applying SDD Manager 0.14.9; this is not independent review or a main-publication claim. Exact reviewed input identities follow.
 
 | Source | SHA-256 |
 | --- | --- |
-| SPEC.md | `b4eb3c1e7d7d28eaab3ba158093c5a1df9ea96e1ddc2b1a2f574b1471a67546a` |
-| spec/gameplay.md | `3512776f06ccdd1ffe4f929727e3f4be606081bfe698bf6b57fcac22a31c39a9` |
-| spec/session.md | `4b520da25070ebaf70fc8e169431417804510c8e8a362efd929b854b6c146951` |
-| PROJECT.md | `bb02921665da0cf52e311712060f481ec23a7211873be4972188c10628e7e8d9` |
-| ARCHITECTURE.md | `a7051007efacd98dc6e26b9f343bda88ad6f23a82eaafa28022bb8bd2db08413` |
-| DECOMPOSITION.md | `dec8bb07534ade6847fbcf519ea9c7541f4c035beb8fd369bf446540557475d9` |
+| PROJECT.md | `71ce83508f4a14f00f22c71fc806d50d0a79a5171534d832ece7481b176720e9` |
+| ARCHITECTURE.md | `622cfd7dfeb716c037ba822af942df6eca5c61143995dc5aef48f3facdb4be55` |
+| DECOMPOSITION.md | `ada2e294ae9c0e9be9a66f19ada6b0dbbc975dd389cd5a022f122f98406acec2` |
+| SPEC.md | `de236e3b6498a86490faee7db3d6a0da1d4ac547c98aa0d7c12a1817f43446fa` |
+| spec/gameplay.md | `10f3a6a5930fa96bee222166b0c406616deee41b95d8f146565b2acb87f62731` |
+| spec/session.md | `a72f42e30a53efce3e7ff6666ac8090f37bfc8fa143ff0cd88c6e8fe53dd4115` |
 
-## Initial review
+## Assessment
 
-The review compared the full specification with accepted project scope and component ownership, inspected success/failure and lifecycle boundaries, checked parent/child routing, and assessed objective end-to-end acceptance. Routine completion choices include exact shape coordinates/spawn origins, browser-native arrow repeat, single-press rotation, viewport acceptance, and failure presentation. They preserve the accepted scope and are visible in the written specification for human review.
+Reviewed complete project scope, three-block ownership and all gameplay/session requirements against accepted feature F-01–F-05. Main G-07–G-10 own landing, delayed hard drop, hold and exact clockwise tables; S-01–S-06 own input, snapshots, presentation and failure behavior. Removed contradictory feature exclusions and no-kick/immediate-lock wording. Existing board/spawn/score/time and terminal/fault distinctions remain intact. All eight offset rows were compared literally with the accepted source, including downward-positive signs and no hidden rows.
 
-| Accepted outcome / design obligation | Canonical contract coverage | Acceptance | Assessment |
-| --- | --- | --- | --- |
-| Board, seven tetrominoes, rotation, legal placement, no wall kicks | G-01, G-02 | A-01, A-02 | Coordinates, rotation frame, spawn, and rejection semantics are assessable; ownership stays with geometry/board/engine. |
-| Bag selection and next preview | G-03 | A-04 | Bag and promotion rules preserve source/engine boundaries; deterministic verification is possible. |
-| Movement and next-tick locking | G-04, G-06 | A-02 | Ground contact remains unlocked until blocked descent at the next scheduled tick; blocked soft drop is a no-op. Movement/rotation cannot reset timing. |
-| Clearing, scoring, progression, gravity, game over | G-05, G-06 | A-03, A-06 | Row order, pre-clear score multiplier, level boundary, interval minimum, and blocked spawn are explicit. |
-| Desktop input, pause, focus/visibility, restart, disposal | S-01 through S-03, SYS-04 | A-05, A-07, A-08 | Browser timing and subscriptions have one controller owner; inactive time and duplicate-loop failures are covered. |
-| Snapshot isolation and rendering/status consistency | S-04, S-05, SYS-01, SYS-05 | A-01, A-07, A-08 | Presentation consumes isolated state; board geometry, preview, labels, and sizing have observable outcomes. |
-| Initialization/source failures and invalid elapsed time | G-03, G-06, S-06, SYS-03 | A-08 | Programmer input rejection preserves engine state; browser application faults stop scheduling and display an error. |
-| Browser-independent rules, static delivery, compatibility scope | SYS-01, SYS-02, SYS-06, SYS-07 | A-04, A-07, A-09 | No runtime service or framework coupling is introduced; real-browser evidence must name its verified target. |
-| Scope exclusions and structural dependency direction | SPEC purpose, SYS-01; PROJECT/ARCHITECTURE/DECOMPOSITION | All applicable | No hold, hard drop, wall kicks, mobile controls, multiplayer, persistence, or backend is specified. |
+A-01–A-09 remain end-to-end acceptance; FA-01–FA-07 are incorporated as additional measurable acceptance. No browser rule enters the engine or duplicate landing rule enters the view. Checked source order, empty/populated hold, 999+1ms locking, ghost detach/null, hold entitlement and reset, orientation-zero spawn, restart and added resource validation. Every accepted feature contract has a main owner; feature preparation is archived as historical/non-executable after the verified task handoff.
 
-### Findings
+## Findings and TODO
 
-No confirmed QC or design-conformance defect was identified. No correction/recheck cycle occurred, so no Revision section is required. There are no delivery-count assessments at the SPEC stage; phase/milestone/task counts belong to PLAN and TASKS reviews.
-
-### Performed checks and limits
-
-- A scratch Python check passed for 24 existing local document links and anchors, nine unique root acceptance rows, and absence of unfinished/transition wording in the specification sources. Links to this report were checked after its creation as part of final checkpoint verification.
-- A scratch geometry check verified all seven stated initial shapes have four unique connected cells inside their frames, every derived rotation preserves those properties, four rotations return the initial shape, and all defined initial spawns fit the empty board.
-- Formula checks confirmed level-1 gravity is 1,000 ms and the level-12 interval reaches the 100 ms floor.
-- Whitespace verification passed for the authored document changes. The packaged disclosure remains byte-identical to its template and is outside this specification diff.
-
-These checks validate document structure and the stated numerical definitions. They do not run an engine, render Canvas, exercise a browser, or demonstrate A-01 through A-09 against product code. PLAN, layout, TASKS, dependency installation, and implementation are outside this preparation checkpoint.
-
-## Revision 1 — Governing-input navigation recheck
-
-On 2026-10-07, sdd-plan added PLAN/layout navigation to PROJECT and removed its statement that build tooling was unselected. PROJECT's SHA-256 is `0e361f7207334525378e10b9871ef07aca4569243e83a4ef387d6f7f67058618`. Comparison with the committed governing input shows unchanged purpose, accepted scope, non-goals, architecture constraints, and vocabulary. The navigation change assigns tooling/delivery and placement to their established owners; it adds no gameplay or interface requirement.
-
-The SPEC root/children, ARCHITECTURE, and DECOMPOSITION retain their initial reviewed hashes. The original conformance assessment remains equivalent for their unchanged contracts against the updated brief. The main agent rechecked the actual PROJECT diff and affected links using sdd-specify criteria. There is no confirmed finding, correction to behavioral requirements, or downstream invalidation. The gate remains Ready, with the written SPEC accepted by the user. Build and browser acceptance remain future product verification.
+No unresolved required defect or open decision. TODO: None. Product verification and actual task/hosted/publication status belong to TASKS and the retained implementation reports. Historical phase-one preparation reviews are retained under reports/phases/1.

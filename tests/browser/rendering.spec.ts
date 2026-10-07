@@ -20,3 +20,28 @@ test('draws the real snapshot at exact occupied/empty locations and redraws move
  const bounds=await page.locator('canvas').boundingBox(); expect(bounds!.width/bounds!.height).toBe(0.5);
  await page.locator('canvas').screenshot({path:info.outputPath('rendered-board.png')});
 });
+
+test('ghost outline follows the snapshot and active cells cover overlap',async({page},info)=>{
+ await page.goto('/tests/fixtures/playable.html?mode=rotate');
+ const ghostPixel=()=>page.locator('#board').evaluate(c=>Array.from((c as HTMLCanvasElement).getContext('2d')!.getImageData(4*24+3,18*24+3,1,1).data));
+ expect(await ghostPixel()).toEqual([148,163,184,255]);
+ await page.keyboard.press('p');const frozen=await page.locator('#board').evaluate(c=>(c as HTMLCanvasElement).toDataURL());
+ await page.getByRole('button',{name:'Advance one second'}).click();expect(await page.locator('#board').evaluate(c=>(c as HTMLCanvasElement).toDataURL())).toBe(frozen);
+ await page.locator('#game').focus();await page.keyboard.press('p');
+ for(let i=0;i<20;i++)await page.keyboard.press('ArrowDown');
+ expect(await ghostPixel()).toEqual([192,132,252,255]);
+ await page.screenshot({path:info.outputPath('ghost-overlap.png')});
+});
+test('ordinary page shows a ghost which redraws after movement',async({page})=>{
+ await page.addInitScript(()=>{Math.random=()=>.999;});await page.goto('/');
+ const pixel=()=>page.locator('#board').evaluate(c=>Array.from((c as HTMLCanvasElement).getContext('2d')!.getImageData(3*24+3,19*24+3,1,1).data));
+ expect(await pixel()).toEqual([148,163,184,255]);await page.keyboard.press('ArrowRight');expect(await pixel()).toEqual([15,23,42,255]);
+});
+
+test('held state is distinct, frozen on pause and cleared on restart',async({page})=>{
+ await page.goto('/');await expect(page.locator('#hold-state')).toHaveText('Empty · Available');
+ await page.keyboard.press('c');await expect(page.locator('#hold-state')).toHaveText('Unavailable until lock');
+ const drawing=()=>page.locator('#held').evaluate(c=>(c as HTMLCanvasElement).toDataURL());const held=await drawing();
+ await page.keyboard.press('p');expect(await drawing()).toBe(held);await page.keyboard.press('r');await expect(page.locator('#hold-state')).toHaveText('Empty · Available');expect(await drawing()).not.toBe(held);
+ const colored=await page.locator('#held').evaluate(c=>{const data=(c as HTMLCanvasElement).getContext('2d')!.getImageData(0,0,96,96).data;let n=0;for(let i=0;i<data.length;i+=4)if(data[i]!==15||data[i+1]!==23||data[i+2]!==42)n++;return n;});expect(colored).toBe(0);
+});

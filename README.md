@@ -1,8 +1,8 @@
 # Browser Tetris
 
-A classic-style, single-player TypeScript game with Canvas rendering, shuffled seven-piece bags, a next-piece preview, score and level progression, pause/resume, restart and game over. It runs entirely in the browser without a gameplay server or saved state.
+A classic-style, single-player TypeScript game with Canvas rendering, shuffled seven-piece bags, ghost landing outlines, hold, delayed-lock hard drop, clockwise wall/floor kicks, a next-piece preview, score and level progression, pause/resume, restart and game over. It runs entirely in the browser without a gameplay server or saved state.
 
-Phase 1 is complete and integrated into `main`. Locked installation, strict checking, 85 unit checks and 45 Chromium checks pass, including production static play and output/network independence. All 26 task issues and six milestones are closed with verified evidence. [Player guide](docs/USER-GUIDE.md) explains controls, scoring and the resting-piece locking rule.
+The piece-control implementation has passed milestone reviews on `feature/001_a043a43-piece-controls`; final main integration remains pending. Locked installation, strict checking, 278 unit tests and 66 Chromium checks pass. Phase 1 evidence remains preserved. [Player guide](docs/USER-GUIDE.md) explains all controls and scheduled locking; [feature acceptance](docs/dev/features/001_a043a43/ACCEPTANCE.md) records current checks.
 
 ## Install and play locally
 
@@ -13,7 +13,7 @@ npm ci
 npm run dev
 ```
 
-Open <http://127.0.0.1:5173> manually. The scripts bind to loopback and do not launch a browser or require PowerShell. Click the board to focus gameplay; use the arrows, P and R, or the visible Pause/Resume and Restart buttons. The full interface fits 800 × 600 at default zoom; smaller screens may scroll. Touch controls are outside scope.
+Open <http://127.0.0.1:5173> manually. The scripts bind to loopback and do not launch a browser or require PowerShell. Click the board to focus gameplay; use the arrows, Space, C, P and R, or the visible Pause/Resume and Restart buttons. The full interface fits 800 × 600 at default zoom; smaller screens may scroll. Touch controls are outside scope.
 
 ## Check and build
 
@@ -56,3 +56,7 @@ The engine owns rules and detached snapshots, the controller owns input/time/lif
 - [Acceptance evidence](docs/dev/reports/phases/1/ACCEPTANCE.md), [phase review](docs/dev/reports/phases/1/PHASE-REPORT.md) and [implementation report](docs/dev/reports/IMPLEMENTATION-REPORT.md)
 - [SDD Manager findings and proposed amendments](SDD-MANAGER-FINDINGS.md)
 - [GitHub task issues](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work/issues) and [milestones](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work/milestones)
+
+- [Piece-control campaign and reports](docs/dev/features/001_a043a43/README.md)
+
+- [Piece-control phase review](docs/dev/features/001_a043a43/PHASE-REPORT.md) and [implementation report](docs/dev/features/001_a043a43/IMPLEMENTATION-REPORT.md)

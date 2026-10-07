@@ -34,3 +34,16 @@ for(const [kind,occupied,color] of [
  await page.goto(`/tests/fixtures/playable.html?mode=preview&kind=${kind}`);const pixels=await previewPixels(page);
  for(let y=0;y<4;y++)for(let x=0;x<4;x++)expect(pixels[y]![x]).toEqual(occupied.some(c=>c[0]===x&&c[1]===y)?[...color]:[15,23,42,255]);
 });}
+
+for(const [kind,occupied,color] of [
+ ['I',[[0,1],[1,1],[2,1],[3,1]],[34,211,238,255]],
+ ['J',[[0,0],[0,1],[1,1],[2,1]],[96,165,250,255]],
+ ['L',[[2,0],[0,1],[1,1],[2,1]],[251,146,60,255]],
+ ['O',[[1,1],[2,1],[1,2],[2,2]],[250,204,21,255]],
+ ['S',[[1,0],[2,0],[0,1],[1,1]],[74,222,128,255]],
+ ['T',[[1,0],[0,1],[1,1],[2,1]],[192,132,252,255]],
+ ['Z',[[0,0],[1,0],[1,1],[2,1]],[248,113,113,255]],
+] as const){test(`${kind} held matches its unrotated occupied cells`,async({page})=>{
+ await page.goto(`/tests/fixtures/playable.html?mode=hold&kind=${kind}`);const pixels=await page.locator('#held').evaluate(canvas=>{const ctx=(canvas as HTMLCanvasElement).getContext('2d')!;return Array.from({length:4},(_,y)=>Array.from({length:4},(_,x)=>Array.from(ctx.getImageData(x*24+12,y*24+12,1,1).data)));});
+ for(let y=0;y<4;y++)for(let x=0;x<4;x++)expect(pixels[y]![x]).toEqual(occupied.some(c=>c[0]===x&&c[1]===y)?[...color]:[15,23,42,255]);
+});}

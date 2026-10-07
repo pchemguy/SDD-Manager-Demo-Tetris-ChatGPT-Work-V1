@@ -21,3 +21,12 @@ export function clearRows(board: Grid): number {
  board.splice(0,board.length,...empty,...remaining);
  return count;
 }
+
+/** Return the lowest downward-reachable placement of a legal piece without mutation.
+ * Stops at the first blocked descent; it never tunnels through occupied cells.
+ */
+export function landing(board: Grid, piece: Piece): Piece {
+ let result={...piece};
+ while(canPlace(board,{...result,y:result.y+1})) result={...result,y:result.y+1};
+ return result;
+}

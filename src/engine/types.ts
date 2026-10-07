@@ -5,13 +5,16 @@ export type Orientation = 0 | 1 | 2 | 3;
 export interface Cell { readonly x: number; readonly y: number }
 export interface Piece extends Cell { readonly kind: Kind; readonly orientation: Orientation }
 export type Grid = (Kind | null)[][];
-export type Action = 'left' | 'right' | 'rotate' | 'down';
+export type Action = 'left' | 'right' | 'rotate' | 'down' | 'hard-drop' | 'hold';
 export type Status = 'running' | 'paused' | 'game-over';
 export interface PieceSource { next(): Kind }
 export interface Snapshot {
   readonly board: readonly (readonly (Kind | null)[])[];
   readonly active: Piece | null;
+  readonly ghost: Piece | null;
   readonly preview: Kind;
+  readonly held: Kind | null;
+  readonly holdAvailable: boolean;
   readonly status: Status;
   readonly score: number;
   readonly lines: number;
