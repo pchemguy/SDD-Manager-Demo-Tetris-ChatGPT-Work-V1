@@ -2,7 +2,7 @@
 
 ## Purpose and status
 
-This document assigns physical ownership for the logical components in [DECOMPOSITION](DECOMPOSITION.md) and delivery boundaries in [PLAN](PLAN.md). It defines intended placement; source, test, and build files are not present at this planning checkpoint.
+This document assigns physical ownership for the logical components in [DECOMPOSITION](DECOMPOSITION.md) and delivery boundaries in [PLAN](PLAN.md). It defines current full-project ownership for source, tests, tooling and governing/evidence documents.
 
 The existing repository contains LICENSE, README, .gitignore, root SDD usage/disclosure records, and development documents. An ignored protected repository-local credential file is an operational input, never a product asset.
 
@@ -10,18 +10,19 @@ The existing repository contains LICENSE, README, .gitignore, root SDD usage/dis
 
 | Location | Owner and purpose | Related checks / consumers |
 | --- | --- | --- |
-| `index.html` | Browser page structure, gameplay region, board/preview canvases, status/controls, and static fallback text. | Browser initialization, usability, and ordinary-page acceptance. |
+| `index.html` | Browser page structure, gameplay region, board/next/held canvases, status/controls, and static fallback text. | Browser initialization, usability, and ordinary-page acceptance. |
 | `src/main.ts` | Browser entry point: resolve elements, assemble the engine/controller/views, and handle setup faults. | Integration/browser tests; imports the three application blocks. |
 | `src/style.css` | Desktop presentation, square-cell display sizing, page layout, and visible focus. | Browser viewport/visual inspection; loaded by the browser entry point. |
 | `src/engine/types.ts` | Engine-domain kinds, coordinates, actions, statuses, and snapshot contracts. | All engine modules and external engine consumers. No browser types. |
 | `src/engine/pieces.ts` | Tetromino geometry, orientation, and occupied-cell coordinates. | Engine and renderer; geometry unit tests. |
-| `src/engine/board.ts` | Placement, lock-cell updates, and row compaction. | Engine; board unit tests. |
+| `src/engine/board.ts` | Placement, shared landing, lock-cell updates, and row compaction. | Engine; board unit tests. |
+| `src/engine/kicks.ts` | Pure clockwise offset tables and ordered legal-placement selection. | Engine rotation; table/boundary/priority/rejection tests. |
 | `src/engine/piece-source.ts` | Production bag source and random-input boundary. | Engine; bag/sequence unit tests. Deterministic test sources belong in test support. |
 | `src/engine/game.ts` | Gameplay-state owner and semantic action/time/snapshot boundary. Scoring and progression remain here unless cohesion justifies a documented helper. | Controller; deterministic engine scenario tests. |
 | `src/session/keyboard.ts` | Key mapping, repeat/filter rules, focus scope, and default prevention. | Controller; input and real-browser tests. |
 | `src/session/controller.ts` | Scheduling, elapsed-time forwarding, pause/restart, interruption lifecycle, fault handling, and disposal. | Entry point; controlled scheduler tests and browser session checks. |
-| `src/view/renderer.ts` | Canvas board/preview drawing from snapshots and shared immutable geometry. | Controller; browser rendering correspondence checks. |
-| `src/view/status.ts` | DOM status/instructions and labeled command controls. | Controller; browser status/focus/command checks. |
+| `src/view/renderer.ts` | Canvas locked/ghost/active board and next/held miniature drawing from snapshots and shared immutable geometry. | Controller; browser rendering correspondence checks. |
+| `src/view/status.ts` | DOM counters/status/hold availability, instructions and labeled command controls. | Controller; browser status/focus/command checks. |
 | `tests/unit/engine/` | Geometry, board, piece-source, and game-contract tests, grouped by their owning source responsibility. | Vitest in a non-browser environment. |
 | `tests/unit/session/` | Controller/input tests that require only controlled adapters and events. DOM-dependent behavior belongs in browser tests. | Vitest; controlled scheduler/input fixtures. |
 | `tests/browser/` | Real Chromium checks for normal page play, rendering, lifecycle, failures, and static production delivery. | Playwright Test; production page and isolated test fixtures. |
@@ -34,9 +35,10 @@ The existing repository contains LICENSE, README, .gitignore, root SDD usage/dis
 | `playwright.config.ts` | Chromium checks and development/production server orchestration. | Browser suite; includes browser prerequisites without assuming installed binaries. |
 | `README.md` | Project introduction, current product status, setup/run/build/check commands, and document navigation. | Developer reproduction and delivery acceptance. |
 | `docs/USER-GUIDE.md` | Player controls, rules overview, pause/restart/game over, and browser expectations. | Delivery documentation checks; links canonical detailed rules instead of duplicating contracts. |
-| `docs/dev/` | PROJECT, ARCHITECTURE, DECOMPOSITION, SPEC and children/review, PLAN and review, layout, and the owning TASKS/review when created. | SDD authoring, implementation, and conformance checks. |
+| `docs/dev/` | PROJECT, ARCHITECTURE, DECOMPOSITION, SPEC and children/review, PLAN and review, layout, and the sole executable TASKS/review. | SDD authoring, implementation, and conformance checks. |
 | `docs/dev/reports/phases/1/` | Milestone reports named by stable milestone ID, and PHASE-REPORT.md. | Review tasks and phase integration gates. |
-| `docs/dev/reports/IMPLEMENTATION-REPORT.md` | Final completed-project evidence and aggregated permitted TODOs. | Final phase review and delivery status. |
+| `docs/dev/reports/IMPLEMENTATION-REPORT.md` | Historical phase-one final evidence and aggregated permitted TODOs. | Final phase review and delivery status. |
+| `docs/dev/features/001_a043a43/` | Piece-control reports 2.1–2.4, ACCEPTANCE, PHASE-REPORT, final IMPLEMENTATION-REPORT, selected sanitized images and archived non-executable preparation/reviews. | Current project docs/TASKS govern; historical sources remain discoverable. |
 | Root `LICENSE`, `AI_DISCLOSURE.md`, `SDD-MANAGER.md` | License and truthful development attribution. | Product/development documentation and first-adoption evidence. |
 | `.gitignore` | Generated/local-file exclusion; retain credential exclusion and final `.obsidian`/`.trash` lines. | Git publication and shipped-artifact checks. |
 

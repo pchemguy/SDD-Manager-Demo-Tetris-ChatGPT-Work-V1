@@ -2,11 +2,11 @@
 
 ## Purpose and scope
 
-The application provides a classic-style, single-player Tetris game in a desktop browser. Players move and rotate falling tetrominoes, clear rows, gain points, and face increasing gravity speed. The game provides a next-piece preview, pause, restart, and a visible game-over state.
+The application provides a classic-style, single-player Tetris game in a desktop browser. Players move and rotate falling tetrominoes, clear rows, gain points, and face increasing gravity speed. The game provides ghost landing outlines, hold, delayed-lock hard drop, clockwise wall/floor kicks, a next-piece preview, pause, restart, and a visible game-over state.
 
 The accepted structure is plain TypeScript with Canvas board rendering, a browser-independent engine, a session controller, and presentation consuming snapshots. See [PROJECT](PROJECT.md), [ARCHITECTURE](ARCHITECTURE.md), and [DECOMPOSITION](DECOMPOSITION.md) for intent and ownership.
 
-Mobile touch controls, multiplayer, accounts, online leaderboards, ghost pieces, hold, hard drop, wall kicks, audio, saved games, and exact emulation of a commercial edition are outside this specification. Runtime play requires no application server or external service. Refreshing the page starts a fresh session; no persistence is required.
+Mobile touch controls, multiplayer, accounts, online leaderboards, counterclockwise/180-degree controls, spin/combo/drop bonuses, audio, saved games, and exact emulation of a commercial edition are outside this specification. Runtime play requires no application server or external service. Refreshing the page starts a fresh session; no persistence is required.
 
 ## Contract ownership
 
@@ -23,7 +23,7 @@ These children own detailed rules. This root owns system-wide guarantees and end
 - **SYS-02 — Determinism:** Identical valid piece sequences, initial state, actions, and elapsed-time calls produce identical gameplay snapshots. Production randomness is supplied at the piece-source boundary.
 - **SYS-03 — State:** Public session status is running, paused, or game over. Initialization/runtime failures are visibly reported by the browser application and stop its gameplay scheduling; they are not presented as game over.
 - **SYS-04 — Lifecycle:** Pause and browser focus loss freeze gameplay without spending inactive time. Restart replaces gameplay state and clears timing state. One application instance owns at most one frame loop and one subscription to each required event.
-- **SYS-05 — Interface:** The board, active piece, preview, score, level, cleared-line total, controls, and session status are visible together. Commands cannot leave the rendered view permanently inconsistent with engine state.
+- **SYS-05 — Interface:** The board, active piece, ghost, next and held previews, hold availability, score, level, cleared-line total, controls, and session status are visible together. Commands cannot leave the rendered view permanently inconsistent with engine state.
 - **SYS-06 — Compatibility:** The target is desktop browsers with ES2020, Canvas 2D, keyboard events, and requestAnimationFrame. Acceptance must demonstrate real play in an available desktop Chromium browser. Other supported-capability browsers are intended targets without a cross-browser verification claim until checked.
 - **SYS-07 — Delivery:** The repository documents reproducible development, verification, and production-build commands. The built application is static browser content and must work under a static HTTP server. Build tooling and deployment hosting are planning concerns.
 
@@ -31,7 +31,7 @@ These children own detailed rules. This root owns system-wide guarantees and end
 
 | ID | Required observable outcome |
 | --- | --- |
-| A-01 | Opening the application displays an empty 10 × 20 board with an active piece, one preview, score 0, level 1, cleared-line total 0, and usable keyboard instructions. |
+| A-01 | Opening the application displays an empty 10 × 20 board with an active piece, one next preview, empty held slot with available hold, ghost landing, score 0, level 1, cleared-line total 0, and usable keyboard instructions. |
 | A-02 | A controlled piece sequence supports movement, rotation, gravity, collision, and the specified next-gravity-tick locking rule; rejected actions preserve legal state. |
 | A-03 | Controlled one-, two-, three-, and four-row clears compact the board correctly and award the specified score. Crossing a ten-line boundary changes level and gravity speed correctly. |
 | A-04 | The preview matches the subsequent active piece. Every generated seven-piece bag contains each kind once; tests supply deterministic sequences without a browser. |
@@ -42,3 +42,18 @@ These children own detailed rules. This root owns system-wide guarantees and end
 | A-09 | Documented commands produce a type-checked production build and run the selected checks. Static HTTP serving permits play without runtime service dependencies. |
 
 Readiness for planning is assessed in [SPEC-REVIEW-REPORT](SPEC-REVIEW-REPORT.md). Specification readiness is distinct from implemented or verified product behavior.
+
+## Piece-control acceptance
+
+| ID | Required evidence |
+| --- | --- |
+| FA-01 | All seven kinds/orientations land above the first floor/stack obstruction; ghost and drop share the destination; zero-distance and detached/pure snapshots pass. |
+| FA-02 | Drop does not lock/score/consume/promote; residual-time boundary locks on the next blocked tick; intervening move/kick can permit descent; repeated/paused/terminal commands do not alter state. |
+| FA-03 | Empty hold consumes one successor preview; populated swap consumes none; orientation/spawn reset; unavailable hold changes nothing; lock restores entitlement; drop alone does not; blocked incoming spawn and source faults remain distinct. |
+| FA-04 | Every clockwise transition/family is checked against the table; exercise wall/floor/stack and upper-boundary candidates, later candidate success, first-legal precedence and total rejection; O remains unchanged. |
+| FA-05 | Real Chromium keyboard/rendering checks establish ghost/held/preview correspondence, one-shot commands, Space scroll prevention, active-over-ghost legibility, paused display and restart cleanup at 800 × 600. |
+| FA-06 | Combined hold → kick → drop → move → tick sequences retain source order/scoring/time; restart, interruption, fault, disposal and added initialization failures preserve existing guarantees. |
+| FA-07 | Strict typecheck, applicable engine/controller and browser regressions, production static-HTTP play and runtime-network independence pass; player/developer docs describe delayed locking. Record native focus/other-platform evidence limits accurately. |
+
+
+Detailed added gameplay belongs to G-07–G-10 and browser presentation/input to S-01–S-06. The same next blocked gravity tick rule governs every drop.
