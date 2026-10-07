@@ -32,7 +32,7 @@ These children own detailed rules. This root owns system-wide guarantees and end
 | ID | Required observable outcome |
 | --- | --- |
 | A-01 | Opening the application displays an empty 10 × 20 board with an active piece, one next preview, empty held slot with available hold, ghost landing, score 0, level 1, cleared-line total 0, and usable keyboard instructions. |
-| A-02 | A controlled piece sequence supports movement, rotation, gravity, collision, and the specified next-gravity-tick locking rule; rejected actions preserve legal state. |
+| A-02 | A controlled piece sequence supports movement, rotation, gravity, collision, and the specified full-gravity-interval landing delay; rejected actions preserve legal state. |
 | A-03 | Controlled one-, two-, three-, and four-row clears compact the board correctly and award the specified score. Crossing a ten-line boundary changes level and gravity speed correctly. |
 | A-04 | The preview matches the subsequent active piece. Every generated seven-piece bag contains each kind once; tests supply deterministic sequences without a browser. |
 | A-05 | Pause, resume, blur/hidden-tab pause, and restart preserve the specified state/timing behavior. Repeated restarts do not duplicate frame loops or input effects. |
@@ -48,7 +48,7 @@ Readiness for planning is assessed in [SPEC-REVIEW-REPORT](SPEC-REVIEW-REPORT.md
 | ID | Required evidence |
 | --- | --- |
 | FA-01 | All seven kinds/orientations land above the first floor/stack obstruction; ghost and drop share the destination; zero-distance and detached/pure snapshots pass. |
-| FA-02 | Drop does not lock/score/consume/promote; residual-time boundary locks on the next blocked tick; intervening move/kick can permit descent; repeated/paused/terminal commands do not alter state. |
+| FA-02 | Drop does not lock/score/consume/promote; landing starts a full interval even with residual time; continuously grounded adjustments do not extend it; intervening move/kick can permit descent; repeated/paused/terminal commands do not alter state. |
 | FA-03 | Empty hold consumes one successor preview; populated swap consumes none; orientation/spawn reset; unavailable hold changes nothing; lock restores entitlement; drop alone does not; blocked incoming spawn and source faults remain distinct. |
 | FA-04 | Every clockwise transition/family is checked against the table; exercise wall/floor/stack and upper-boundary candidates, later candidate success, first-legal precedence and total rejection; O remains unchanged. |
 | FA-05 | Real Chromium keyboard/rendering checks establish ghost/held/preview correspondence, one-shot commands, Space scroll prevention, active-over-ghost legibility, paused display and restart cleanup at 800 × 600. |
@@ -56,4 +56,4 @@ Readiness for planning is assessed in [SPEC-REVIEW-REPORT](SPEC-REVIEW-REPORT.md
 | FA-07 | Strict typecheck, applicable engine/controller and browser regressions, production static-HTTP play and runtime-network independence pass; player/developer docs describe delayed locking. Record native focus/other-platform evidence limits accurately. |
 
 
-Detailed added gameplay belongs to G-07–G-10 and browser presentation/input to S-01–S-06. The same next blocked gravity tick rule governs every drop.
+Detailed added gameplay belongs to G-07–G-10 and browser presentation/input to S-01–S-06. The same full-gravity-interval landing delay governs natural descent, manual movement and every drop.

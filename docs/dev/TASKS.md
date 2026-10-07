@@ -10,6 +10,10 @@ Phase 1 is complete: all T-001–T-026 tasks, six milestone reviews/closures and
 
 Execute a human-selected bounded range through sdd-implement. A partial phase publishes task/review checkpoints and pauses on its phase branch. Only full verified phase completion permits default integration. Git publication and maintained GitHub tracking are established. This was late tracking activation, reconciling existing verified work rather than replaying tasks or claiming projection preceded execution. Future task completions require verified issue closure, and milestone closure follows its review/evidence gates. [GitHub issues](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work/issues) and [milestones](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work/milestones) expose hosted state.
 
+## Full-interval locking reassessment
+
+The developer-selected steering amendment [002_c8feba6](reports/phases/2/revisions/002_c8feba6/REVISION-REPORT.md) governs current landing-delay behavior. T-005/T-010/T-014/T-029/T-036 and their review boundaries require reassessment against G-04/G-06/G-08/G-10, A-02/A-05 and FA-02/FA-06/FA-07. Their initial completion records are historical evidence of the accepted scheduled-tick baseline. Amended implementation verification is pending; unaffected task IDs, phase/milestone structure and hosted identities are retained. No main-list task is resumed.
+
 ## Task evidence conventions
 
 Each delivery task includes its relevant tests and documentation, plus strict typechecking when code is introduced. Unit check syntax is `npm test -- <test path>`; browser check syntax is `npm run test:browser -- <test path>`. Concrete test filenames below are intended paths under layout-owned directories and may be refined without moving ownership or changing outcomes. `npm test` runs once, not in watch mode.

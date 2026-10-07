@@ -32,11 +32,11 @@ Starting a session draws one active piece and one preview piece. After a lock/cl
 
 ## G-04 — Movement, soft drop, and locking
 
-Left and right actions attempt one horizontal cell. Soft drop attempts one downward cell. Successful movement does not award points or reset the gravity accumulator. A blocked soft drop is a no-op and does not lock the piece.
+Left and right actions attempt one horizontal cell. Soft drop attempts one downward cell. Successful movement does not award points. A legal action that first changes an airborne piece into a grounded piece resets the gravity accumulator to zero, granting a full gravity interval before locking. Grounded means that one downward cell is illegal. A blocked soft drop is a no-op and does not lock the piece.
 
-A gravity tick attempts one downward cell. If descent succeeds, the piece remains active even when that move leaves it resting on the floor or stack. If descent is blocked, the piece locks at that tick. Thus the next gravity tick after reaching a resting position locks the piece if it still cannot descend. Horizontal movement and legal rotation remain available before that tick; neither postpones the scheduled tick. If the piece is moved into a position from which descent is possible, the tick moves it down instead of locking.
+A gravity tick attempts one downward cell. If descent succeeds, the piece remains active even when that move leaves it resting on the floor or stack. If descent is blocked, the piece locks at that tick. Every landing grants one full current-level gravity interval before a blocked tick can lock. Natural descent lands at a tick boundary; manual descent, hard drop, horizontal movement or rotation that first grounds an airborne piece starts a fresh interval. Horizontal movement and legal rotation remain available during the delay; actions that keep the piece grounded do not postpone its deadline. If the piece is moved into a position from which descent is possible, the tick moves it down instead of locking.
 
-Hard drop follows this same scheduled tick rule (G-08). There is no immediate-lock drop exception, separate lock timer, or lock-delay reset counter.
+Hard drop follows this same full-interval landing rule (G-08). Leaving support permits descent on the scheduled tick; a subsequent airborne-to-grounded transition starts a fresh interval. There is no immediate-lock drop exception, separate lock timer, or lock-delay reset counter.
 
 ## G-05 — Lock, clear, score, and game over
 
@@ -58,7 +58,7 @@ Game over occurs when the promoted piece's occupied spawn cells collide with the
 
 At level L, the interval in milliseconds is max(100, 1000 × 0.8^(L − 1)). A fresh session starts with accumulator 0. Advancing time adds a finite nonnegative elapsed-millisecond value to the accumulator. Whenever it reaches the current interval, subtract that interval and process one gravity tick. Repeat while enough time remains, using the resulting level's interval after any clear. Fractional milliseconds are retained; no rounding is required.
 
-Accumulated residual time continues across piece promotion during active play. Game over stops remaining tick processing. Pause preserves the fractional accumulator but contributes no elapsed time. Restart clears it. Manual moves, rotations and hard drop never reset it; successful hold resets it to zero (G-09).
+Accumulated residual time continues across piece promotion during active play. Game over stops remaining tick processing. Pause preserves the fractional accumulator but contributes no elapsed time. Restart clears it. Manual actions reset it only on the airborne-to-grounded transition described in G-04; rejected actions, continuously grounded adjustments and zero-distance hard drop never reset it. Successful hold resets it to zero (G-09). Natural landing does not discard residual elapsed time after its tick; bulk and partitioned advances agree.
 
 Negative, NaN, or infinite elapsed time raises a RangeError before any mutation. Valid elapsed time has no effect when paused or game over. Identical total elapsed time without interleaved actions yields the same result whether supplied as one call or multiple calls, subject to ordinary floating-point precision.
 
@@ -70,11 +70,11 @@ Every snapshot with an active piece supplies its landing as ghost placement; no 
 
 Presentation consumes supplied ghost placement under [S-05](session.md#s-05--presentation); it does not duplicate landing rules.
 
-## G-08 — Hard drop and scheduled locking
+## G-08 — Hard drop and full-interval locking
 
-While running, hard drop moves the active piece to G-07 landing and performs no lock, clear, score/progression update, source consumption or preview promotion. It preserves the gravity accumulator and hold entitlement. At zero distance it is a no-op.
+While running, hard drop moves the active piece to G-07 landing and performs no lock, clear, score/progression update, source consumption or preview promotion. It preserves hold entitlement and starts a full gravity interval when it moves an airborne piece onto support. At zero distance it is a no-op.
 
-The piece remains movable, rotatable and eligible for hold according to G-09. The next scheduled gravity tick locks it only if descent is still blocked; if an intervening move/kick makes descent legal, that tick moves it down. Hard drop introduces no new timer and grants no full-interval delay: with 999 ms accumulated at level 1, a drop followed by 1 ms locks a still-grounded piece. Paused/completed drop is a no-op. There is no drop score bonus.
+The piece remains movable, rotatable and eligible for hold according to G-09. The next gravity tick, one full interval after landing, locks it only if descent is still blocked; if an intervening move/kick makes descent legal, that tick moves it down. Hard drop uses the same accumulator and landing rule as ordinary descent: with 999 ms accumulated at level 1, a positive-distance drop followed by 999 ms remains active; the following 1 ms locks a still-grounded piece. Repeated zero-distance drops do not extend this deadline. Paused/completed drop is a no-op. There is no drop score bonus.
 
 ## G-09 — Hold, source order and lifecycle
 
@@ -88,7 +88,7 @@ Hold input while paused/game over is ignored. Pause retains held kind and entitl
 
 ## G-10 — Clockwise SRS-based kicks
 
-Use G-02 geometry, clockwise orientation cycle 0 → 1 → 2 → 3 → 0, and spawn origin. O remains a no-op. For another kind, rotate within its existing matrix, then apply each offset below to the ORIGINAL frame origin, in listed order. Commit the first legal candidate; if none is legal, reject without any gameplay/timing/source change. Do not apply offsets cumulatively. Kicks never reset gravity, lock, award score or change hold entitlement.
+Use G-02 geometry, clockwise orientation cycle 0 → 1 → 2 → 3 → 0, and spawn origin. O remains a no-op. For another kind, rotate within its existing matrix, then apply each offset below to the ORIGINAL frame origin, in listed order. Commit the first legal candidate; if none is legal, reject without any gameplay/timing/source change. Do not apply offsets cumulatively. Kicks apply the same airborne-to-grounded timing rule as other movement; grounded adjustments and rejected kicks never reset gravity. Rotation never locks, awards score or changes hold entitlement.
 
 Offsets use game coordinates: positive x is right, positive y is DOWN. They are the clockwise subset of the standard SRS tables with the source's upward-positive y inverted. Vertical offsets include floor/stack kicks. Occupied cells above row 0 remain illegal; there are no hidden spawn rows.
 

@@ -33,7 +33,7 @@ Shared landing is owned by board operations and used by ghost snapshots and hard
 - The engine is usable in a non-browser test process.
 - One engine instance owns one gameplay session's state.
 - Consumers cannot mutate engine state through a presentation snapshot.
-- Only a blocked gravity tick locks. Successful hold resets engine gravity; drop and kicks do not.
+- Only a blocked gravity tick locks. First landing grants a full gravity interval through the engine accumulator. Manual airborne-to-grounded transitions reset it; continuously grounded movement, zero-distance drops and rejected actions do not. Successful hold resets engine gravity.
 - Rendering cadence does not define gameplay rules; the engine consumes explicit elapsed time.
 - Browser event subscriptions and scheduling have an explicit owner and disposal lifecycle.
 - Failed initialization produces a visible failure state rather than a partially active session.

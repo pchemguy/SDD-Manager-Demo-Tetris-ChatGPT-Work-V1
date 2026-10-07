@@ -39,6 +39,7 @@ The existing repository contains LICENSE, README, .gitignore, root SDD usage/dis
 | `docs/dev/reports/phases/1/` | Milestone reports named by stable milestone ID, and PHASE-REPORT.md. | Review tasks and phase integration gates. |
 | `docs/dev/reports/IMPLEMENTATION-REPORT.md` | Historical phase-one final evidence and aggregated permitted TODOs. | Final phase review and delivery status. |
 | `docs/dev/features/001_a043a43/` | Piece-control reports 2.1–2.4, ACCEPTANCE, PHASE-REPORT, final IMPLEMENTATION-REPORT, selected sanitized images and archived non-executable preparation/reviews. | Current project docs/TASKS govern; historical sources remain discoverable. |
+| `docs/dev/reports/phases/2/revisions/002_c8feba6/` | Focused full-interval landing-delay steering report. | Amendment verification, explicit merge and publication evidence. |
 | Root `LICENSE`, `AI_DISCLOSURE.md`, `SDD-MANAGER.md` | License and truthful development attribution. | Product/development documentation and first-adoption evidence. |
 | `.gitignore` | Generated/local-file exclusion; retain credential exclusion and final `.obsidian`/`.trash` lines. | Git publication and shipped-artifact checks. |
 

@@ -10,7 +10,7 @@ Success means a playable game whose rules can be checked independently of the br
 
 - TypeScript browser application with desktop keyboard controls.
 - Falling pieces, rotation, collision, line clearing, scoring, increasing speed, and game over.
-- Ghost landing outlines, hold, hard drop with scheduled gravity locking, clockwise wall/floor kicks, next-piece preview, pause, and restart.
+- Ghost landing outlines, hold, hard drop with a full gravity interval before locking, clockwise wall/floor kicks, next-piece preview, pause, and restart.
 - Plain TypeScript and Canvas rendering.
 - A game engine separated from the session controller and presentation.
 
