@@ -40,11 +40,12 @@ Recommended first execution range: T-027–T-030, delivering and reviewing miles
             Depends on: T-027, T-028.
             Evidence: npm test -- tests/unit/engine; npm test -- tests/unit/session; npm run test:browser -- tests/browser/input.spec.ts; npm run typecheck. Include 999 ms + drop + 1 ms, grounded no-op, post-drop movement, paused/terminal input, repeat/scroll suppression and unchanged entitlement. F-02 / FA-02 and Space portions of FA-05.
             Completion evidence (2026-10-07): RED: 3 unit failures showed absent drop action/mapping; new real-browser drop check also failed before changes. GREEN: 120 unit tests, strict typecheck and 10 focused browser checks pass. Corrected the browser fixture expectation to include the established first-frame baseline after resume; no product timing change. Space lands without locking/reset/source/score changes, including 999+1 ms and post-drop movement; repeat/paused scrolling prevented and player instructions updated.
-        - [ ] T-030 — Review, test and report milestone 2.1
+        - [x] T-030 — Review, test and report milestone 2.1
             Outcome: Review the complete ghost/drop increment and demonstrate landing-to-lock adjustment; repair required blockers and retain evidence.
             Scope: All 2.1 affected code/tests/docs; feature report 2.1.md and selected sanitized screenshots.
             Depends on: T-027, T-028, T-029; their hosted issues closed.
             Evidence: Separate code review; npm run typecheck; npm test; npm run build; relevant real-browser ghost/input/playable regressions. Complete 2.1 exits without claiming hold/kicks. Publish report and reconcile review issue then milestone closure. Report: docs/dev/features/001_a043a43/2.1.md.
+            Completion evidence (2026-10-07): Whole 2.1 code review found no unresolved product defect; 120 unit/48 browser tests, strict typecheck and build pass. Ordinary shipped-page screenshot inspected and retained. Ghost/drop acceptance covered; hold/kicks explicitly deferred. Native focus/other-platform limits retained. Milestone report and task evidence published before hosted review/milestone closure.
     - [ ] Milestone 2.2 — Hold and held-piece presentation
         - [ ] T-031 — Implement hold state, source order and lock-cycle entitlement
             Outcome: Empty-slot promotion and populated swap follow exact source/spawn/timing rules; restart, blocked spawn and faults retain their contracts.
