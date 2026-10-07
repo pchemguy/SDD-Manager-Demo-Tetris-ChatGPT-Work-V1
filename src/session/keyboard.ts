@@ -9,8 +9,8 @@ function allowed(event:KeyboardEvent):boolean {
 /** Translate supported unmodified keys, ignoring editable and native-control origins. */
 export function commandFor(event:KeyboardEvent):Command|null {
  if(!allowed(event))return null;
- const action=(event.code==='Space'||event.key===' ')?'hard-drop':arrows[event.key]??(event.key.toLowerCase()==='p'?'pause':event.key.toLowerCase()==='r'?'restart':null);
- if(event.repeat&&(action==='rotate'||action==='hard-drop'||action==='pause'||action==='restart'))return null;
+ const action=(event.code==='Space'||event.key===' ')?'hard-drop':arrows[event.key]??(event.key.toLowerCase()==='c'?'hold':event.key.toLowerCase()==='p'?'pause':event.key.toLowerCase()==='r'?'restart':null);
+ if(event.repeat&&(action==='rotate'||action==='hard-drop'||action==='hold'||action==='pause'||action==='restart'))return null;
  return action;
 }
 /** Subscribe to the gameplay region only; handled arrows suppress native scrolling in all statuses. */

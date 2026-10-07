@@ -18,3 +18,9 @@ it('maps one-shot Space through key/code and rejects repeated or modified drop',
  expect(commandFor(key(' '))).toBe('hard-drop');expect(commandFor(key('Unidentified',{code:'Space'}))).toBe('hard-drop');
  expect(commandFor(key(' ',{repeat:true}))).toBeNull();expect(commandFor(key(' ',{ctrlKey:true}))).toBeNull();
 });
+
+it('maps one-shot case-insensitive C and preserves all shortcut/origin filters',()=>{
+ expect(commandFor(key('c'))).toBe('hold');expect(commandFor(key('C'))).toBe('hold');
+ expect(commandFor(key('c',{repeat:true}))).toBeNull();expect(commandFor(key('C',{altKey:true}))).toBeNull();
+ expect(commandFor(key('c',{target:{closest:()=>({})} as unknown as EventTarget}))).toBeNull();
+});

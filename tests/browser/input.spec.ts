@@ -40,3 +40,11 @@ test('Space drops to ghost without lock; repeat/inactive input still suppresses 
  // Resume's first frame establishes a fresh controller baseline; the second spends active time.
  await page.getByRole('button',{name:'Advance one second'}).click();await page.getByRole('button',{name:'Advance one second'}).click();expect((await state(page)).active.kind).toBe('I');
 });
+
+test('C exchanges once, ignores repeat/inactive input and restart clears entitlement state',async({page})=>{
+ await page.goto('/tests/fixtures/playable.html?mode=rotate');await page.keyboard.press('C');
+ const held=await state(page);expect(held.held).toBe('T');expect(held.active.kind).toBe('I');expect(held.holdAvailable).toBe(false);
+ await page.locator('#game').evaluate(el=>el.dispatchEvent(new KeyboardEvent('keydown',{key:'c',repeat:true,bubbles:true})));expect(await state(page)).toEqual(held);
+ await page.keyboard.press('p');const paused=await state(page);await page.keyboard.press('c');expect(await state(page)).toEqual(paused);
+ await page.keyboard.press('r');expect((await state(page)).held).toBeNull();await page.keyboard.press('c');expect((await state(page)).held).toBe('T');expect((await state(page)).preview).toBe('O');
+});

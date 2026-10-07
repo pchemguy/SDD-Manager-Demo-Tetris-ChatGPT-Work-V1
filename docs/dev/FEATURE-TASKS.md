@@ -53,11 +53,12 @@ Recommended first execution range: T-027–T-030, delivering and reviewing miles
             Depends on: T-030; milestone 2.1 verified and closed.
             Evidence: npm test -- tests/unit/engine; npm run typecheck. Count source calls, orientation reset, unavailable hold no-op, accumulator reset, entitlement only after lock, drop-without-lock, blocked incoming spawn and invalid/exhausted source. F-03 / FA-03.
             Completion evidence (2026-10-07): RED: six behavioral failures among seven hold tests before implementation. GREEN: all seven hold contracts, 127 total unit tests and TypeScript pass. Verified empty/populated source counts, blocked spawns, timing reset, lock entitlement, restart and source faults.
-        - [ ] T-032 — Route C and preserve hold lifecycle and fault handling
+        - [x] T-032 — Route C and preserve hold lifecycle and fault handling
             Outcome: One-shot focus-scoped C command reaches the engine; inactive/fault/disposed sessions cannot process it.
             Scope: src/session/keyboard.ts, controller.ts and session/input/fault checks; controls documentation.
             Depends on: T-031.
             Evidence: npm test -- tests/unit/session; npm run test:browser -- tests/browser/input.spec.ts tests/browser/session.spec.ts tests/browser/failures.spec.ts; npm run typecheck. Verify repeat, modifiers/editable origins, interruption, single action after restarts and source-fault resource cleanup. F-03/F-05 / FA-03 and FA-06.
+            Completion evidence (2026-10-07): RED: one key mapping and three browser hold/fault cases failed before C routing. GREEN: session unit tests, TypeScript and 16 focused browser cases pass. Repeat/filter/inactive/restart behavior and invalid/exhausted hold source faults release all owned listeners/frames and retain last drawing.
         - [ ] T-033 — Present held piece and validate added page resources
             Outcome: Labeled held preview/empty state and entitlement remain distinct from next preview; both panels fit the desktop layout and fail startup safely.
             Scope: src/view/renderer.ts, status.ts, src/main.ts, index.html, style.css; browser rendering/presentation/initialization tests and fixtures.
