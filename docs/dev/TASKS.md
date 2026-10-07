@@ -124,7 +124,7 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Evidence: Separate code review plus unit/typecheck/build and relevant browser regressions; demonstrate pause/restart and focus interruption to inform the developer's next bounded decision. Repair blockers, commit/push/read back the report, and close the milestone if tracking is enabled.
             Report: docs/dev/reports/phases/1/1.3.md.
             Completion evidence (2026-10-07): Separate code review repaired M1.3-F001 repeated-Up scrolling with observed RED/GREEN. Full unit suite 62/62, strict typecheck/build and Chromium suite 20/20 pass. Report records pause/restart demonstration, controlled interruption evidence and native headless tab-switch limitation M1.3-L001. No unresolved product blocker/TODO; phase execution continues.
-    - [ ] Milestone 1.4 — Robust presentation and failure boundaries
+    - [x] Milestone 1.4 — Robust presentation and failure boundaries
         - [x] T-017 — Complete desktop presentation and keyboard accessibility
             Outcome: Board/preview/status/instructions/controls fit the required desktop viewport with square cells, distinct paused/game-over messages, accessible labels/text alternatives, and visible focus.
             Scope: src/style.css, index.html, src/view/renderer.ts, src/view/status.ts, and tests/browser/presentation.spec.ts.
@@ -149,11 +149,12 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Depends on: T-019.
             Evidence: npm test -- tests/unit/engine/invariants.test.ts; npm test; npm run typecheck. Exercise invalid-time rejection in running/paused/completed states, nested snapshot mutation attempts, repeated snapshot reads, and unchanged state after rejected actions. Retain source/browser fault regressions. Trace: G-01/G-06, S-04, SYS-01/SYS-02, A-08.
             Completion evidence (2026-10-07): All 14 new invariant cases pass as characterization of existing behavior; no manufactured RED or unnecessary behavior change. Full unit suite 85/85 and strict typecheck pass. Negative/NaN/infinite time rejects before state or residual mutation in every status; nested caller mutation cannot change engine rows/active/preview/counters; repeated reads consume no source/time. Engine API comments document those guarantees.
-        - [ ] T-021 — Review, test, and report milestone 1.4
+        - [x] T-021 — Review, test, and report milestone 1.4
             Scope: Full presentation, initialization/runtime failures, disposal, isolation, and their interaction with gameplay/session behavior.
             Depends on: T-017, T-018, T-019, T-020.
             Evidence: Separate code review plus all unit/typecheck/build checks and relevant browser normal/failure regressions. Verify complete A-01/A-07/A-08 scope, repair blockers, commit/push/read back the report, and close the milestone if tracking is enabled.
             Report: docs/dev/reports/phases/1/1.4.md.
+            Completion evidence (2026-10-07): Separate milestone code inspection closed coverage finding M1.4-F001 with independent Canvas/type characterization checks. Unit 85/85, strict typecheck/build and full Chromium suite 43/43 pass. Report retains desktop/paused screenshots and validates source/scheduler errors, stopped resources, isolation and prior gameplay. No unresolved product blocker/TODO; native focus event limitation retained.
     - [ ] Milestone 1.5 — Reproducible static delivery and complete acceptance
         - [ ] T-022 — Complete player and developer documentation
             Outcome: README and player guide accurately describe current controls/rules/status, prerequisites, install/run/check/build/static-serve commands, verified target limits, and SDD navigation.

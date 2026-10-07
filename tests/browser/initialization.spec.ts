@@ -1,6 +1,6 @@
 /** Setup validates all required elements/contexts before any active resource. */
 import {expect,test} from '@playwright/test';
-for(const mode of ['game','board','preview','status','score','level','lines','pause','restart','canvas'])test(`missing ${mode} shows safe fallback without gameplay resources`,async({page})=>{
+for(const mode of ['game','board','preview','status','score','level','lines','pause','restart','canvas','board-context','preview-context','wrong-board','wrong-pause'])test(`missing ${mode} shows safe fallback without gameplay resources`,async({page})=>{
  await page.goto('/tests/fixtures/invalid.html?mode='+mode);
  await expect(page.getByRole('status')).toContainText('unavailable');await expect(page.locator('#resources')).toHaveText('0');
 });

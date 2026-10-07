@@ -4,7 +4,12 @@
 <script>
 const mode=new URLSearchParams(location.search).get('mode');
 if(mode==='canvas')HTMLCanvasElement.prototype.getContext=()=>null;
-else document.getElementById(mode)?.remove();
+else if(mode==='board-context'||mode==='preview-context'){
+ const getContext=HTMLCanvasElement.prototype.getContext;
+ HTMLCanvasElement.prototype.getContext=function(...args){return this.id===mode.split('-')[0]?null:getContext.apply(this,args);};
+}else if(mode==='wrong-board'||mode==='wrong-pause'){
+ const id=mode.split('-')[1],wrong=document.createElement('div');wrong.id=id;document.getElementById(id).replaceWith(wrong);
+}else document.getElementById(mode)?.remove();
 // Observe application subscription/scheduling effects without product debug hooks.
 let resources=0;const output=document.getElementById('resources');
 const add=EventTarget.prototype.addEventListener;
