@@ -2,6 +2,7 @@
 import type { Snapshot } from '../engine/types';
 export interface Controls {pause:HTMLButtonElement;restart:HTMLButtonElement}
 export interface Counters {score:HTMLElement;level:HTMLElement;lines:HTMLElement}
+/** Update text and command availability from the same snapshot used for Canvas rendering. */
 export function showStatus(element:HTMLElement,snapshot:Snapshot,counters?:Counters,controls?:Controls):void {
  element.dataset.state=snapshot.status;
  if(counters)for(const key of ['score','level','lines'] as const)counters[key].textContent=String(snapshot[key]);

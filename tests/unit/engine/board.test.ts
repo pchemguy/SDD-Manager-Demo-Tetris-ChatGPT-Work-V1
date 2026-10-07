@@ -1,3 +1,4 @@
+/** Board placement, atomic locking and stable simultaneous row compaction. */
 import { expect, it } from 'vitest';
 import { canPlace, clearRows, createBoard, lock } from '../../../src/engine/board';
 import { spawn } from '../../../src/engine/pieces';

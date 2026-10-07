@@ -1,3 +1,4 @@
+/** Browser preview geometry and scored level-boundary presentation. */
 import {expect,test,type Page} from '@playwright/test';
 async function previewPixels(page:Page){return page.locator('#preview').evaluate(canvas=>{
  const ctx=(canvas as HTMLCanvasElement).getContext('2d')!;

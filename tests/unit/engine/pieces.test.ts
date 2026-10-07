@@ -1,3 +1,4 @@
+/** Literal geometry and connected-cell expectations for all seven tetrominoes. */
 import { describe, expect, it } from 'vitest';
 import { KINDS, type Kind, type Orientation } from '../../../src/engine/types';
 import { occupied, rotate, shape, spawn } from '../../../src/engine/pieces';

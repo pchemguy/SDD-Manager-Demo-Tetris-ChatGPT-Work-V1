@@ -1,3 +1,4 @@
+/** Clear scores, pre-clear multipliers and preserved earned counters. */
 import { expect,it } from 'vitest';
 import { Game } from '../../../src/engine/game';
 import { sequenceSource } from '../../support/piece-source';

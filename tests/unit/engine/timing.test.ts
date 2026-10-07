@@ -1,3 +1,4 @@
+/** Gravity intervals, residual time and next-tick locking across level changes. */
 import { expect,it } from 'vitest';
 import { Game } from '../../../src/engine/game';
 import { sequenceSource } from '../../support/piece-source';

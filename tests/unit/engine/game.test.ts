@@ -1,3 +1,4 @@
+/** Public engine actions, collision, promotion, clearing and terminal play. */
 import { expect, it } from 'vitest';
 import { Game } from '../../../src/engine/game';
 import { sequenceSource } from '../../support/piece-source';

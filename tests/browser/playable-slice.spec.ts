@@ -1,3 +1,4 @@
+/** Ordinary and controlled browser play through real keyboard/controller adapters. */
 import { expect, test, type Page } from '@playwright/test';
 async function cells(page:Page) {
  return page.locator('#board').evaluate(canvas=>{

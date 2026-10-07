@@ -156,11 +156,12 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Report: docs/dev/reports/phases/1/1.4.md.
             Completion evidence (2026-10-07): Separate milestone code inspection closed coverage finding M1.4-F001 with independent Canvas/type characterization checks. Unit 85/85, strict typecheck/build and full Chromium suite 43/43 pass. Report retains desktop/paused screenshots and validates source/scheduler errors, stopped resources, isolation and prior gameplay. No unresolved product blocker/TODO; native focus event limitation retained.
     - [ ] Milestone 1.5 — Reproducible static delivery and complete acceptance
-        - [ ] T-022 — Complete player and developer documentation
+        - [x] T-022 — Complete player and developer documentation
             Outcome: README and player guide accurately describe current controls/rules/status, prerequisites, install/run/check/build/static-serve commands, verified target limits, and SDD navigation.
             Scope: README.md, docs/USER-GUIDE.md, and in-scope source/API comments or layout links needing reconciliation.
             Depends on: T-021 and milestone 1.4 completion/closure.
             Evidence: Check document links and commands against package scripts and actual behavior; preserve root attribution and ignore policy; support Windows CMD and the cloud shell. Planned production evidence is labeled until gathered by T-023/T-024. Trace: SYS-07, A-09.
+            Completion evidence (2026-10-07): README and player guide reconciled with delivered controls/rules/failures and actual npm scripts; local links and every project-owned TypeScript module header checked, whitespace clean. Commands use Windows CMD-compatible/npm syntax and manual loopback URLs; Linux browser/native-focus and unverified-platform limits explicit. Static production acceptance remains labeled pending T-023/T-024. Documentation-only changes; product tests not redundantly rerun.
         - [ ] T-023 — Verify locked installation and production static play
             Outcome: The locked repository setup reproduces its checks/build and the production output plays over static HTTP with real Chromium. Retain complete acceptance evidence without claiming other browsers were checked.
             Scope: Package/configuration fixes only where required for the accepted tooling, tests/browser/production.spec.ts, developer instructions, and selected sanitized browser evidence under the owning report location.

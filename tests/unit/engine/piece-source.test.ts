@@ -1,3 +1,4 @@
+/** Seven-piece bag distributions, boundaries and deterministic source consumption. */
 import { expect, it } from 'vitest';
 import { bagSource } from '../../../src/engine/piece-source';
 import { KINDS } from '../../../src/engine/types';

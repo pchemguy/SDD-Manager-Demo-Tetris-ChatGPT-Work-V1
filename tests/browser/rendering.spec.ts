@@ -1,3 +1,4 @@
+/** Canvas pixels correspond to detached engine snapshots. */
 import { expect, test, type Page } from '@playwright/test';
 async function pixels(page:Page) {
  return page.locator('canvas').evaluate(canvas=>{

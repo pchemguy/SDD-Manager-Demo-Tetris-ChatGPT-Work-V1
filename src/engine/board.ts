@@ -1,6 +1,7 @@
 /** Locked-cell board operations. Active geometry remains separate until lock. */
 import type { Grid, Piece } from './types';
 import { occupied } from './pieces';
+/** Allocate twenty independent empty rows; callers own the returned grid. */
 export function createBoard(): Grid { return Array.from({length:20},()=>Array<null>(10).fill(null)); }
 /** Empty frame cells never participate in bounds or overlap checks. */
 export function canPlace(board: Grid, piece: Piece): boolean {

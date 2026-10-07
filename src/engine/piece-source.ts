@@ -1,5 +1,6 @@
 /** Production seven-piece bags with an injectable uniform [0,1) random input. */
 import { KINDS, type Kind, type PieceSource } from './types';
+/** Create a fresh bag stream; invalid random samples throw rather than emitting an invalid kind. */
 export function bagSource(random:()=>number=Math.random): PieceSource {
  let bag: Kind[]=[];
  return {next() {
