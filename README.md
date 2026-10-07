@@ -2,7 +2,31 @@
 
 A classic-style, single-player browser Tetris game developed in TypeScript.
 
-The project is in design preparation; no playable game is implemented.
+The project is implementing its first playable milestone. The toolchain setup page does not yet provide gameplay.
+
+## Development setup
+
+Use Node 24 and npm. From the repository root, run these commands in Windows CMD or the cloud Linux shell:
+
+```text
+npm ci
+npx playwright install chromium
+npm run dev
+```
+
+Open the development-server URL shown in the console. Browser opening is manual; the scripts do not require PowerShell.
+
+```text
+npm run typecheck
+npm test
+npm run test:browser
+npm run build
+npm run preview
+```
+
+Unit tests are added with gameplay tasks; the tooling-only checkpoint has no unit cases. Browser checks use real Chromium. The production build is static content in `dist/`.
+
+The current cloud-sandbox checkpoint passes dependency installation, typechecking, and the setup production build. Chromium installation is blocked: the official download URLs return a `Site Unavailable` HTML page instead of browser archives. The browser smoke check consequently fails at launch. T-001 remains incomplete, and gameplay tasks have not started. Details are recorded in [TASKS](docs/dev/TASKS.md).
 
 ## Development documents
 

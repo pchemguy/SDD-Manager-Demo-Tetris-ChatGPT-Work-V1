@@ -4,6 +4,7 @@ node_modules/
 # Production output and tool caches
 /dist/
 .vite/
+.vitest/
 .cache/
 *.tsbuildinfo
 
