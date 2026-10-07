@@ -34,11 +34,12 @@ Recommended first execution range: T-027–T-030, delivering and reviewing miles
             Depends on: T-027.
             Evidence: npm run test:browser -- tests/browser/rendering.spec.ts; npm run typecheck. Inspect rendered cells and overlap/paused/terminal screenshots; use the ordinary page as well as controlled states. F-01 / ghost portions of FA-05.
             Completion evidence (2026-10-07): RED: two new browser pixel checks failed on absent outlines; baseline rendering check passed. GREEN: 3/3 real Chromium rendering tests and strict typecheck pass, covering ghost redraw on ordinary page movement, frozen pause, and active-over-ghost overlap; baseline all-cell center pixels unchanged. Player guide distinguishes current ghost from deferred controls.
-        - [ ] T-029 — Integrate one-shot Space drop with scheduled locking
+        - [x] T-029 — Integrate one-shot Space drop with scheduled locking
             Outcome: Space uses the shared landing without immediate lock, timing reset, score or source effects; focus/repeat/default rules apply.
             Scope: src/engine/game.ts, types.ts, src/session/keyboard.ts and affected controller consumers; focused engine/session/browser tests and player controls.
             Depends on: T-027, T-028.
             Evidence: npm test -- tests/unit/engine; npm test -- tests/unit/session; npm run test:browser -- tests/browser/input.spec.ts; npm run typecheck. Include 999 ms + drop + 1 ms, grounded no-op, post-drop movement, paused/terminal input, repeat/scroll suppression and unchanged entitlement. F-02 / FA-02 and Space portions of FA-05.
+            Completion evidence (2026-10-07): RED: 3 unit failures showed absent drop action/mapping; new real-browser drop check also failed before changes. GREEN: 120 unit tests, strict typecheck and 10 focused browser checks pass. Corrected the browser fixture expectation to include the established first-frame baseline after resume; no product timing change. Space lands without locking/reset/source/score changes, including 999+1 ms and post-drop movement; repeat/paused scrolling prevented and player instructions updated.
         - [ ] T-030 — Review, test and report milestone 2.1
             Outcome: Review the complete ghost/drop increment and demonstrate landing-to-lock adjustment; repair required blockers and retain evidence.
             Scope: All 2.1 affected code/tests/docs; feature report 2.1.md and selected sanitized screenshots.

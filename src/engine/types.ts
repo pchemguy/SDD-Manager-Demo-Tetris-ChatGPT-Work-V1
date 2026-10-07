@@ -5,7 +5,7 @@ export type Orientation = 0 | 1 | 2 | 3;
 export interface Cell { readonly x: number; readonly y: number }
 export interface Piece extends Cell { readonly kind: Kind; readonly orientation: Orientation }
 export type Grid = (Kind | null)[][];
-export type Action = 'left' | 'right' | 'rotate' | 'down';
+export type Action = 'left' | 'right' | 'rotate' | 'down' | 'hard-drop';
 export type Status = 'running' | 'paused' | 'game-over';
 export interface PieceSource { next(): Kind }
 export interface Snapshot {

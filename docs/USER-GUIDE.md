@@ -8,17 +8,18 @@ Open the locally served game in a desktop browser. A new session starts with an 
 | --- | --- |
 | Left / Right | Move one cell; holding the key uses your browser's normal repeat. |
 | Down | Soft drop one cell; holding repeats. A blocked drop does not lock. |
+| Space | Move to the ghost position once per press; locking waits for the next blocked gravity tick. |
 | Up | Rotate clockwise once per press; rotations have no wall kicks. |
 | P | Pause or resume once per press. |
 | R | Start a fresh game once per press. |
 | Pause / Resume button | The same pause/resume command; Tab then Enter or Space activates it. |
 | Restart button | Start a fresh game from running, paused or game over. |
 
-Keys outside the gameplay region, editable fields, and Ctrl/Alt/Meta shortcuts are ignored. Handled arrows prevent page scrolling even during pause or game over. Up/P/R repeat events are ignored. The O piece does not change shape when rotated.
+Keys outside the gameplay region, editable fields, and Ctrl/Alt/Meta shortcuts are ignored. Handled arrows and Space prevent page scrolling even during pause or game over. Up/Space/P/R repeat events are ignored. The O piece does not change shape when rotated.
 
 ## Falling, locking and scoring
 
-Gravity begins at one step per second and accelerates every ten cleared lines. A piece that reaches the floor or stack remains movable until the next scheduled gravity tick cannot move it down. Moving or rotating never resets that tick; moving off a ledge can allow it to descend. A ghost outline shows the lowest downward-reachable position; solid active cells cover it when grounded. Hard drop, hold and wall kicks are planned feature increments; they are not yet available in this checkpoint. There is no movement queue.
+Gravity begins at one step per second and accelerates every ten cleared lines. A piece that reaches the floor or stack remains movable until the next scheduled gravity tick cannot move it down. Moving or rotating never resets that tick; moving off a ledge can allow it to descend. A ghost outline shows the lowest downward-reachable position; solid active cells cover it when grounded. Hard drop moves to the ghost without resetting the gravity remainder; you can still adjust before the next blocked tick. Hold and wall kicks are planned increments, not yet available. There is no movement queue.
 
 Complete rows clear together and remaining rows fall in their original order. One, two, three or four cleared rows award 100, 300, 500 or 800 points respectively, multiplied by the level before that clear. Dropping earns no extra points. Level starts at 1 and rises after every ten cleared lines. Gravity reaches a minimum interval of 100 ms.
 

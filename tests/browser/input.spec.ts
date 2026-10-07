@@ -29,3 +29,14 @@ test('ordinary labeled buttons support Enter and Space; paused arrows never scro
  await page.getByRole('button',{name:'Restart',exact:true}).focus();await page.keyboard.press('Space');await expect(page.getByRole('status')).toHaveText('Running');
  await expect(page.locator('#score')).toHaveText('0');
 });
+test('Space drops to ghost without lock; repeat/inactive input still suppresses scrolling',async({page})=>{
+ await page.goto('/tests/fixtures/playable.html?mode=rotate');const initial=await state(page);
+ await page.keyboard.press('Space');const landed=await state(page);expect(landed.active).toEqual(initial.ghost);expect(landed.board.flat().filter(Boolean)).toHaveLength(0);expect(landed.preview).toBe('I');
+ const prevented=await page.locator('#game').evaluate(el=>!el.dispatchEvent(new KeyboardEvent('keydown',{key:' ',code:'Space',repeat:true,bubbles:true,cancelable:true})));
+ expect(prevented).toBe(true);expect(await state(page)).toEqual(landed);
+ await page.keyboard.press('p');const paused=await state(page);
+ expect(await page.locator('#game').evaluate(el=>!el.dispatchEvent(new KeyboardEvent('keydown',{key:' ',bubbles:true,cancelable:true})))).toBe(true);expect(await state(page)).toEqual(paused);
+ await page.keyboard.press('p');
+ // Resume's first frame establishes a fresh controller baseline; the second spends active time.
+ await page.getByRole('button',{name:'Advance one second'}).click();await page.getByRole('button',{name:'Advance one second'}).click();expect((await state(page)).active.kind).toBe('I');
+});

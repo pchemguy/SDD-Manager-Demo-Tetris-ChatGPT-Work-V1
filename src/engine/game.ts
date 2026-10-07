@@ -30,9 +30,10 @@ export class Game {
   return {board:this.board.map(row=>row.slice()),active:this.active?{...this.active}:null,
    ghost:this.active?landing(this.board,this.active):null,preview:this.preview,status:this.status,score:this.score,lines:this.lines,level:this.level};
  }
- /** Attempt one semantic move; invalid movement/rotation and blocked soft drop are no-ops. */
+ /** Apply a semantic move/drop without resetting time; only a blocked gravity tick locks. */
  action(action: Action): void {
   if(this.status!=='running'||!this.active) return;
+  if(action==='hard-drop'){this.active=landing(this.board,this.active);return;}
   const candidate=action==='rotate'?rotate(this.active):{...this.active,
    x:this.active.x+(action==='left'?-1:action==='right'?1:0),y:this.active.y+(action==='down'?1:0)};
   if(canPlace(this.board,candidate)) this.active=candidate;
