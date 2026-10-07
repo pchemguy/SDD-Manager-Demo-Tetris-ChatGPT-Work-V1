@@ -72,11 +72,12 @@ Selected execution range: full T-027–T-042, authorized by the developer on 202
             Evidence: Separate code review; npm run typecheck; npm test; npm run build; all browser checks. Verify 2.2 exits, source/timing/entitlement interactions and prior regressions. Publish review report, close review issue then milestone. Report: docs/dev/features/001_a043a43/2.2.md.
             Completion evidence (2026-10-07): Separate whole-hold code/visual review repaired a reproduced full-page height defect and clarified comments/navigation. GREEN: TypeScript, 128 unit tests, build and 64 browser tests pass. Inspected retained 800x600 image; no unresolved product defect or TODO. Native focus/platform limits retained.
     - [ ] Milestone 2.3 — Clockwise wall kicks
-        - [ ] T-035 — Implement pure clockwise kick data and legal candidate selection
+        - [x] T-035 — Implement pure clockwise kick data and legal candidate selection
             Outcome: Ordered family/transition tables select the first legal rotated placement using independent original-origin offsets.
             Scope: Proposed src/engine/kicks.ts; existing pieces.ts/board.ts helpers; focused tests/unit/engine kick tests.
             Depends on: T-034; milestone 2.2 verified and closed.
             Evidence: npm test -- tests/unit/engine; npm run typecheck. Check all eight rows against F-04, non-cumulative candidates, first-success precedence, later successes, walls/floor/stack/top bounds, total rejection and O no-op. F-04 / FA-04.
+            Completion evidence (2026-10-07): RED: selector skeleton produced behavioral table/selection failures; two generated T fixtures assumed unreachable later winners and were corrected to prove earlier-candidate precedence from occupied-cell containment. GREEN: 147 kick tests, all engine regressions and TypeScript pass. All eight rows, independent offsets, candidate precedence/later successes, top/floor/wall/stack bounds, rejection, O and detached tables are checked.
         - [ ] T-036 — Integrate kicks with ghost, hold and delayed-drop timing
             Outcome: Engine rotations apply the pure policy, refresh ghost and retain score/source/gravity/hold guarantees.
             Scope: src/engine/game.ts and affected engine/browser scenario tests; player rule documentation.
