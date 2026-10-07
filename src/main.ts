@@ -22,11 +22,11 @@ function initialize(doc:Document):void {
   const boardContext=board.getContext('2d'),previewContext=preview.getContext('2d');
   if(!boardContext||!previewContext)throw new Error('Canvas 2D unavailable');
   const renderer=new Renderer(boardContext,previewContext);
-  controller=new Controller(new Game(bagSource()),region,snapshot=>{renderer.draw(snapshot);showStatus(status,snapshot,counters,controls);},undefined,{controls});
+  controller=new Controller(new Game(bagSource()),region,snapshot=>{renderer.draw(snapshot);showStatus(status,snapshot,counters,controls);},undefined,{controls,onError:()=>showError(doc,'Game stopped because of an internal failure. Reload this page to start again.')});
   region.focus();controller.start();
  }catch {
   controller?.dispose();
-  showError(doc,'Game unavailable. Required page elements or Canvas 2D support are missing. Reload this page and try again.');
+  showError(doc,'Game unavailable. This browser could not initialize the game. Reload this page and try again.');
  }
 }
 initialize(document);

@@ -1,7 +1,7 @@
 /** Gameplay state owner. Scoring uses the level before each simultaneous clear. */
 import { canPlace, clearRows, createBoard, lock } from './board';
 import { rotate, spawn } from './pieces';
-import type { Action, Piece, PieceSource, Snapshot, Status } from './types';
+import { KINDS, type Action, type Kind, type Piece, type PieceSource, type Snapshot, type Status } from './types';
 
 export class Game {
  private board=createBoard();
@@ -14,7 +14,7 @@ export class Game {
  private get level():number {return 1+Math.floor(this.lines/10);}
  private get interval():number {return Math.max(100,1000*0.8**(this.level-1));}
  constructor(private source: PieceSource) {
-  this.active=spawn(source.next()); this.preview=source.next();
+  this.active=spawn(this.next()); this.preview=this.next();
  }
  /** Freeze a running session without discarding its gravity remainder. */
  pause():void {if(this.status==='running')this.status='paused';}
@@ -23,7 +23,7 @@ export class Game {
  /** Replace all gameplay state using a caller-owned fresh piece source. */
  restart(source:PieceSource):void {
   this.source=source;this.board=createBoard();this.score=0;this.lines=0;this.accumulator=0;
-  this.active=spawn(source.next());this.preview=source.next();this.status='running';
+  this.active=spawn(this.next());this.preview=this.next();this.status='running';
  }
  /** Detached state: rendering and callers cannot mutate the board or active piece. */
  snapshot(): Snapshot {
@@ -47,6 +47,10 @@ export class Game {
    this.accumulator-=this.interval;this.tick();
   }
  }
+ /** Validate externally supplied identities at every consumption boundary. */
+ private next():Kind {
+  const kind=this.source.next();if(!KINDS.includes(kind))throw new Error('Invalid piece source output');return kind;
+ }
  private tick(): void {
   if(!this.active) return;
   const below={...this.active,y:this.active.y+1};
@@ -55,7 +59,7 @@ export class Game {
   const cleared=clearRows(this.board);
   this.score+=[0,100,300,500,800][cleared]!*this.level;
   this.lines+=cleared;
-  const promoted=spawn(this.preview); this.preview=this.source.next();
+  const promoted=spawn(this.preview); this.preview=this.next();
   if(canPlace(this.board,promoted)) this.active=promoted;
   else { this.active=null; this.status='game-over'; }
  }
