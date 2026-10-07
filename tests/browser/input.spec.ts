@@ -13,6 +13,7 @@ test('repeat/filter/focus/default behavior routes commands once',async({page})=>
  await page.keyboard.press('p');expect((await state(page)).status).toBe('paused');const frozen=await state(page);
  const prevented=await page.locator('#game').evaluate(el=>!el.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true,cancelable:true})));
  expect(prevented).toBe(true);expect(await state(page)).toEqual(frozen);
+ expect(await page.locator('#game').evaluate(el=>!el.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowUp',repeat:true,bubbles:true,cancelable:true})))).toBe(true);
  await page.locator('#game').evaluate(el=>el.dispatchEvent(new KeyboardEvent('keydown',{key:'p',repeat:true,bubbles:true})));
  expect((await state(page)).status).toBe('paused');await page.keyboard.press('P');expect((await state(page)).status).toBe('running');
  await page.evaluate(()=>{const input=document.createElement('input');input.id='editable';document.querySelector('#game')!.append(input);input.focus();});

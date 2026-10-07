@@ -20,6 +20,6 @@ const renderer=new Renderer(document.querySelector<HTMLCanvasElement>('#board')!
 const controller=new Controller(game,region,snapshot=>{
  renderer.draw(snapshot);showStatus(document.querySelector<HTMLElement>('#status')!,snapshot,{score:document.querySelector<HTMLElement>('#score')!,level:document.querySelector<HTMLElement>('#level')!,lines:document.querySelector<HTMLElement>('#lines')!});
  document.querySelector('#snapshot')!.textContent=JSON.stringify(snapshot);
-},scheduler);
+},scheduler,{freshSource:()=>sequenceSource(['T','I','O','Z'])});
 region.focus();controller.start();frame();
 document.querySelector('#tick')!.addEventListener('click',()=>{time+=1000;frame();});

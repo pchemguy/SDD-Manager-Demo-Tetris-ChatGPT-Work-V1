@@ -99,7 +99,7 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Evidence: Separate code review plus unit, typecheck, build, and applicable browser checks; verify all 1.2 exits and prior slice regressions. Repair blockers, commit/push/read back the report, and close the milestone if tracking is enabled.
             Completion evidence (2026-10-07): Separate code inspection confirms pre-clear multiplier, post-clear intervals, retained residuals and snapshot-only presentation. Closed coverage finding M1.2-F001 with an already-passing nonzero-score preservation scenario (characterization, not historical RED). Final unit suite 51/51, strict typecheck/build and full Chromium suite 15/15 pass. Inspected and retained 800 × 600 ordinary scored-page screenshot. No unresolved milestone blocker/TODO; later session/failure/production capabilities remain planned.
             Report: [milestone 1.2 review](reports/phases/1/1.2.md).
-    - [ ] Milestone 1.3 — Session controls and interruptions
+    - [x] Milestone 1.3 — Session controls and interruptions
         - [x] T-013 — Implement engine pause, resume, and fresh-session reset
             Outcome: Engine status gates actions/time correctly and restart resets board, source, counters, level, active/preview, and accumulator without retaining pending movement.
             Scope: src/engine/game.ts, tests/unit/engine/lifecycle.test.ts, and focused scenario support.
@@ -118,11 +118,12 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Depends on: T-014.
             Evidence: npm test -- tests/unit/session/controller.test.ts; npm run test:browser -- tests/browser/session.spec.ts; npm test; npm run typecheck; npm run build. Use controlled frame timestamps plus real browser blur/visibility and repeated restart checks; verify inactive time is excluded and restored focus does not resume automatically. Trace: S-01/S-03, SYS-04, A-05/A-06.
             Completion evidence (2026-10-07): Controller suite observed 3 missing-interruption failures and 1 existing pause check, then passed 4/4; full npm test passes 62/62 and npm run build/typecheck pass. Browser session/input/play regressions pass 8/8. Verified fractional remainder, inactive eligibility, explicit resume and repeated restart with one frame. Native headless tab-switch probe stayed focused/visible even with focus emulation disabled; browser lifecycle assertions use explicitly controlled properties/events, not a native tab-switch claim. A pre-change long browser-clock probe overlapped a source reload and is not counted as RED evidence.
-        - [ ] T-016 — Review, test, and report milestone 1.3
+        - [x] T-016 — Review, test, and report milestone 1.3
             Scope: Complete scored session lifecycle, commands, timing, focus, and prior gameplay integrations.
             Depends on: T-013, T-014, T-015.
             Evidence: Separate code review plus unit/typecheck/build and relevant browser regressions; demonstrate pause/restart and focus interruption to inform the developer's next bounded decision. Repair blockers, commit/push/read back the report, and close the milestone if tracking is enabled.
             Report: docs/dev/reports/phases/1/1.3.md.
+            Completion evidence (2026-10-07): Separate code review repaired M1.3-F001 repeated-Up scrolling with observed RED/GREEN. Full unit suite 62/62, strict typecheck/build and Chromium suite 20/20 pass. Report records pause/restart demonstration, controlled interruption evidence and native headless tab-switch limitation M1.3-L001. No unresolved product blocker/TODO; phase execution continues.
     - [ ] Milestone 1.4 — Robust presentation and failure boundaries
         - [ ] T-017 — Complete desktop presentation and keyboard accessibility
             Outcome: Board/preview/status/instructions/controls fit the required desktop viewport with square cells, distinct paused/game-over messages, accessible labels/text alternatives, and visible focus.

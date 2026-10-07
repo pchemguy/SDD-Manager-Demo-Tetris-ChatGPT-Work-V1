@@ -2,11 +2,13 @@
 import type { Action } from '../engine/types';
 export type Command=Action|'pause'|'restart';
 const arrows:Readonly<Record<string,Action>>={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'rotate',ArrowDown:'down'};
+function allowed(event:KeyboardEvent):boolean {
+ if(event.ctrlKey||event.altKey||event.metaKey)return false;
+ return !(event.target as Element|null)?.closest?.('input,textarea,select,button,a,[contenteditable]:not([contenteditable="false"])');
+}
 /** Translate supported unmodified keys, ignoring editable and native-control origins. */
 export function commandFor(event:KeyboardEvent):Command|null {
- if(event.ctrlKey||event.altKey||event.metaKey)return null;
- const target=event.target as Element|null;
- if(target?.closest?.('input,textarea,select,button,a,[contenteditable]:not([contenteditable="false"])'))return null;
+ if(!allowed(event))return null;
  const action=arrows[event.key]??(event.key.toLowerCase()==='p'?'pause':event.key.toLowerCase()==='r'?'restart':null);
  if(event.repeat&&(action==='rotate'||action==='pause'||action==='restart'))return null;
  return action;
@@ -15,6 +17,8 @@ export function commandFor(event:KeyboardEvent):Command|null {
 export function keyboard(region:HTMLElement,dispatch:(command:Command)=>void):()=>void {
  const listener=(event:KeyboardEvent)=>{
   if(!region.contains(region.ownerDocument.activeElement))return;
+  if(!allowed(event))return;
+  if(arrows[event.key])event.preventDefault();
   const command=commandFor(event);if(command){event.preventDefault();dispatch(command);}
  };
  region.addEventListener('keydown',listener);
