@@ -30,9 +30,9 @@ These context statements identify the demonstration setup; they do not establish
 
 ## Constraints and decision state
 
-The application runs entirely in the browser. Game rules must be testable without a DOM, Canvas, or real-time clock. Repository checkpoints use Git. Product dependencies and build tooling are not yet selected.
+The application runs entirely in the browser. Game rules must be testable without a DOM, Canvas, or real-time clock. Repository checkpoints use Git.
 
-The accepted gameplay rules and their precise boundaries are defined in [SPEC](SPEC.md). Build/test tooling remains a planning decision. The architecture and component boundaries are accepted.
+The accepted gameplay rules and their precise boundaries are defined in [SPEC](SPEC.md). [PLAN](PLAN.md) owns build/test tooling and delivery strategy, and [layout](layout.md) owns physical placement. The architecture and component boundaries are accepted.
 
 ## Vocabulary
 

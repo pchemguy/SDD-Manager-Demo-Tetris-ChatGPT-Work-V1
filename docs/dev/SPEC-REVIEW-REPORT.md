@@ -2,7 +2,7 @@
 
 ## Current gate
 
-**State: Ready for planning on document-quality and design-conformance criteria.** No confirmed finding remains open. Product implementation has not started, and this report makes no claim that gameplay acceptance has passed. Human review of the written specification is the next conversation checkpoint.
+**State: Ready for planning on document-quality and design-conformance criteria.** No confirmed finding remains open. Product implementation has not started, and this report makes no claim that gameplay acceptance has passed. The user accepted the written specification on 2026-10-07. Revision 1 records the governing-input navigation recheck.
 
 Scope: [SPEC](SPEC.md), [gameplay](spec/gameplay.md), and [session/presentation](spec/session.md), against [PROJECT](PROJECT.md), [ARCHITECTURE](ARCHITECTURE.md), and [DECOMPOSITION](DECOMPOSITION.md). Review date: 2026-10-07. Reviewer: the main agent applying SDD Manager 0.14.9's sdd-specify procedure; no independent reviewer was used.
 
@@ -45,3 +45,9 @@ No confirmed QC or design-conformance defect was identified. No correction/reche
 - Whitespace verification passed for the authored document changes. The packaged disclosure remains byte-identical to its template and is outside this specification diff.
 
 These checks validate document structure and the stated numerical definitions. They do not run an engine, render Canvas, exercise a browser, or demonstrate A-01 through A-09 against product code. PLAN, layout, TASKS, dependency installation, and implementation are outside this preparation checkpoint.
+
+## Revision 1 — Governing-input navigation recheck
+
+On 2026-10-07, sdd-plan added PLAN/layout navigation to PROJECT and removed its statement that build tooling was unselected. PROJECT's SHA-256 is `0e361f7207334525378e10b9871ef07aca4569243e83a4ef387d6f7f67058618`. Comparison with the committed governing input shows unchanged purpose, accepted scope, non-goals, architecture constraints, and vocabulary. The navigation change assigns tooling/delivery and placement to their established owners; it adds no gameplay or interface requirement.
+
+The SPEC root/children, ARCHITECTURE, and DECOMPOSITION retain their initial reviewed hashes. The original conformance assessment remains equivalent for their unchanged contracts against the updated brief. The main agent rechecked the actual PROJECT diff and affected links using sdd-specify criteria. There is no confirmed finding, correction to behavioral requirements, or downstream invalidation. The gate remains Ready, with the written SPEC accepted by the user. Build and browser acceptance remain future product verification.
