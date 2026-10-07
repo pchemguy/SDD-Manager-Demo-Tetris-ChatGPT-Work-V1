@@ -2,7 +2,7 @@
 
 A classic-style, single-player TypeScript game with Canvas rendering, shuffled seven-piece bags, a next-piece preview, score and level progression, pause/resume, restart and game over. It runs entirely in the browser without a gameplay server or saved state.
 
-Session controls, desktop presentation and failure boundaries are reviewed through milestone 1.4. Locked installation, strict checking, 85 unit checks and 44 Chromium checks pass, including production static play. Shipped-output/network inspection and final delivery review remain in progress. [Player guide](docs/USER-GUIDE.md) explains controls, scoring and the resting-piece locking rule.
+Session controls, desktop presentation and failure boundaries are reviewed through milestone 1.4. Locked installation, strict checking, 85 unit checks and 44 Chromium checks pass, including production static play. Shipped-output/network inspection also passes; final delivery review remains in progress. [Player guide](docs/USER-GUIDE.md) explains controls, scoring and the resting-piece locking rule.
 
 ## Install and play locally
 
@@ -42,7 +42,7 @@ After `npm run build`:
 npm run preview -- --port 4173 --strictPort
 ```
 
-Open <http://127.0.0.1:4173>. `dist/` is the production output; serve that directory over static HTTP rather than opening its HTML as a local file. Assets use root-relative URLs, so deploy at an HTTP site's root. Dependency installation needs network access; runtime play needs no external service. Automated production-play checks pass, including keyboard/Canvas/status, pause/resume, game over and restart. Shipped-output/network inspection remains pending T-024.
+Open <http://127.0.0.1:4173>. `dist/` is the production output; serve that directory over static HTTP rather than opening its HTML as a local file. Assets use root-relative URLs, so deploy at an HTTP site's root. Dependency installation needs network access; runtime play needs no external service. Automated production-play checks pass, including keyboard/Canvas/status, pause/resume, game over and restart. Output inspection confirms only HTML/CSS/JavaScript application assets are shipped, and production play requests only same-origin static files without sockets or external gameplay services.
 
 ## Development and evidence
 

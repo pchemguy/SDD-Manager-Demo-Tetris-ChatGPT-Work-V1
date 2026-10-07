@@ -28,3 +28,14 @@ test('built ordinary page plays, pauses, reaches game over and restarts',async({
  for(const id of ['score','lines'])await expect(page.locator('#'+id)).toHaveText('0');await expect(page.locator('#level')).toHaveText('1');
  await page.screenshot({path:info.outputPath('production-page.png')});expect(errors).toEqual([]);
 });
+
+test('production play requests only same-origin static files without sockets or harnesses',async({page})=>{
+ const requests:{url:string;method:string}[]=[],sockets:string[]=[],errors:string[]=[];
+ page.on('request',r=>requests.push({url:r.url(),method:r.method()}));page.on('websocket',s=>sockets.push(s.url()));page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+ await page.route('**/*',route=>new URL(route.request().url()).origin===production?route.continue():route.abort());
+ await page.goto(production);await expect(page.getByRole('status')).toHaveText('Running');
+ await page.keyboard.press('ArrowDown');await page.keyboard.press('p');await page.getByRole('button',{name:'Restart',exact:true}).click();
+ expect(requests.some(r=>r.url.endsWith('.js'))).toBe(true);expect(requests.some(r=>r.url.endsWith('.css'))).toBe(true);
+ for(const r of requests){expect(new URL(r.url).origin).toBe(production);expect(r.method).toBe('GET');expect(new URL(r.url).pathname).toMatch(/^\/$|^\/assets\/[^/]+\.(js|css)$/);}
+ expect(sockets).toEqual([]);expect(errors).toEqual([]);await expect(page.locator('#snapshot,#tick,#dispose')).toHaveCount(0);
+});
