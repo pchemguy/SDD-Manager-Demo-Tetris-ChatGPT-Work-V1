@@ -125,11 +125,12 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Report: docs/dev/reports/phases/1/1.3.md.
             Completion evidence (2026-10-07): Separate code review repaired M1.3-F001 repeated-Up scrolling with observed RED/GREEN. Full unit suite 62/62, strict typecheck/build and Chromium suite 20/20 pass. Report records pause/restart demonstration, controlled interruption evidence and native headless tab-switch limitation M1.3-L001. No unresolved product blocker/TODO; phase execution continues.
     - [ ] Milestone 1.4 — Robust presentation and failure boundaries
-        - [ ] T-017 — Complete desktop presentation and keyboard accessibility
+        - [x] T-017 — Complete desktop presentation and keyboard accessibility
             Outcome: Board/preview/status/instructions/controls fit the required desktop viewport with square cells, distinct paused/game-over messages, accessible labels/text alternatives, and visible focus.
             Scope: src/style.css, index.html, src/view/renderer.ts, src/view/status.ts, and tests/browser/presentation.spec.ts.
             Depends on: T-016 and milestone 1.3 completion/closure.
             Evidence: npm run test:browser -- tests/browser/presentation.spec.ts; npm run typecheck; npm run build. Inspect an 800 × 600 viewport for overlap/horizontal scroll and full required content; check drawing scale, labels/focus, and paused/game-over preservation of board/score. Trace: S-05, SYS-05, A-01/A-07.
+            Completion evidence (2026-10-07): Presentation suite passes 2/2; build/strict typecheck pass. Visually inspected retained 800x600 paused screenshot: full square-cell board, preview, counters, instructions and focused native controls fit without overlap/scroll. Scored pause/game-over preserve board/text. Initial exact-outline-style assertion was over-specific and corrected; distinct status-color regression observed RED then GREEN. Screenshots retained under phase report directory.
         - [ ] T-018 — Validate initialization and show safe fallback errors
             Outcome: Required DOM/Canvas validation happens before scheduling/subscriptions; missing elements or contexts display readable fallback error text without a partially active session.
             Scope: src/main.ts, setup boundary in src/session/controller.ts if needed, tests/browser/initialization.spec.ts, and isolated invalid-page fixtures.

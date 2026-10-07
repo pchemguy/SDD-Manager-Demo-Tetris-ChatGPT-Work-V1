@@ -20,3 +20,13 @@ aside p { margin: 0 0 12px; }
 dl { display: grid; grid-template-columns: auto auto; gap: 4px 14px; margin: 0; }
 dt { color: #94a3b8; }
 dd { margin: 0; font-variant-numeric: tabular-nums; font-weight: 700; }
+
+/* Status remains textual; colors provide an additional visible session cue. */
+#status[data-state="paused"] { color: #facc15; }
+#status[data-state="game-over"], #status[data-state="error"] { color: #f87171; }
+.commands { display: flex; gap: 10px; margin: 8px 0 12px; }
+button { font: inherit; color: #e2e8f0; background: #1e293b; border: 1px solid #64748b; border-radius: 5px; padding: 7px 15px; cursor: pointer; }
+button:hover { background: #334155; }
+button:focus-visible { outline: 3px solid #38bdf8; outline-offset: 3px; }
+button:disabled { opacity: .55; cursor: default; }
+@media (max-width: 600px) { main { padding: 14px 12px; } #game { gap: 16px; } aside { min-width: 210px; } }
