@@ -4,7 +4,7 @@ import { rotate, spawn } from './pieces';
 import type { Action, Piece, PieceSource, Snapshot, Status } from './types';
 
 export class Game {
- private readonly board=createBoard();
+ private board=createBoard();
  private active: Piece | null;
  private preview: Snapshot['preview'];
  private status: Status='running';
@@ -13,8 +13,17 @@ export class Game {
  private lines=0;
  private get level():number {return 1+Math.floor(this.lines/10);}
  private get interval():number {return Math.max(100,1000*0.8**(this.level-1));}
- constructor(private readonly source: PieceSource) {
+ constructor(private source: PieceSource) {
   this.active=spawn(source.next()); this.preview=source.next();
+ }
+ /** Freeze a running session without discarding its gravity remainder. */
+ pause():void {if(this.status==='running')this.status='paused';}
+ /** Resume only a paused session; completed games remain terminal. */
+ resume():void {if(this.status==='paused')this.status='running';}
+ /** Replace all gameplay state using a caller-owned fresh piece source. */
+ restart(source:PieceSource):void {
+  this.source=source;this.board=createBoard();this.score=0;this.lines=0;this.accumulator=0;
+  this.active=spawn(source.next());this.preview=source.next();this.status='running';
  }
  /** Detached state: rendering and callers cannot mutate the board or active piece. */
  snapshot(): Snapshot {
