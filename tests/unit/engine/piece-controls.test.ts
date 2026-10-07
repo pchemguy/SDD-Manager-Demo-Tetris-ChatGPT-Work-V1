@@ -16,3 +16,9 @@ it('hold then wall kick, drop, floor kick and move can free the original schedul
 it('O rotation is a complete state and timing no-op',()=>{
  const game=new Game(sequenceSource(['O','T','I']));game.advance(999);game.action('hard-drop');const before=game.snapshot();game.action('rotate');expect(game.snapshot()).toEqual(before);game.advance(1);expect(game.snapshot().active?.kind).toBe('T');
 });
+it('all rejected kicks preserve complete state and still spend the scheduled blocked tick',()=>{
+ const game=new Game(sequenceSource([...Array(36).fill('O'),'T','I','Z']));
+ for(let layer=0;layer<9;layer++)for(const x of [0,2,4,6]){moveTo(game,x);game.action('hard-drop');game.advance(1000);}
+ expect(game.snapshot().active).toEqual({kind:'T',orientation:0,x:3,y:0});game.advance(999);const before=game.snapshot();game.action('rotate');expect(game.snapshot()).toEqual(before);
+ game.advance(1);expect(game.snapshot().status).toBe('game-over');expect(game.snapshot().board.flat().filter(Boolean)).toHaveLength(148);expect(game.snapshot().holdAvailable).toBe(false);
+});

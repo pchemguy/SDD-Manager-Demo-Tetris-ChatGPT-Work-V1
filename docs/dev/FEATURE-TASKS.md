@@ -84,11 +84,12 @@ Selected execution range: full T-027–T-042, authorized by the developer on 202
             Depends on: T-035.
             Evidence: npm test -- tests/unit/engine; npm run test:browser -- tests/browser/playable-slice.spec.ts tests/browser/rendering.spec.ts; npm run typecheck. Combine hold → kick → drop → move → tick, including post-drop kicked descent and blocked lock. Revise only baseline rotation expectations explicitly changed by F-04. F-01–F-04 / FA-04/FA-06.
             Completion evidence (2026-10-07): RED: two engine expectations and the combined real-browser scenario failed before selector integration. GREEN: 277 unit tests, TypeScript and nine focused browser cases pass. Two baseline no-kick assertions were revised only for accepted I wall-kick behavior; rejected wall movement and progression invariants remain. Combined hold/wall-kick/drop/floor-kick/move/tick proves unchanged source, score, entitlement and original tick timing.
-        - [ ] T-037 — Review, test and report milestone 2.3
+        - [x] T-037 — Review, test and report milestone 2.3
             Outcome: Review all kick/drop/hold interactions and demonstrate adjustment before locking; repair blockers.
             Scope: Complete 2.3 capability and relevant baseline behavior; feature report 2.3.md and sanitized browser evidence.
             Depends on: T-035, T-036; their hosted issues closed.
             Evidence: Separate code review; npm run typecheck; npm test; npm run build; all browser checks. Validate 2.3 exits, unchanged rejection state, candidate order, shared landing and usable controls. Publish report and close review issue then milestone. Report: docs/dev/features/001_a043a43/2.3.md.
+            Completion evidence (2026-10-07): Separate kick/integration code review found no unresolved product issue. Added public-action complete rejection with unchanged snapshot and 999+1ms lock; inspected retained kicked-board image. TypeScript, 278 unit tests, build and 65 browser cases pass; screenshot-only combined scenario rerun passes. All 2.3 exits satisfied with existing platform limits.
     - [ ] Milestone 2.4 — Static acceptance and document incorporation
         - [ ] T-038 — Reproduce complete static delivery and update player/developer guides
             Outcome: Locked installation, complete shipped-page acceptance, runtime independence and accurate controls/documentation are evidenced.
