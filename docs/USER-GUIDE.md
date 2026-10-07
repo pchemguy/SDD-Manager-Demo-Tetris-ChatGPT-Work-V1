@@ -24,7 +24,7 @@ Gravity begins at one step per second and accelerates every ten cleared lines. A
 
 Complete rows clear together and remaining rows fall in their original order. One, two, three or four cleared rows award 100, 300, 500 or 800 points respectively, multiplied by the level before that clear. Dropping earns no extra points. Level starts at 1 and rises after every ten cleared lines. Gravity reaches a minimum interval of 100 ms.
 
-The preview shows the piece that will become active after the current piece locks. Every shuffled bag contains the seven kinds exactly once; adjacent bags can repeat a kind at their boundary.
+The Next preview shows the piece promoted after a lock. The Hold panel stores a kind, independently of Next. An empty hold stores the outgoing piece and promotes Next, drawing one successor preview. A populated swap consumes no new source piece and leaves Next unchanged. The incoming held piece always starts unrotated at its normal spawn. Hold becomes available after a legal lock; Space alone does not restore it. Every shuffled bag contains the seven kinds exactly once; adjacent bags can repeat a kind at their boundary.
 
 ## Pause, interruption and game over
 

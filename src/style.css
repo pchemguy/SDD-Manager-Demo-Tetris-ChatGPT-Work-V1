@@ -1,7 +1,7 @@
 :root { font-family: system-ui, sans-serif; color: #e2e8f0; background: #020617; color-scheme: dark; }
 * { box-sizing: border-box; }
 body { margin: 0; }
-main { max-width: 720px; margin: 0 auto; padding: 14px 20px; }
+main { max-width: 720px; margin: 0 auto; padding: 10px 20px; }
 header { margin-bottom: 12px; }
 h1 { font-size: 26px; margin: 0; letter-spacing: -.5px; }
 header p { color: #94a3b8; margin: 3px 0 0; font-size: 13px; }

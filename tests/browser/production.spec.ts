@@ -34,8 +34,23 @@ test('production play requests only same-origin static files without sockets or 
  page.on('request',r=>requests.push({url:r.url(),method:r.method()}));page.on('websocket',s=>sockets.push(s.url()));page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
  await page.route('**/*',route=>new URL(route.request().url()).origin===production?route.continue():route.abort());
  await page.goto(production);await expect(page.getByRole('status')).toHaveText('Running');
- await page.keyboard.press('ArrowDown');await page.keyboard.press('p');await page.getByRole('button',{name:'Restart',exact:true}).click();
+ await page.keyboard.press('c');await page.keyboard.press('ArrowUp');await page.keyboard.press('Space');await page.keyboard.press('ArrowDown');await page.keyboard.press('p');await page.getByRole('button',{name:'Restart',exact:true}).click();
  expect(requests.some(r=>r.url.endsWith('.js'))).toBe(true);expect(requests.some(r=>r.url.endsWith('.css'))).toBe(true);
  for(const r of requests){expect(new URL(r.url).origin).toBe(production);expect(r.method).toBe('GET');expect(new URL(r.url).pathname).toMatch(/^\/$|^\/assets\/[^/]+\.(js|css)$/);}
  expect(sockets).toEqual([]);expect(errors).toEqual([]);await expect(page.locator('#snapshot,#tick,#dispose')).toHaveCount(0);
+});
+
+test('shipped controls combine ghost, hold, wall kick and delayed drop without a harness',async({page},info)=>{
+ await page.addInitScript(()=>{Math.random=()=>.999;});await page.clock.install({time:new Date('2026-01-01T00:00:00Z')});await page.clock.pauseAt(new Date('2026-01-01T00:00:00Z'));await page.goto(production);
+ const image=(id:string)=>page.locator('#'+id).evaluate(c=>(c as HTMLCanvasElement).toDataURL());
+ const ghostPixel=(x:number,y:number)=>page.locator('#board').evaluate((c,{x,y})=>Array.from((c as HTMLCanvasElement).getContext('2d')!.getImageData(x*24+3,y*24+3,1,1).data),{x,y});
+ expect(await ghostPixel(3,19)).toEqual([148,163,184,255]);await expect(page.locator('#hold-state')).toHaveText('Empty · Available');
+ await page.keyboard.press('c');await expect(page.locator('#hold-state')).toHaveText('Unavailable until lock');const held=await image('held'),preview=await image('preview');
+ await page.keyboard.press('ArrowUp');for(let i=0;i<4;i++)await page.keyboard.press('ArrowLeft');await page.keyboard.press('ArrowUp');
+ expect(await cells(page)).toEqual([{x:0,y:1},{x:1,y:1},{x:2,y:1},{x:2,y:2}]);expect(await ghostPixel(0,18)).toEqual([148,163,184,255]);
+ await page.keyboard.press('Space');expect(await cells(page)).toEqual([{x:0,y:18},{x:1,y:18},{x:2,y:18},{x:2,y:19}]);expect(await image('held')).toBe(held);expect(await image('preview')).toBe(preview);await expect(page.locator('#score')).toHaveText('0');
+ await page.keyboard.press('ArrowRight');expect(await cells(page)).toEqual([{x:1,y:18},{x:2,y:18},{x:3,y:18},{x:3,y:19}]);
+ expect(await page.evaluate(()=>document.documentElement.scrollHeight)).toBeLessThanOrEqual(600);await page.screenshot({path:info.outputPath('piece-controls-page.png')});await page.clock.runFor(1100);expect(await cells(page)).toHaveLength(8);await expect(page.locator('#hold-state')).toHaveText('Available');
+ const afterLockPreview=await image('preview');await page.keyboard.press('c');expect(await image('preview')).toBe(afterLockPreview);expect(await image('held')).not.toBe(held);await expect(page.locator('#hold-state')).toHaveText('Unavailable until lock');
+ await page.keyboard.press('r');await expect(page.locator('#hold-state')).toHaveText('Empty · Available');expect(await cells(page)).toEqual([{x:3,y:1},{x:4,y:1},{x:5,y:1},{x:6,y:1}]);await expect(page.locator('#snapshot,#tick,#dispose')).toHaveCount(0);
 });
