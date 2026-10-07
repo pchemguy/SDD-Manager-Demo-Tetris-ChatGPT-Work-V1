@@ -17,6 +17,7 @@ Evidence consists of the conversation, inspected installed skill instructions, r
 3. Latest developer clarification (2026-10-07 15:00 Europe/Moscow): when the user supplies a GitHub token, GitHub issue/label/milestone tracking should be selected by default, but the manager must still ask for confirmation. This refines the preceding separate-opt-in clarification: the default recommendation is enabled; actual activation still requires confirmation. General Git publication authority must not be mistaken for that confirmation.
 4. Proactive conduct applies throughout SDD Manager, not only to hosting. The manager must identify relevant capabilities, prerequisites, missing decisions and coordination gaps without waiting for the developer to discover them.
 5. Notes for later plugin amendments must now be collected in this root report. Report creation and publication do not mean the amendments have been implemented or their proposed wording accepted in full.
+6. SDD-F006 is a useful addition with both general and browser-specific content. The developer requires special consideration of its SDD placement. The ownership and conditional-loading arrangement below is proposed, not an accepted plugin layout change.
 
 ## Findings index
 
@@ -29,7 +30,7 @@ Priority reflects impact on workflow correctness and developer intervention, rat
 | SDD-F003 | Existing authority was not carried into automatic-review responses and appropriate retries | Explicit developer amendments | High | Required behavior; enforcement/examples outstanding |
 | SDD-F004 | Agent explanations confuse policy, authorization and observed state | Observed error; proposed supporting amendment | High | Proposed; not separately accepted |
 | SDD-F005 | Amendment notes lack a durable, accurately reported register | Developer's current collection request; proposed generalization | Medium | This report establishes the demo register; plugin guidance proposed |
-| SDD-F006 | Environment recovery needs representative capability evidence and proactive alternatives | Demo execution evidence; proposed supporting amendment | Medium | Consumer repairs verified; general plugin amendment proposed |
+| SDD-F006 | Environment recovery needs representative capability evidence and proactive alternatives | Demo evidence; developer accepts addition and flags placement | Medium | Consumer repairs verified; general/specific placement proposed; plugin revision outstanding |
 
 All six plugin findings remain open. Operational recovery in the consumer repository is not verification of amended plugin behavior.
 
@@ -147,18 +148,39 @@ The working route uses pinned npm assets, ownership-safe extraction, multiproces
 
 ### Proposed amendment
 
-> On a dependency or browser-installation blocker, the manager MUST investigate reasonable supported alternatives within the authorized scope before settling on an environment blocker. Compare actual artifact validity, compatibility and launch behavior; keep successful partial work. Material substitutions must be disclosed and handled under existing decisions rather than hidden.
->
-> Tool/browser readiness MUST establish the capabilities required by the planned checks. A successful single launch is not sufficient evidence for a suite using successive contexts, rendered text and Canvas. Select representative probes and visual inspection where relevant, and record actual platform/version coverage and limitations.
+The developer identified a placement concern: this finding combines a general coordination obligation with technical lessons specific to browser testing. Keep the stable finding identity, but separate its normative policy from conditional guidance. Browser installation and rendering probes must not become requirements for every SDD project.
 
-Targets: sdd-implement startup/task execution, sdd-verify check selection/evidence and sdd-manage blocker coordination. Validate an unavailable download route with a supported alternative; malformed HTTP-200 artifacts; a browser that launches once but fails a second context; DOM text present with no glyph pixels; and fresh-cache reproduction. Bound investigation by real scope and constraints, not an arbitrary retry quota. A genuine policy denial is governed by SDD-F003, not installation workarounds.
+General recovery policy:
+
+> On an environment or tooling blocker, the manager MUST coordinate investigation of reasonable supported alternatives within the authorized scope before declaring the work blocked. Route technical investigation to the responsible workflow, retain successful partial work, and disclose material substitutions under the existing decision process. Bound investigation by real scope and constraints, not an arbitrary retry quota.
+
+General verification policy:
+
+> Readiness evidence MUST establish the capabilities required by the planned checks. Select representative probes appropriate to those checks and record actual environment coverage and limitations. Installation success or a trivial smoke check alone does not establish capabilities it did not exercise.
+
+Conditional browser guidance applies those policies to the demo: inspect downloaded artifact validity and executable compatibility; check successive contexts when the suite uses them; check glyph rendering, Canvas pixels and visual output when acceptance depends on them; verify fresh-cache setup when reproducible provisioning is required. These are examples selected by project needs, not a universal browser checklist. The pinned package, extraction options and font configuration remain a demonstrated recovery recipe rather than prescribed dependencies.
+
+### Proposed SDD placement and loading
+
+| Layer | Proposed owner / placement | Loading trigger and boundary |
+| --- | --- | --- |
+| General recovery coordination | sdd-manage blocker coordination | Any relevant environment/tooling blocker; owns escalation, scope, decisions and handoff, without embedding browser recipes. |
+| Technical recovery execution | sdd-implement startup/task execution, with a conditional troubleshooting reference | An installation or runtime blocker during execution; investigates artifacts, compatibility and alternatives, then returns evidence to the manager. Other affected workflows retain their own technical execution ownership. |
+| General evidence adequacy | sdd-verify check selection/evidence | Selection or assessment of verification; derives readiness probes from required capabilities rather than requiring browser tooling. |
+| Browser-specific application | Conditional browser guidance referenced by sdd-implement and sdd-verify | Browser provisioning, session or rendering checks are relevant to the selected work; contains recovery examples and capability probes, loaded only when needed. |
+
+Use progressive disclosure: core instructions carry the general obligations and short routing triggers; a shared conditional reference carries the browser detail. Its exact filename and location require a plugin-layout review before implementation. No new standalone skill is proposed, and no reference file has been created. Avoid copying the same policy or package-specific workaround into several skills. A genuine policy denial remains governed by SDD-F003 and cannot be reframed as an installation obstacle to work around.
+
+### Placement and behavioral validation
+
+Validate both layers: a non-browser tooling failure must trigger scoped recovery without loading browser guidance; an engine-only task must not acquire browser/font/Canvas prerequisites. For relevant browser work, validate an unavailable download route with a supported alternative, malformed HTTP-200 artifacts, successive-context failure, DOM text without glyph pixels and fresh-cache reproduction as applicable to the planned checks. Review ownership and routing for gaps or duplicate policy. These amended-plugin scenarios remain unexecuted; the consumer evidence establishes the motivating failures and repairs only.
 
 ## Consolidated revision handoff
 
 1. Strengthen proactive coordination and explicit optional-capability decision handling (SDD-F001/F002). Apply the latest default-enabled-on-token policy with explicit activation confirmation; retain the earlier opt-in exchange as finding context.
 2. Strengthen scoped-authorization recognition, automatic reviewer context and supported continuation examples (SDD-F003). Retain platform-control boundaries and secret handling.
 3. Align diagnosis and reporting language with actual decisions/evidence (SDD-F004/F005). Existing records must not manufacture user decisions.
-4. Add environment-recovery and representative-readiness examples (SDD-F006), reusing the demo evidence without claiming general compatibility.
+4. Review SDD-F006 placement before implementation: put general recovery coordination in sdd-manage and evidence adequacy in sdd-verify; route technical execution and conditionally loaded browser guidance without duplicating policy. Reuse the demo evidence without imposing browser checks on unrelated projects or claiming general compatibility.
 5. Review cross-skill consistency and run consumer-behavior scenarios before marking plugin amendments verified. Structural text checks alone do not prove proactive coordination or correct review responses.
 
 The principle of proactivity, token-triggered default tracking with confirmation, and authorization/reviewer-response obligations were explicitly requested or clarified by the developer. Detailed wording, cross-file placement and the supporting recommendations remain proposals. This report is not an accepted plugin revision plan and does not change the installed version.
