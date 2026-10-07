@@ -38,11 +38,12 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Depends on: T-001.
             Evidence: npm test -- tests/unit/engine/pieces.test.ts; npm run typecheck. Cover four unique connected cells, every rotation, O no-op, four-turn identity, centered spawn origins, and occupied-cell coordinates. Trace: G-01/G-02, SYS-01, A-02.
             Completion evidence (2026-10-07): Focused geometry suite first failed 14/14 against explicit unimplemented contract scaffolds, then passed 14/14 after implementation; npm run typecheck passes. Literal frames cover every kind/orientation, unique connected cells, spawn, occupied translation, O no-op and four-turn identity. Engine modules contain no browser imports. Existing npm proxy warning persists.
-        - [ ] T-003 — Implement legal board placement and row compaction
+        - [x] T-003 — Implement legal board placement and row compaction
             Outcome: Board operations reject wall/floor/locked-cell collisions, lock legal occupied cells, and clear completed rows with stable remaining-row order.
             Scope: src/engine/board.ts and tests/unit/engine/board.test.ts.
             Depends on: T-002.
             Evidence: npm test -- tests/unit/engine/board.test.ts; npm run typecheck. Include floor/wall/stack boundaries, occupied-only collision, simultaneous and nonadjacent clears, no-clear preservation, and empty-row insertion. Trace: G-01/G-05, A-02/A-03 compaction scope.
+            Completion evidence (2026-10-07): Corrected parameterized-test setup before accepting RED: 8 behavioral failures against operation scaffolds, 1 existing empty-board check passed. GREEN required correcting one fixture that accidentally retained an occupied cell from its preceding stack case. Focused board tests pass 9/9; geometry regression 14/14 and npm run typecheck pass. Includes 1–4 and nonadjacent clears, stable ordering, floor/wall/stack/empty-frame bounds, exact locking and atomic rejection. Proxy warning remains non-fatal.
         - [ ] T-004 — Implement the seven-piece bag and deterministic test sources
             Outcome: Production bags contain each kind exactly once, and tests can supply controlled sequences through the same source boundary.
             Scope: src/engine/piece-source.ts, tests/unit/engine/piece-source.test.ts, and tests/support/piece-source.ts.
