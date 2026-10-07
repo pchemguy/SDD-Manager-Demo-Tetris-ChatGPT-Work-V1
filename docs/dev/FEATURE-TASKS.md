@@ -21,7 +21,7 @@ Recommended first execution range: T-027–T-030, delivering and reviewing miles
 ## Phase 2 — Piece-control extension
 
 - [ ] Phase 2 — Piece-control extension
-    - [ ] Milestone 2.1 — Ghost and delayed hard drop
+    - [x] Milestone 2.1 — Ghost and delayed hard drop
         - [x] T-027 — Implement shared landing and detached ghost snapshots
             Outcome: Shared downward-reachable landing and pure detached ghost data, with existing consumers kept type-correct.
             Scope: src/engine/board.ts, types.ts, game.ts; engine rule/snapshot tests and affected fixture snapshots.
