@@ -2,7 +2,7 @@
 
 ## Current gate
 
-**State: Ready for task derivation on PLAN/SPEC conformance and layout criteria.** No confirmed finding remains open. This is preparation evidence, not implementation, dependency-installation, or browser acceptance evidence. Human review of the written plan/layout is the next conversation checkpoint.
+**State: Ready for task derivation on PLAN/SPEC conformance and layout criteria.** No confirmed finding remains open. This is preparation evidence, not implementation, dependency-installation, or browser acceptance evidence. The user accepted the written plan/layout on 2026-10-07; their reviewed content identities remain unchanged.
 
 Scope: [PLAN](PLAN.md) and [layout](layout.md), against accepted [SPEC](SPEC.md) and children, [PROJECT](PROJECT.md), [ARCHITECTURE](ARCHITECTURE.md), and [DECOMPOSITION](DECOMPOSITION.md). Review date: 2026-10-07. Reviewer: the main agent applying SDD Manager 0.14.9's sdd-plan procedure; no independent reviewer was used.
 

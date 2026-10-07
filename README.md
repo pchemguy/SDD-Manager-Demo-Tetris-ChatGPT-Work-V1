@@ -14,5 +14,7 @@ The project is in design preparation; no playable game is implemented.
 - [Delivery plan](docs/dev/PLAN.md)
 - [Repository layout](docs/dev/layout.md)
 - [Plan review](docs/dev/PLAN-REVIEW-REPORT.md)
+- [Implementation tasks](docs/dev/TASKS.md)
+- [Task-list review](docs/dev/TASKS-REVIEW-REPORT.md)
 
 Development uses [SDD Manager](SDD-MANAGER.md). See the [AI-assisted development disclosure](AI_DISCLOSURE.md).
