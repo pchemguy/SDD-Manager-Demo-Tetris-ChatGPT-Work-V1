@@ -106,11 +106,12 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Depends on: T-012 and milestone 1.2 completion/closure.
             Evidence: npm test -- tests/unit/engine/lifecycle.test.ts; npm run typecheck. Verify freeze/resume with fractional accumulator, restart from running/paused/game over, fresh source consumption, and completed-game command invariants. Trace: S-01, G-05/G-06, A-05/A-06.
             Completion evidence (2026-10-07): Lifecycle tests observed five missing-method failures before implementation, then passed 5/5; npm run typecheck passes. Freeze/resume retains fractional gravity; reset from all three statuses clears counters, board and time and consumes a fresh supplied source; completed games ignore pause/resume. Source/elapsed fault hardening remains T-019/T-020.
-        - [ ] T-014 — Complete focused keyboard and visible command controls
+        - [x] T-014 — Complete focused keyboard and visible command controls
             Outcome: Arrow repeat, one-shot rotation/P/R, editable/modified-key filtering, focus scope, scroll prevention, and labeled Pause/Resume/Restart buttons route the defined actions.
             Scope: src/session/keyboard.ts, src/view/status.ts, controller command routing as needed, tests/unit/session/keyboard.test.ts, and tests/browser/input.spec.ts.
             Depends on: T-013.
             Evidence: npm test -- tests/unit/session/keyboard.test.ts; npm run test:browser -- tests/browser/input.spec.ts; npm run typecheck. Include repeated keys, paused/game-over arrows, ignored modified/editable input, ordinary button activation, board focus, and no gameplay page scrolling. Trace: S-02, A-05/A-07.
+            Completion evidence (2026-10-07): Key mapping tests failed 2/2 before implementation, then passed 2/2. Browser input tests observed repeated rotation and missing-control failures, then passed 2/2; npm run typecheck passes. Verified repeat/filtering, P/R commands, paused arrow scroll suppression, native Enter/Space button activation, editable/outside-control exclusion and board click focus. Interruption eligibility/timing follows T-015.
         - [ ] T-015 — Coordinate browser interruptions and session timing
             Outcome: Controller pauses on blur/hidden document, requires explicit eligible resume, resets its time baseline, and restarts without duplicate subscriptions/frame loops. Starting/restarting hidden or unfocused is paused.
             Scope: src/session/controller.ts, tests/unit/session/controller.test.ts, tests/support/scheduler.ts, and tests/browser/session.spec.ts.
