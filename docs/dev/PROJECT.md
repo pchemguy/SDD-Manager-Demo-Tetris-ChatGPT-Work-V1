@@ -32,7 +32,7 @@ These context statements identify the demonstration setup; they do not establish
 
 The application runs entirely in the browser. Game rules must be testable without a DOM, Canvas, or real-time clock. Repository checkpoints use Git. Product dependencies and build tooling are not yet selected.
 
-Exact gameplay rules, keyboard mappings, supported browser baseline, and build/test tooling remain to be settled during specification and planning. The architecture and component boundaries are accepted; these behavioral details must not be inferred from the word "classic."
+The accepted gameplay rules and their precise boundaries are defined in [SPEC](SPEC.md). Build/test tooling remains a planning decision. The architecture and component boundaries are accepted.
 
 ## Vocabulary
 

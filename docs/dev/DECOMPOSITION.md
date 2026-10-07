@@ -34,6 +34,6 @@ The engine rejects illegal moves through its specified action result rather than
 
 ## Specification handoff
 
-Specification must define board dimensions, spawn positions, orientation and rotation behavior, piece selection, locking and row clearing, scoring and progression, gravity timing, key mappings/repeat policy, pause/focus behavior, restart, game over, browser support, and measurable acceptance.
+[SPEC](SPEC.md) and its focused children define board dimensions, spawn positions, orientation and rotation behavior, piece selection, locking and row clearing, scoring and progression, gravity timing, key mappings/repeat policy, pause/focus behavior, restart, game over, browser support, and measurable acceptance.
 
-These details remain open. Component ownership and dependency direction are accepted design decisions; no component is implemented by this document.
+Component ownership and dependency direction are accepted design decisions; no component is implemented by this document.
