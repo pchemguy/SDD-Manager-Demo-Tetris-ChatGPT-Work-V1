@@ -59,7 +59,7 @@ Behavioral validation: a new project request with a GitHub repository triggers a
 
 PLAN and TASKS introduced conditional hosting and recorded no active tracking. Milestone [1.1](docs/dev/reports/phases/1/1.1.md) and [1.2](docs/dev/reports/phases/1/1.2.md) repeated “hosted tracking is inactive.” Those statements describe the absence of performed projection, but do not establish that the developer declined it. The choice was not proactively presented.
 
-When challenged, the agent claimed that authorization for all workflow operations necessarily enabled tracking without another decision. The developer first clarified separate opt-in, then refined the desired policy: a supplied GitHub token should default the tracking choice to enabled, while still requiring confirmation. Current demo state is therefore **default recommendation: enable; activation confirmation pending**. It is neither an established refusal nor confirmation to create objects.
+When challenged, the agent claimed that authorization for all workflow operations necessarily enabled tracking without another decision. The developer first clarified separate opt-in, then refined the desired policy: a supplied GitHub token should default the tracking choice to enabled, while still requiring confirmation. Current demo state is therefore **default recommendation: enable; confirmed by the developer on 2026-10-07 at 15:04 Europe/Moscow; phase 1 tracking activated and reconciled**. It is neither an established refusal nor confirmation to create objects.
 
 The installed sdd-forge limits itself to requested hosted operations. sdd-manage coordinates hosting when requested or already active. phase-activation.md requires complete eligible-phase projection when tracking is active. Their request boundary must be retained while the manager gains an explicit token-triggered default proposal and confirmation handoff.
 
@@ -69,7 +69,7 @@ The installed sdd-forge limits itself to requested hosted operations. sdd-manage
 >
 > Before phase activation, establish whether tracking is confirmed, already active, explicitly declined or awaiting a decision. Respect an explicit decline. When confirmation already covers the same repository/scope, carry it forward without asking again. Without a supplied token, proactively offer supported tracking where relevant, but do not invent credentials, account access or consent. Git publication and hosted tracking remain distinct workflow effects.
 
-The offer should state what will be managed: the eligible phase label, milestone labels, hosted milestones and task issues, their associations, and verification-based closures. Once opted in, perform required projection/readback and maintained lifecycle operations without repeated approvals. If declined, continue local/Git workflows without nagging. If unresolved, retain the default-enabled recommendation and pending-confirmation state; do not label it as a refusal or silently claim activation consent exists.
+The offer should state what will be managed: the eligible phase label, hosted milestones and task issues, their associations, and verification-based closures. Once opted in, perform required projection/readback and maintained lifecycle operations without repeated approvals. If declined, continue local/Git workflows without nagging. If unresolved, retain the default-enabled recommendation and pending-confirmation state; do not label it as a refusal or silently claim activation consent exists.
 
 If tracking is opted into after local execution has begun, reconcile the existing phase idempotently: discover existing objects, create only missing eligible objects, attach retained completion evidence, close verified tasks/milestones and leave incomplete work open. Do not replay completed product tasks or rewrite history to pretend projection preceded them.
 
@@ -165,8 +165,22 @@ The principle of proactivity, token-triggered default tracking with confirmation
 
 ## Scope preserved and evidence limits
 
-Tetris implementation remains paused after T-012. Phase 1 is incomplete and unmerged. GitHub tracking has not been confirmed or activated. Under the latest policy, the supplied token makes enablement the default recommendation, with confirmation still pending; the milestone reports' inactive-state statements are not proof of a developer refusal. No product-rule amendment is proposed here: the locking typo was corrected in conversation and the accepted next-blocked-gravity-tick rule is implemented and tested.
+Tetris implementation remains paused after T-012. Phase 1 is incomplete and unmerged. The developer confirmed GitHub tracking on 2026-10-07 at 15:04 Europe/Moscow. Reconciliation of this existing phase is complete; the milestone reports' inactive-state statements are not proof of a developer refusal. No product-rule amendment is proposed here: the locking typo was corrected in conversation and the accepted next-blocked-gravity-tick rule is implemented and tested.
 
 Successful existing practices include incremental commits/pushes, bounded milestone pauses, pure engine seams, accurate partial-acceptance reporting, and distinguishing behavioral RED from setup/characterization evidence. Their presence does not resolve the open coordination findings; they should remain intact during plugin revision.
 
-No installed plugin source was modified, no hosted labels/issues/milestones were created or closed, and no additional product tasks were executed for this report. Tests of the proposed amended plugin behavior have not been run. Report verification covers source/context consistency, local links, finding identity/status consistency, whitespace and absence of credential values. Publication is verified by the accompanying completion response, not inferred from this file's existence.
+No installed plugin source was modified, no hosted labels/issues/milestones were created or closed when the initial report was written, and no additional product tasks were executed for it. Subsequent confirmed tracking activation is recorded separately below. Tests of the proposed amended plugin behavior have not been run. Report verification covers source/context consistency, local links, finding identity/status consistency, whitespace and absence of credential values. Publication is verified by the accompanying completion response, not inferred from this file's existence.
+
+
+## Confirmed consumer tracking follow-up
+
+On 2026-10-07 at 15:04 Europe/Moscow, the developer confirmed the proposed activation of phase 1 GitHub tracking and reconciliation of verified T-001–T-012 / milestones 1.1–1.2. This supplies the previously pending capability-selection decision. Projection/readback and completion reconciliation are complete:
+
+- Created one managed phase label, preserving existing unrelated labels.
+- Created six native milestones and 26 task issues with exact SDD identity markers and phase/milestone associations.
+- Closed T-001–T-012 with task commit and verification evidence comments. These closures represent verified work on the phase branch, not integration into main.
+- Closed and read back [milestone 1.1](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work/milestone/1) and [milestone 1.2](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work/milestone/2) after their constituent delivery/review issues were closed.
+- Retained 14 open task issues and four open milestones. The phase remains incomplete and unmerged.
+- Updated the existing TASKS context and historical milestone-report follow-ups. No separate local issue-map registry was added.
+
+This is a late activation and evidence reconciliation; no claim is made that tracking preceded the original task execution. The general plugin amendments above remain open; consumer recovery is not a plugin revision. Hosted metadata readback and documentation checks validate this follow-up; product tests were not rerun because gameplay code and task acceptance did not change.
