@@ -12,6 +12,7 @@ export class Game {
  private score=0;
  private lines=0;
  private get level():number {return 1+Math.floor(this.lines/10);}
+ private get interval():number {return Math.max(100,1000*0.8**(this.level-1));}
  constructor(private readonly source: PieceSource) {
   this.active=spawn(source.next()); this.preview=source.next();
  }
@@ -32,7 +33,10 @@ export class Game {
   if(!Number.isFinite(elapsedMs)||elapsedMs<0) throw new RangeError('Elapsed time must be finite and nonnegative');
   if(this.status!=='running') return;
   this.accumulator+=elapsedMs;
-  while(this.accumulator>=1000&&this.status==='running') { this.accumulator-=1000; this.tick(); }
+  while(this.status==='running'&&this.accumulator>=this.interval) {
+   // Subtract the pre-tick interval; a clear may change the next interval.
+   this.accumulator-=this.interval;this.tick();
+  }
  }
  private tick(): void {
   if(!this.active) return;

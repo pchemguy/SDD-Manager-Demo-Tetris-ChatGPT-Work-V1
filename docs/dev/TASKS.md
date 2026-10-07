@@ -81,11 +81,12 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Depends on: T-008 and milestone 1.1 completion/closure.
             Evidence: npm test -- tests/unit/engine/progression.test.ts; npm run typecheck. Cover 0/1/2/3/4 rows, crossing ten-line boundaries, zero drop bonuses, and unchanged score on rejected actions. Trace: G-05, A-03 scoring/progression.
             Completion evidence (2026-10-07): Progression suite observed 5 missing-counter/scoring failures; zero-bonus case already passed. After implementation, focused suite passes 6/6 and npm run typecheck passes. Public-action recipes establish final 1/2/3/4-row clears, zero-row locks/drop bonuses, an 8-to-12-line clear scored at level 1, and subsequent level-2 scoring. No private state loading or test API was added. Existing npm proxy warning remains non-fatal.
-        - [ ] T-010 — Apply level-dependent gravity and residual active time
+        - [x] T-010 — Apply level-dependent gravity and residual active time
             Outcome: Gravity uses the current level interval and preserves fractional/residual time across piece promotion and score-driven level changes.
             Scope: src/engine/game.ts and tests/unit/engine/timing.test.ts.
             Depends on: T-009.
             Evidence: npm test -- tests/unit/engine/timing.test.ts; npm test -- tests/unit/engine/game.test.ts; npm run typecheck. Check level-1 interval, subsequent speed, 100 ms floor, fractional time, partitioned elapsed calls, promotion/level-change residuals, and preservation of next-tick locking. Trace: G-04/G-06, A-02/A-03.
+            Completion evidence (2026-10-07): Timing RED had four direct wrong-speed/residual assertions, three higher-level scenarios unable to reach their setup because fixed-speed locks were missing, and one already-passing level-1 case. Dynamic intervals make all 8 cases pass. A literal exact 640-ms assertion was corrected to allow 0.000001 ms tolerance: the specified floating-point power evaluates to 640.0000000000001, and SPEC permits ordinary floating-point precision; engine timing was not rounded. Game regression 9/9, progression 6/6 and strict typecheck pass. Covers levels 1/2/3, floor at levels 12/25, grounded level-2 locking, fractional residuals and partitioned time spanning level-changing promotion. Proxy warning remains non-fatal.
         - [ ] T-011 — Present next-piece preview and score progression
             Outcome: Browser preview and DOM score/level/cleared-line values stay consistent with snapshots after promotion and clearing.
             Scope: src/view/renderer.ts, src/view/status.ts, page elements, controller display routing as needed, and tests/browser/progression-preview.spec.ts.
