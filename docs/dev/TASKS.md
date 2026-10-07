@@ -2,11 +2,13 @@
 
 ## Authority and execution context
 
-This list derives the complete intended work from accepted [PLAN](PLAN.md), [layout](layout.md), [SPEC](SPEC.md) and its [gameplay](spec/gameplay.md) and [session](spec/session.md) children, [ARCHITECTURE](ARCHITECTURE.md), and [DECOMPOSITION](DECOMPOSITION.md). [TASKS review](TASKS-REVIEW-REPORT.md) establishes preparation readiness. All tasks are planned and unchecked; no product implementation has started.
+This list derives the complete intended work from accepted [PLAN](PLAN.md), [layout](layout.md), [SPEC](SPEC.md) and its [gameplay](spec/gameplay.md) and [session](spec/session.md) children, [ARCHITECTURE](ARCHITECTURE.md), and [DECOMPOSITION](DECOMPOSITION.md). [TASKS review](TASKS-REVIEW-REPORT.md) establishes preparation readiness. The execution checklist and per-task evidence below record implementation status.
 
 Preparation baseline: `470ee46e48cc58c919fb5ac799691579126e42c1` on `main`. Execution uses `phase/1-classic-browser-tetris`, targeting `main` in the established GitHub repository. Record its actual starting checkpoint when implementation begins; do not infer that it remains the preparation baseline after task-list publication.
 
-Execute a human-selected bounded range through sdd-implement. A partial phase publishes task/review checkpoints and pauses on its phase branch. Only full verified phase completion permits default integration. Git publication is established; no hosted issue/milestone tracking has been activated by task preparation. If enabled, eligible-phase projection precedes the first task and closure gates apply.
+All delivery tasks and milestone reviews through T-025 are complete; T-026 verifies the whole phase and final reports. Phase branch started from `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef`; the developer authorized T-013–T-026 from `7358a53b3b62aecaf60cb36779aa6f57fd7bc9ac` on 2026-10-07. GitHub tracking is active and maintained: issues T-001–T-025 and delivery milestones 1.1–1.5 are closed/read back. Review-task T-026 / milestone 1.6 reconciliation and main integration follow its published report checkpoint. The phase checkbox remains unchecked until merged-state verification and target publication/containment are observed.
+
+Execute a human-selected bounded range through sdd-implement. A partial phase publishes task/review checkpoints and pauses on its phase branch. Only full verified phase completion permits default integration. Git publication and maintained GitHub tracking are established. This was late tracking activation, reconciling existing verified work rather than replaying tasks or claiming projection preceded execution. Future task completions require verified issue closure, and milestone closure follows its review/evidence gates. [GitHub issues](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work/issues) and [milestones](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work/milestones) expose hosted state.
 
 ## Task evidence conventions
 
@@ -19,145 +21,175 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
 ## Phase 1 — Complete classic browser Tetris
 
 - [ ] Phase 1 — Complete classic browser Tetris
-    - [ ] Milestone 1.1 — Playable falling-block slice
-        - [ ] T-001 — Establish the repository toolchain and Chromium launch gate
+    - [x] Milestone 1.1 — Playable falling-block slice
+        - [x] T-001 — Establish the repository toolchain and Chromium launch gate
             Outcome: Repository-local npm dependencies, locked compatible versions, strict checking, Vite ES2020 production target, Vitest, and Playwright Test work in the standard sandbox. Create only the minimum buildable entry page/module needed to verify tools; this task does not deliver gameplay.
             Scope: package.json/package-lock.json, tsconfig.json, vite.config.ts, vitest.config.ts, playwright.config.ts, minimal index.html/src/main.ts, .gitignore tool-cache entries as needed, and README setup commands. Retain final .obsidian/.trash rules and token exclusion.
             Depends on: none; accepted upstream reviews and phase setup are execution prerequisites.
             Evidence: Check Node/package engine and peer compatibility; perform install and npm ci; install the selected Playwright Chromium if needed and launch it on a minimal page; run npm run typecheck and npm run build. Verify unit/browser discovery is separated and planned scripts exist. Record versions, launch result, and any environment blocker without substituting runtime packages silently. Trace: SYS-06/SYS-07, A-09 prerequisite.
-        - [ ] T-002 — Define engine contracts and tetromino geometry
+            Execution checkpoint (2026-10-07): Incomplete and blocked on Chromium launch. Repository-local install and npm ci succeeded with Node 24.19.0/npm 11.9.0, TypeScript 7.0.2, Vite 8.3.3, Vitest 5.0.3, Playwright Test 1.63.0, and @types/node 24.19.1. npm ls reports no unmet direct dependency; resolved Vite/Vitest/Playwright engine/peer requirements support the selected Node/tool versions.
+            Observed checks: npm run typecheck and npm run build pass after correcting the setup entry's global-status name collision. Vitest list discovers zero unit cases, as expected before gameplay tasks; Playwright list discovers one toolchain check. Binding Vite to loopback fixes the sandbox's network-interface enumeration failure; its browser-test server then starts successfully.
+            Browser blocker: Standard Chromium and supported headless-shell installation both fail because the official archive URLs return HTTP 200 text/html with a 195-byte Site Unavailable page instead of ZIP content. No local Chromium executable was found. The toolchain browser test runs one case and fails at browserType.launch because the required headless-shell executable is absent. No browser assertion executed. npm emits an existing http-proxy configuration warning; color-environment warnings do not explain the missing browser.
+            Resolution (2026-10-07): Developer approved the available packaged Linux browser route. Added exact @sparticuz/chromium 153.0.0, tar-fs 3.1.1 and typings; extraction explicitly disables archive ownership changes. Standard CDN remains unavailable; downloaded Chrome stable crashed on launch. Packaged Chromium 153.0.8010.0 launches and executes the real TypeScript entry through Playwright 1.63.0. Non-Linux uses ordinary Playwright installation, unverified here.
+            Completion evidence: npm ci passes; npm run typecheck and npm run build pass; npm run test:browser passes 1/1 both initially and after moving the cache aside to force fresh extraction. npm ls --depth=0 shows all direct dependencies satisfied. A declaration mismatch for tar-fs chown was repaired using a structurally typed options object; no production behavior is hidden. A shell cache-deletion command was rejected; safely renamed the generated cache instead. Existing proxy/color warnings persist without test failure. T-001 complete; gameplay begins at T-002.
+        - [x] T-002 — Define engine contracts and tetromino geometry
             Outcome: Typed domain contracts and all seven shape/orientation/spawn definitions match SPEC without browser imports.
             Scope: src/engine/types.ts, src/engine/pieces.ts, tests/unit/engine/pieces.test.ts, and focused source documentation.
             Depends on: T-001.
             Evidence: npm test -- tests/unit/engine/pieces.test.ts; npm run typecheck. Cover four unique connected cells, every rotation, O no-op, four-turn identity, centered spawn origins, and occupied-cell coordinates. Trace: G-01/G-02, SYS-01, A-02.
-        - [ ] T-003 — Implement legal board placement and row compaction
+            Completion evidence (2026-10-07): Focused geometry suite first failed 14/14 against explicit unimplemented contract scaffolds, then passed 14/14 after implementation; npm run typecheck passes. Literal frames cover every kind/orientation, unique connected cells, spawn, occupied translation, O no-op and four-turn identity. Engine modules contain no browser imports. Existing npm proxy warning persists.
+        - [x] T-003 — Implement legal board placement and row compaction
             Outcome: Board operations reject wall/floor/locked-cell collisions, lock legal occupied cells, and clear completed rows with stable remaining-row order.
             Scope: src/engine/board.ts and tests/unit/engine/board.test.ts.
             Depends on: T-002.
             Evidence: npm test -- tests/unit/engine/board.test.ts; npm run typecheck. Include floor/wall/stack boundaries, occupied-only collision, simultaneous and nonadjacent clears, no-clear preservation, and empty-row insertion. Trace: G-01/G-05, A-02/A-03 compaction scope.
-        - [ ] T-004 — Implement the seven-piece bag and deterministic test sources
+            Completion evidence (2026-10-07): Corrected parameterized-test setup before accepting RED: 8 behavioral failures against operation scaffolds, 1 existing empty-board check passed. GREEN required correcting one fixture that accidentally retained an occupied cell from its preceding stack case. Focused board tests pass 9/9; geometry regression 14/14 and npm run typecheck pass. Includes 1–4 and nonadjacent clears, stable ordering, floor/wall/stack/empty-frame bounds, exact locking and atomic rejection. Proxy warning remains non-fatal.
+        - [x] T-004 — Implement the seven-piece bag and deterministic test sources
             Outcome: Production bags contain each kind exactly once, and tests can supply controlled sequences through the same source boundary.
             Scope: src/engine/piece-source.ts, tests/unit/engine/piece-source.test.ts, and tests/support/piece-source.ts.
             Depends on: T-002.
             Evidence: npm test -- tests/unit/engine/piece-source.test.ts; npm run typecheck. Check bag cardinality/uniqueness, consecutive bag boundaries, supplied randomness, and exact deterministic consumption without asserting one production random sequence. Trace: G-03, SYS-02, A-04 source scope.
-        - [ ] T-005 — Implement the initial engine play loop
+            Completion evidence (2026-10-07): Source tests observed 3 missing-behavior failures against a bag scaffold; deterministic-source case already passed. After shuffle implementation, focused suite passes 4/4 and npm run typecheck passes. Enumerated all 5,040 shuffle choice combinations to establish every permutation is possible; checked consecutive complete bags, cross-boundary repetition, six random draws per bag, finite controlled consumption and exhaustion. Proxy warning remains non-fatal.
+        - [x] T-005 — Implement the initial engine play loop
             Outcome: Engine owns board/active/preview state, applies legal moves/rotation/soft drop, advances level-1 gravity, locks on blocked gravity ticks, clears rows, promotes pieces, and detects blocked spawn. Provide a snapshot boundary for browser assembly.
             Scope: src/engine/game.ts, tests/unit/engine/game.test.ts, and reusable scenarios under tests/support/. Scoring/level progression and pause/restart remain assigned to later tasks.
             Depends on: T-003, T-004.
             Evidence: npm test -- tests/unit/engine/game.test.ts; npm run typecheck. Exercise a complete controlled spawn-to-clear sequence; ground contact remaining active, movement/rotation before the next tick, blocked soft drop staying active, illegal actions preserving state, elapsed-time accumulation, preview promotion, and terminal no-op behavior. Trace: G-01 through G-06 at PLAN 1.1 scope; A-02/A-03 clearing/A-04 promotion/A-06 terminal scope.
-        - [ ] T-006 — Render the playable board from engine snapshots
+            Completion evidence (2026-10-07): After initial-state scaffolding, 8/9 scenarios failed on missing action/time behavior; 1 initial-state check already passed. Implemented loop then passed focused game suite 9/9, full unit suite 36/36, and npm run typecheck. Controlled public-action scenarios cover floor contact, blocked soft drop, scheduled locking after movement/rotation, moving off a stack, no-kick rejection, five-O two-row clear, preview promotion, fractional/partitioned residual time, and terminal blocked spawn. Snapshot counters intentionally remain 0/0/1 until 1.2; pause/restart are not delivered. Proxy warning remains non-fatal.
+        - [x] T-006 — Render the playable board from engine snapshots
             Outcome: A Canvas renderer draws actual locked/active cells with distinguishable colors and geometry; a controlled browser fixture establishes correspondence with the real engine snapshot.
             Scope: src/view/renderer.ts, tests/browser/rendering.spec.ts, and isolated renderer fixture(s) under tests/fixtures/. Share immutable geometry; do not create a production debug global.
             Depends on: T-005.
             Evidence: npm run test:browser -- tests/browser/rendering.spec.ts; npm run typecheck. Verify drawn occupied/empty locations against controlled snapshots and capture a representative board for inspection. Merely locating Canvas is insufficient. Preview/full layout remain in later tasks. Trace: S-04/S-05 board scope, A-07 rendering scope.
-        - [ ] T-007 — Assemble real keyboard play and gravity in the browser
+            Completion evidence (2026-10-07): Real Chromium fixture observed transparent pixels against required empty-cell background before draw implementation (behavioral RED). Focused rendering check then passes 1/1 and npm run typecheck passes. All 200 cell-center RGBA samples match literal occupied/empty expectations for a real locked O and active T snapshot; subsequent movement removes stale active cells and retains locked cells. Canvas aspect ratio confirms square cells. Captured and visually inspected representative board in ignored test output. Shared engine geometry is used by rendering; fixture stays outside product sources. Proxy/color warnings remain non-fatal.
+        - [x] T-007 — Assemble real keyboard play and gravity in the browser
             Outcome: The ordinary page runs the real engine/renderer through a single frame loop, handles basic arrow movement/rotation/soft drop, displays game over, and exposes the first playable slice. A controlled fixture uses the same adapters to demonstrate clearing and blocked spawn.
             Scope: src/session/keyboard.ts, src/session/controller.ts, src/view/status.ts baseline, src/main.ts, index.html/src/style.css baseline, tests/browser/playable-slice.spec.ts, and necessary test fixtures. Limit this task to assembly of the established engine and renderer; full input filtering/session commands remain in 1.3.
             Depends on: T-006.
             Evidence: npm run test:browser -- tests/browser/playable-slice.spec.ts; npm test; npm run typecheck; npm run build. Play the ordinary page with real keyboard events, observe gravity/locking and game over, and demonstrate a controlled row clear. Record deferred score/preview/pause/restart behavior accurately. Trace: PLAN 1.1 integrated exit, partial A-01/A-02/A-03/A-04/A-06/A-07/A-09.
-        - [ ] T-008 — Review, test, and report milestone 1.1
+            Completion evidence (2026-10-07): Four real-browser cases first failed on missing keyboard/frame behavior with initial rendering already working. Implemented one owned input subscription/frame chain, then ordinary-page keyboard movement/drop/gravity/locking, controlled clockwise rotation, two-row clear and blocked-spawn game-over checks pass 4/4. Initial GREEN attempt revealed packaged single-process Chromium fails opening a second context; removing only that vendor flag repairs multiprocess context reuse, then complete browser suite passes 6/6. npm test passes 36/36, npm run typecheck and npm run build pass. Updated smoke assertion for the real gameplay entry and README partial capability limits; screenshot inspected at 800 × 600. Source/scheduler faults, full repeat/filter controls and interruptions stay in planned later milestones. Proxy/color warnings remain non-fatal.
+        - [x] T-008 — Review, test, and report milestone 1.1
             Scope: Entire first slice, dependency/browser gate, engine/browser seams, tests, and current developer instructions.
             Depends on: T-001, T-002, T-003, T-004, T-005, T-006, T-007.
             Evidence: Separate code review plus npm test, npm run typecheck, npm run build, and relevant Chromium suite. Repair blockers, demonstrate play/locking/clearing, identify deferred contracts, and record usability/environment feedback for the developer's continue/amend/simplify/stop decision. Commit/push the report and verify containment; close the milestone if tracking is enabled.
-            Report: docs/dev/reports/phases/1/1.1.md.
-    - [ ] Milestone 1.2 — Scoring, progression, and preview
-        - [ ] T-009 — Add cleared-line totals, score, and level transitions
+            Completion evidence (2026-10-07): Separate whole-slice code inspection and repaired visual/browser environment defects; final npm test 36/36, npm run typecheck, npm run build and Chromium suite 6/6 pass. Browser suite also passes 6/6 from freshly extracted cache. Font-rasterization regression failed before the local font configuration repair and passes after it; ES2020 declaration error repaired without changing target. Final 800 × 600 page and controlled rendering images inspected and retained. No unresolved milestone blocker or deferred review TODO; later product capabilities remain planned.
+            Report: [milestone 1.1 review](reports/phases/1/1.1.md).
+    - [x] Milestone 1.2 — Scoring, progression, and preview
+        - [x] T-009 — Add cleared-line totals, score, and level transitions
             Outcome: Each lock awards the required pre-clear-level score and updates total cleared lines and derived level.
             Scope: src/engine/game.ts and tests/unit/engine/progression.test.ts; scenario support only where required.
             Depends on: T-008 and milestone 1.1 completion/closure.
             Evidence: npm test -- tests/unit/engine/progression.test.ts; npm run typecheck. Cover 0/1/2/3/4 rows, crossing ten-line boundaries, zero drop bonuses, and unchanged score on rejected actions. Trace: G-05, A-03 scoring/progression.
-        - [ ] T-010 — Apply level-dependent gravity and residual active time
+            Completion evidence (2026-10-07): Progression suite observed 5 missing-counter/scoring failures; zero-bonus case already passed. After implementation, focused suite passes 6/6 and npm run typecheck passes. Public-action recipes establish final 1/2/3/4-row clears, zero-row locks/drop bonuses, an 8-to-12-line clear scored at level 1, and subsequent level-2 scoring. No private state loading or test API was added. Existing npm proxy warning remains non-fatal.
+        - [x] T-010 — Apply level-dependent gravity and residual active time
             Outcome: Gravity uses the current level interval and preserves fractional/residual time across piece promotion and score-driven level changes.
             Scope: src/engine/game.ts and tests/unit/engine/timing.test.ts.
             Depends on: T-009.
             Evidence: npm test -- tests/unit/engine/timing.test.ts; npm test -- tests/unit/engine/game.test.ts; npm run typecheck. Check level-1 interval, subsequent speed, 100 ms floor, fractional time, partitioned elapsed calls, promotion/level-change residuals, and preservation of next-tick locking. Trace: G-04/G-06, A-02/A-03.
-        - [ ] T-011 — Present next-piece preview and score progression
+            Completion evidence (2026-10-07): Timing RED had four direct wrong-speed/residual assertions, three higher-level scenarios unable to reach their setup because fixed-speed locks were missing, and one already-passing level-1 case. Dynamic intervals make all 8 cases pass. A literal exact 640-ms assertion was corrected to allow 0.000001 ms tolerance: the specified floating-point power evaluates to 640.0000000000001, and SPEC permits ordinary floating-point precision; engine timing was not rounded. Game regression 9/9, progression 6/6 and strict typecheck pass. Covers levels 1/2/3, floor at levels 12/25, grounded level-2 locking, fractional residuals and partitioned time spanning level-changing promotion. Proxy warning remains non-fatal.
+        - [x] T-011 — Present next-piece preview and score progression
             Outcome: Browser preview and DOM score/level/cleared-line values stay consistent with snapshots after promotion and clearing.
             Scope: src/view/renderer.ts, src/view/status.ts, page elements, controller display routing as needed, and tests/browser/progression-preview.spec.ts.
             Depends on: T-010.
             Evidence: npm run test:browser -- tests/browser/progression-preview.spec.ts; npm test; npm run typecheck; npm run build. Controlled browser sequences verify preview-to-active identity, orientation-0 preview drawing, and score/level updates; ordinary-page startup shows correct initial values. Trace: S-04/S-05, A-01/A-03/A-04/A-07 relevant scope.
-        - [ ] T-012 — Review, test, and report milestone 1.2
+            Completion evidence (2026-10-07): Two browser scenarios failed first on absent preview pixels/counter updates with working engine/fixture setup. Renderer and status implementation then passes both; seven additional already-working preview cases validate literal orientation-zero geometry/colors for every kind (not claimed as new RED cycles). Full Chromium suite passes 15/15, unit suite 50/50, strict typecheck and build pass. Real controlled clear verifies 1200/8/1 to 1500/10/2 and T-preview promotion followed by I-preview redraw. Ordinary startup and 800 × 600 screenshot inspected; README documents current capability. Proxy/color warnings remain non-fatal.
+        - [x] T-012 — Review, test, and report milestone 1.2
             Scope: Scoring/gravity/preview increments and their interaction with the first playable slice.
             Depends on: T-009, T-010, T-011.
             Evidence: Separate code review plus unit, typecheck, build, and applicable browser checks; verify all 1.2 exits and prior slice regressions. Repair blockers, commit/push/read back the report, and close the milestone if tracking is enabled.
-            Report: docs/dev/reports/phases/1/1.2.md.
-    - [ ] Milestone 1.3 — Session controls and interruptions
-        - [ ] T-013 — Implement engine pause, resume, and fresh-session reset
+            Completion evidence (2026-10-07): Separate code inspection confirms pre-clear multiplier, post-clear intervals, retained residuals and snapshot-only presentation. Closed coverage finding M1.2-F001 with an already-passing nonzero-score preservation scenario (characterization, not historical RED). Final unit suite 51/51, strict typecheck/build and full Chromium suite 15/15 pass. Inspected and retained 800 × 600 ordinary scored-page screenshot. No unresolved milestone blocker/TODO; later session/failure/production capabilities remain planned.
+            Report: [milestone 1.2 review](reports/phases/1/1.2.md).
+    - [x] Milestone 1.3 — Session controls and interruptions
+        - [x] T-013 — Implement engine pause, resume, and fresh-session reset
             Outcome: Engine status gates actions/time correctly and restart resets board, source, counters, level, active/preview, and accumulator without retaining pending movement.
             Scope: src/engine/game.ts, tests/unit/engine/lifecycle.test.ts, and focused scenario support.
             Depends on: T-012 and milestone 1.2 completion/closure.
             Evidence: npm test -- tests/unit/engine/lifecycle.test.ts; npm run typecheck. Verify freeze/resume with fractional accumulator, restart from running/paused/game over, fresh source consumption, and completed-game command invariants. Trace: S-01, G-05/G-06, A-05/A-06.
-        - [ ] T-014 — Complete focused keyboard and visible command controls
+            Completion evidence (2026-10-07): Lifecycle tests observed five missing-method failures before implementation, then passed 5/5; npm run typecheck passes. Freeze/resume retains fractional gravity; reset from all three statuses clears counters, board and time and consumes a fresh supplied source; completed games ignore pause/resume. Source/elapsed fault hardening remains T-019/T-020.
+        - [x] T-014 — Complete focused keyboard and visible command controls
             Outcome: Arrow repeat, one-shot rotation/P/R, editable/modified-key filtering, focus scope, scroll prevention, and labeled Pause/Resume/Restart buttons route the defined actions.
             Scope: src/session/keyboard.ts, src/view/status.ts, controller command routing as needed, tests/unit/session/keyboard.test.ts, and tests/browser/input.spec.ts.
             Depends on: T-013.
             Evidence: npm test -- tests/unit/session/keyboard.test.ts; npm run test:browser -- tests/browser/input.spec.ts; npm run typecheck. Include repeated keys, paused/game-over arrows, ignored modified/editable input, ordinary button activation, board focus, and no gameplay page scrolling. Trace: S-02, A-05/A-07.
-        - [ ] T-015 — Coordinate browser interruptions and session timing
+            Completion evidence (2026-10-07): Key mapping tests failed 2/2 before implementation, then passed 2/2. Browser input tests observed repeated rotation and missing-control failures, then passed 2/2; npm run typecheck passes. Verified repeat/filtering, P/R commands, paused arrow scroll suppression, native Enter/Space button activation, editable/outside-control exclusion and board click focus. Interruption eligibility/timing follows T-015.
+        - [x] T-015 — Coordinate browser interruptions and session timing
             Outcome: Controller pauses on blur/hidden document, requires explicit eligible resume, resets its time baseline, and restarts without duplicate subscriptions/frame loops. Starting/restarting hidden or unfocused is paused.
             Scope: src/session/controller.ts, tests/unit/session/controller.test.ts, tests/support/scheduler.ts, and tests/browser/session.spec.ts.
             Depends on: T-014.
             Evidence: npm test -- tests/unit/session/controller.test.ts; npm run test:browser -- tests/browser/session.spec.ts; npm test; npm run typecheck; npm run build. Use controlled frame timestamps plus real browser blur/visibility and repeated restart checks; verify inactive time is excluded and restored focus does not resume automatically. Trace: S-01/S-03, SYS-04, A-05/A-06.
-        - [ ] T-016 — Review, test, and report milestone 1.3
+            Completion evidence (2026-10-07): Controller suite observed 3 missing-interruption failures and 1 existing pause check, then passed 4/4; full npm test passes 62/62 and npm run build/typecheck pass. Browser session/input/play regressions pass 8/8. Verified fractional remainder, inactive eligibility, explicit resume and repeated restart with one frame. Native headless tab-switch probe stayed focused/visible even with focus emulation disabled; browser lifecycle assertions use explicitly controlled properties/events, not a native tab-switch claim. A pre-change long browser-clock probe overlapped a source reload and is not counted as RED evidence.
+        - [x] T-016 — Review, test, and report milestone 1.3
             Scope: Complete scored session lifecycle, commands, timing, focus, and prior gameplay integrations.
             Depends on: T-013, T-014, T-015.
             Evidence: Separate code review plus unit/typecheck/build and relevant browser regressions; demonstrate pause/restart and focus interruption to inform the developer's next bounded decision. Repair blockers, commit/push/read back the report, and close the milestone if tracking is enabled.
-            Report: docs/dev/reports/phases/1/1.3.md.
-    - [ ] Milestone 1.4 — Robust presentation and failure boundaries
-        - [ ] T-017 — Complete desktop presentation and keyboard accessibility
+            Report: [milestone 1.3 review](reports/phases/1/1.3.md).
+            Completion evidence (2026-10-07): Separate code review repaired M1.3-F001 repeated-Up scrolling with observed RED/GREEN. Full unit suite 62/62, strict typecheck/build and Chromium suite 20/20 pass. Report records pause/restart demonstration, controlled interruption evidence and native headless tab-switch limitation M1.3-L001. No unresolved product blocker/TODO; phase execution continues.
+    - [x] Milestone 1.4 — Robust presentation and failure boundaries
+        - [x] T-017 — Complete desktop presentation and keyboard accessibility
             Outcome: Board/preview/status/instructions/controls fit the required desktop viewport with square cells, distinct paused/game-over messages, accessible labels/text alternatives, and visible focus.
             Scope: src/style.css, index.html, src/view/renderer.ts, src/view/status.ts, and tests/browser/presentation.spec.ts.
             Depends on: T-016 and milestone 1.3 completion/closure.
             Evidence: npm run test:browser -- tests/browser/presentation.spec.ts; npm run typecheck; npm run build. Inspect an 800 × 600 viewport for overlap/horizontal scroll and full required content; check drawing scale, labels/focus, and paused/game-over preservation of board/score. Trace: S-05, SYS-05, A-01/A-07.
-        - [ ] T-018 — Validate initialization and show safe fallback errors
+            Completion evidence (2026-10-07): Presentation suite passes 2/2; build/strict typecheck pass. Visually inspected retained 800x600 paused screenshot: full square-cell board, preview, counters, instructions and focused native controls fit without overlap/scroll. Scored pause/game-over preserve board/text. Initial exact-outline-style assertion was over-specific and corrected; distinct status-color regression observed RED then GREEN. Screenshots retained under phase report directory.
+        - [x] T-018 — Validate initialization and show safe fallback errors
             Outcome: Required DOM/Canvas validation happens before scheduling/subscriptions; missing elements or contexts display readable fallback error text without a partially active session.
             Scope: src/main.ts, setup boundary in src/session/controller.ts if needed, tests/browser/initialization.spec.ts, and isolated invalid-page fixtures.
             Depends on: T-017.
             Evidence: npm run test:browser -- tests/browser/initialization.spec.ts; npm run typecheck. Check missing gameplay/status elements and unavailable Canvas contexts, visible fallback, and no active loop/listeners. Preserve successful ordinary-page initialization. Trace: S-06, SYS-03, A-08.
-        - [ ] T-019 — Stop source/scheduler faults and dispose browser resources
+            Completion evidence (2026-10-07): Observed missing-game initialization failure before the entry validation change; full initialization suite then passes 11/11 and strict typecheck passes. All nine missing required elements plus unavailable Canvas contexts produce readable status fallback before scheduling/subscriptions; ordinary setup has no page errors. Corrected fixture output's implicit status role to avoid ambiguous status lookup. Error output uses fixed text and disables controls.
+        - [x] T-019 — Stop source/scheduler faults and dispose browser resources
             Outcome: Invalid/exhausted sources and scheduling faults stop gameplay with safe readable errors; disposal cancels frames/removes owned listeners and is repeatable. Unrecoverable faults disable Restart.
             Scope: src/engine/piece-source.ts/src/engine/game.ts source boundary, src/session/controller.ts fault/disposal boundary, existing status error view, tests/unit/session/controller.test.ts, and tests/browser/failures.spec.ts.
             Depends on: T-018.
             Evidence: Focused unit and browser failure suites plus npm run typecheck. Inject invalid source output, exhaustion, scheduler failure, and repeated disposal; verify stopped processing, released resources, retained last display, and no secret/error-path exposure. Avoid treating faults as game over. Trace: G-03, S-03/S-06, SYS-03/SYS-04, A-08.
-        - [ ] T-020 — Harden elapsed-input rejection and snapshot isolation
+            Completion evidence (2026-10-07): Observed nine source/controller failures before hardening; focused engine/controller suites now pass 13/13, browser fault suite 6/6 and initialization regression 11/11 pass; strict typecheck passes. All source identities validated at consumption. Faults retain last display, stop input/frames, release owned listeners, disable controls and show fixed sanitized errors. Repeated disposal permanently disables the instance; pagehide disposes it. Browser observer initially counted 13 Playwright-owned listeners; corrected its target/event ownership scope and rechecked all six fault cases.
+        - [x] T-020 — Harden elapsed-input rejection and snapshot isolation
             Outcome: Negative/NaN/infinite time is rejected before mutation, snapshots cannot mutate internal grid/piece state, and snapshot acquisition has no gameplay side effects. Add any missing bounded corrections to the existing engine boundary.
             Scope: src/engine/game.ts, tests/unit/engine/invariants.test.ts, and engine contract documentation.
             Depends on: T-019.
             Evidence: npm test -- tests/unit/engine/invariants.test.ts; npm test; npm run typecheck. Exercise invalid-time rejection in running/paused/completed states, nested snapshot mutation attempts, repeated snapshot reads, and unchanged state after rejected actions. Retain source/browser fault regressions. Trace: G-01/G-06, S-04, SYS-01/SYS-02, A-08.
-        - [ ] T-021 — Review, test, and report milestone 1.4
+            Completion evidence (2026-10-07): All 14 new invariant cases pass as characterization of existing behavior; no manufactured RED or unnecessary behavior change. Full unit suite 85/85 and strict typecheck pass. Negative/NaN/infinite time rejects before state or residual mutation in every status; nested caller mutation cannot change engine rows/active/preview/counters; repeated reads consume no source/time. Engine API comments document those guarantees.
+        - [x] T-021 — Review, test, and report milestone 1.4
             Scope: Full presentation, initialization/runtime failures, disposal, isolation, and their interaction with gameplay/session behavior.
             Depends on: T-017, T-018, T-019, T-020.
             Evidence: Separate code review plus all unit/typecheck/build checks and relevant browser normal/failure regressions. Verify complete A-01/A-07/A-08 scope, repair blockers, commit/push/read back the report, and close the milestone if tracking is enabled.
-            Report: docs/dev/reports/phases/1/1.4.md.
-    - [ ] Milestone 1.5 — Reproducible static delivery and complete acceptance
-        - [ ] T-022 — Complete player and developer documentation
+            Report: [milestone 1.4 review](reports/phases/1/1.4.md).
+            Completion evidence (2026-10-07): Separate milestone code inspection closed coverage finding M1.4-F001 with independent Canvas/type characterization checks. Unit 85/85, strict typecheck/build and full Chromium suite 43/43 pass. Report retains desktop/paused screenshots and validates source/scheduler errors, stopped resources, isolation and prior gameplay. No unresolved product blocker/TODO; native focus event limitation retained.
+    - [x] Milestone 1.5 — Reproducible static delivery and complete acceptance
+        - [x] T-022 — Complete player and developer documentation
             Outcome: README and player guide accurately describe current controls/rules/status, prerequisites, install/run/check/build/static-serve commands, verified target limits, and SDD navigation.
             Scope: README.md, docs/USER-GUIDE.md, and in-scope source/API comments or layout links needing reconciliation.
             Depends on: T-021 and milestone 1.4 completion/closure.
             Evidence: Check document links and commands against package scripts and actual behavior; preserve root attribution and ignore policy; support Windows CMD and the cloud shell. Planned production evidence is labeled until gathered by T-023/T-024. Trace: SYS-07, A-09.
-        - [ ] T-023 — Verify locked installation and production static play
+            Completion evidence (2026-10-07): README and player guide reconciled with delivered controls/rules/failures and actual npm scripts; local links and every project-owned TypeScript module header checked, whitespace clean. Commands use Windows CMD-compatible/npm syntax and manual loopback URLs; Linux browser/native-focus and unverified-platform limits explicit. Static production acceptance remains labeled pending T-023/T-024. Documentation-only changes; product tests not redundantly rerun.
+        - [x] T-023 — Verify locked installation and production static play
             Outcome: The locked repository setup reproduces its checks/build and the production output plays over static HTTP with real Chromium. Retain complete acceptance evidence without claiming other browsers were checked.
             Scope: Package/configuration fixes only where required for the accepted tooling, tests/browser/production.spec.ts, developer instructions, and selected sanitized browser evidence under the owning report location.
             Depends on: T-022.
             Evidence: npm ci; npm run typecheck; npm test; npm run build; npm run test:browser with development/production checks as configured. Exercise the built ordinary page for keyboard, rendering/status, pause/restart, and game over; controlled source/time/failure fixtures cover cases not reliably forced in random production play. Record actual browser/runtime versions and map every A-01 through A-09 to concrete check results/limitations. Trace: SYS-06/SYS-07, A-09 and integrated acceptance.
-        - [ ] T-024 — Inspect shipped output and runtime independence
+            Completion evidence (2026-10-07): npm ci installs 65 locked packages; strict typecheck, unit 85/85, production build and Chromium 44/44 pass. Browser orchestration builds/serves static output alongside development fixtures. Built ordinary page verifies literal startup cells, real keyboard/rotation, pause/resume, game over, terminal preservation and fresh restart without debug APIs or console errors. Acceptance matrix and inspected-target screenshots retained; native desktop events/other platforms remain unverified; output/network gate is T-024.
+        - [x] T-024 — Inspect shipped output and runtime independence
             Outcome: Production output contains only intended static application assets, excludes credentials/test harnesses/debug interfaces, and performs no external gameplay-service calls.
             Scope: Production build inspection, tests/browser/production.spec.ts network/output assertions where meaningful, and narrowly required build/entry corrections.
             Depends on: T-023.
             Evidence: Inspect built asset inventory and source graph; check no tests/fixtures or production debug global is shipped; verify credential files are ignored/untracked and absent from output without printing token values. Play the production page under static HTTP while inspecting requests/console errors. Retain successful build and browser regressions. Trace: SPEC runtime-service exclusion, S-06, SYS-07, A-09.
-        - [ ] T-025 — Review, test, and report milestone 1.5
+            Completion evidence (2026-10-07): Inspected three production files and application-only import graph; credentials are ignored/untracked and absent from output without exposing values, final ignore rules intact. Production network test sees only same-origin static GETs, no WebSockets, fixture controls or console/page errors; play works with external requests blocked. Preserved cache aside and forced fresh packaged-browser extraction; production/toolchain browser checks pass 3/3 with glyph rendering and successive contexts; strict typecheck passes. No production repair was needed.
+        - [x] T-025 — Review, test, and report milestone 1.5
             Scope: Complete product acceptance, reproducible commands, production assets, browser evidence, and player/developer documentation.
             Depends on: T-022, T-023, T-024.
             Evidence: Separate code review plus complete unit/typecheck/build/browser checks; report evidence and limits for every A-01 through A-09. Demonstrate production play for the developer's final product decision, repair blockers, commit/push/read back the report, and close the milestone if tracking is enabled.
-            Report: docs/dev/reports/phases/1/1.5.md.
-    - [ ] Milestone 1.6 — Phase review
-        - [ ] T-026 — Review, test, and report phase 1 and complete delivery
+            Report: [milestone 1.5 review](reports/phases/1/1.5.md).
+            Completion evidence (2026-10-07): Separate source/commands/guide/production review finds no unresolved product blocker. Full strict typecheck, unit 85/85, build and Chromium 45/45 pass; local documentation/report links pass. Acceptance matrix maps A-01 through A-09 to concrete checks, shipped output/network independence and retained production screenshots. Locked install and fresh cache evidence retained; native focus/other-platform limits explicit. Product TODO none; phase review/integration remains T-026.
+    - [x] Milestone 1.6 — Phase review
+        - [x] T-026 — Review, test, and report phase 1 and complete delivery
             Scope: Entire application, cross-milestone behavior, all acceptance, developer/player documentation, packaging, and retained milestone findings. This is the only task in milestone 1.6; there is no extra milestone-review task.
             Depends on: T-008, T-012, T-016, T-021, T-025 and completion/closure of all five delivery milestones; not the closure of milestone 1.6 itself.
             Evidence: Separate whole-phase code review plus final npm run typecheck, npm test, npm run build, and required Chromium/production acceptance. Resolve blockers; aggregate permitted milestone/phase TODOs with options/provenance; commit/push both phase and final implementation reports with phase/list status. Close the review task and final milestone if tracking is enabled. After this verified phase boundary, sdd-implement/sdd-manage performs the explicit merge to main, checks merged-state acceptance, pushes, and confirms remote containment before reporting complete delivery. Do not treat a partial range or pre-merge report as integrated completion.
-            Reports: docs/dev/reports/phases/1/PHASE-REPORT.md and docs/dev/reports/IMPLEMENTATION-REPORT.md.
+            Reports: [phase review](reports/phases/1/PHASE-REPORT.md) and [final implementation report](reports/IMPLEMENTATION-REPORT.md).
 
+            Completion evidence (2026-10-07): Whole-phase code inspection covers cross-milestone rules, time/input/reset/fault/resource boundaries, test isolation, documentation and static delivery; no unresolved product blocker/TODO. Final strict typecheck, unit 85/85, production build and Chromium 45/45 pass. Accepted contract hashes unchanged; engine browser independence, links, credential exclusion and final ignore rules verified. Phase/final reports retained; native desktop events/other platforms remain unverified. Task/milestone closure follows publication; explicit verified main merge/publication remains pending and phase checkbox stays unchecked until observed.
 ## Planned range boundaries
 
 There are 26 tasks: 20 delivery tasks, five delivery-milestone review tasks, and one phase review task. The first useful complete milestone is T-001 through T-008; T-001 is the initial dependency/browser risk gate. Review tasks count in any selected next-N range. A request to implement a subset stops at its selected verified checkpoint without adding later tasks or an unrequested review task.
 
-The next operation is selection of an implementation range through sdd-implement after this task list is accepted. This document does not itself authorize dependency installation, branch activation, hosted-object creation, or code execution.
+The developer selected T-013–T-026, including remaining milestone reviews, the phase review, and eligible integration/publication. Stop after verified phase 1 delivery; do not expand product scope or start another phase.

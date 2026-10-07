@@ -1,0 +1,27 @@
+{
+  "name": "browser-tetris",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:browser": "playwright test",
+    "build": "npm run typecheck && vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@sparticuz/chromium": "153.0.0",
+    "@types/node": "24.19.1",
+    "@types/tar-fs": "2.0.4",
+    "tar-fs": "3.1.1",
+    "typescript": "7.0.2",
+    "vite": "8.3.3",
+    "vitest": "5.0.3"
+  }
+}
