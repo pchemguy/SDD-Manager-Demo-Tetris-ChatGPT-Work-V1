@@ -52,7 +52,7 @@ Readiness for planning is assessed in [SPEC-REVIEW-REPORT](SPEC-REVIEW-REPORT.md
 | FA-03 | Empty hold consumes one successor preview; populated swap consumes none; orientation/spawn reset; unavailable hold changes nothing; lock restores entitlement; drop alone does not; blocked incoming spawn and source faults remain distinct. |
 | FA-04 | Every clockwise transition/family is checked against the table; exercise wall/floor/stack and upper-boundary candidates, later candidate success, first-legal precedence and total rejection; O remains unchanged. |
 | FA-05 | Real Chromium keyboard/rendering checks establish ghost/held/preview correspondence, one-shot commands, Space scroll prevention, active-over-ghost legibility, paused display and restart cleanup at 800 × 600. |
-| FA-06 | Combined hold → kick → drop → move → tick sequences retain source order/scoring/time; restart, interruption, fault, disposal and added initialization failures preserve existing guarantees. |
+| FA-06 | Combined hold → kick → drop → move → tick sequences retain source order/scoring and the full-interval landing timing rule; restart, interruption, fault, disposal and added initialization failures preserve existing guarantees. |
 | FA-07 | Strict typecheck, applicable engine/controller and browser regressions, production static-HTTP play and runtime-network independence pass; player/developer docs describe delayed locking. Record native focus/other-platform evidence limits accurately. |
 
 

@@ -54,3 +54,15 @@ test('shipped controls combine ghost, hold, wall kick and delayed drop without a
  const afterLockPreview=await image('preview');await page.keyboard.press('c');expect(await image('preview')).toBe(afterLockPreview);expect(await image('held')).not.toBe(held);await expect(page.locator('#hold-state')).toHaveText('Unavailable until lock');
  await page.keyboard.press('r');await expect(page.locator('#hold-state')).toHaveText('Empty · Available');expect(await cells(page)).toEqual([{x:3,y:1},{x:4,y:1},{x:5,y:1},{x:6,y:1}]);await expect(page.locator('#snapshot,#tick,#dispose')).toHaveCount(0);
 });
+for(const drop of ['hard','soft'] as const)test(`shipped ${drop} drop near a gravity tick grants a full landing interval`,async({page})=>{
+ await page.addInitScript(()=>{Math.random=()=>.999;});await page.clock.install({time:new Date('2026-01-01T00:00:00Z')});await page.clock.pauseAt(new Date('2026-01-01T00:00:00Z'));await page.goto(production);
+ await page.clock.runFor(900);
+ if(drop==='hard')await page.keyboard.press('Space');
+ else await page.locator('#game').evaluate(el=>{for(let j=0;j<20;j++)el.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true,cancelable:true}));});
+ const landed=await cells(page);expect(landed).toHaveLength(4);expect(Math.max(...landed.map(c=>c.y))).toBe(19);
+ // Cross the old deadline, then approach the new one without crossing it.
+ await page.clock.runFor(200);expect(await cells(page)).toEqual(landed);
+ await page.keyboard.press('Space');await page.keyboard.press('ArrowDown');await page.keyboard.press('ArrowRight');
+ await page.clock.runFor(780);expect(await cells(page)).toHaveLength(4);
+ await page.clock.runFor(40);expect(await cells(page)).toHaveLength(8);
+});

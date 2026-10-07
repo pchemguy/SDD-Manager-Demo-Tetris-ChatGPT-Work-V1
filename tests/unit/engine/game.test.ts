@@ -25,8 +25,8 @@ it('moving off a stack makes the scheduled tick descend instead of lock',()=>{
 });
 it('legal grounded rotation can free descent while preserving the next tick',()=>{
  const game=new Game(sequenceSource(['I','T','Z'])); game.action('rotate'); ground(game); expect(game.snapshot().active?.y).toBe(16);
- game.advance(900); for(let i=0;i<3;i++) game.action('rotate'); game.advance(100);
- expect(game.snapshot().active).toEqual({kind:'I',orientation:0,x:3,y:17}); expect(game.snapshot().board.flat().filter(Boolean)).toHaveLength(0);
+ game.advance(900); game.action('rotate'); game.advance(100);
+ expect(game.snapshot().active).toEqual({kind:'I',orientation:2,x:3,y:17}); expect(game.snapshot().board.flat().filter(Boolean)).toHaveLength(0);
 });
 it('rejects wall movement, then kicks rotation without postponing the scheduled tick',()=>{
  const game=new Game(sequenceSource(['I','O','Z'])); game.action('rotate'); moveTo(game,-2); game.advance(900);

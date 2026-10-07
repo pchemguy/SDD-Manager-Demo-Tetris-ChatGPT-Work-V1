@@ -14,7 +14,13 @@ The engine remains sole owner of gameplay timing; the controller supplies elapse
 
 ## Implementation and verification
 
-Pending test-first amendment and relevant engine/session/browser/static-build verification. Completion claims for the amended locking behavior are pending reassessment; unaffected task evidence remains valid.
+Implemented a shared legal manual-placement commit in the engine. It resets the existing gravity accumulator only when the old placement can descend and the new placement cannot. Hard drop, soft drop, horizontal movement and kicked rotation all use it. Natural gravity placement keeps post-tick residual elapsed time, preserving large-call/partition equivalence. Grounded/no-op commands preserve the deadline. No public API, kick-table, source, scoring or product dependency change.
+
+Test-first RED: selected landing-delay, timing and controller suites executed 26 tests: 9 failed for early locking, 17 passed. Failures covered hard/soft landing, continuous-support deadline, horizontal/rotation contact, paused remaining delay, level-2/minimum-speed contact and controller near-tick behavior. Production edits followed this observed failure. GREEN and regression: `npm test` passed all 288 unit tests; `npm run typecheck` passed; `npm run test:browser` passed all 68 Chromium checks and its required production build. Two added shipped-page scenarios cross the obsolete deadline after hard/soft landing, remain active near the full interval, and lock afterward. Existing rendering, hold, kick, score/progression, pause/restart, terminal/fault, static-delivery and network checks remain green.
+
+Code review by the main agent was performed separately from test execution: inspected every action placement path, zero-distance/O/rejection behavior, first-contact predicates, tick residual handling, source/hold entitlement, controller integration, tests and current docs. The original multi-rotation test was narrowed to one supported-to-airborne rotation: its three-rotation cycle recontacted support and therefore correctly started a fresh interval. New explicit rotation-contact coverage protects that changed contract. No unresolved product defect or TODO was found; no independent reviewer is claimed.
+
+Current PROJECT/design/SPEC/PLAN/TASKS/layout and player/README documentation agree on full-interval first landing. Original task/phase checkpoints and archived feature sources are unchanged historical evidence. Affected completion claims are re-established; all 42 original issues and eleven original milestones remain complete without allocating/replaying tasks. Documentation links and current QC identities are checked before publication. Existing npm http-proxy and color-environment warnings are non-fatal; no skipped unit/browser tests. Native desktop focus-event delivery, Windows and other browsers remain unverified; headless modeled lifecycle tests retain their established scope.
 
 ## Integration and publication
 
@@ -22,4 +28,4 @@ Pending verified amendment push and explicit two-parent merge into established t
 
 ## Findings and TODO
 
-No unresolved scope decision. Product verification is pending. Native desktop focus events and other platforms retain their established evidence limits.
+No unresolved scope decision. Product verification passed. Native desktop focus events and other platforms retain their established evidence limits.
