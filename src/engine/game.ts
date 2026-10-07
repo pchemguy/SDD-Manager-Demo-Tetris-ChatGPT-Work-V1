@@ -8,6 +8,8 @@ export class Game {
  private active: Piece | null;
  private preview: Snapshot['preview'];
  private status: Status='running';
+ private held: Kind | null=null;
+ private holdAvailable=true;
  private accumulator=0;
  private score=0;
  private lines=0;
@@ -23,16 +25,18 @@ export class Game {
  /** Replace all gameplay state using a caller-owned fresh piece source. */
  restart(source:PieceSource):void {
   this.source=source;this.board=createBoard();this.score=0;this.lines=0;this.accumulator=0;
+  this.held=null;this.holdAvailable=true;
   this.active=spawn(this.next());this.preview=this.next();this.status='running';
  }
  /** Return detached rows/piece data; acquisition consumes no pieces or gameplay time. */
  snapshot(): Snapshot {
   return {board:this.board.map(row=>row.slice()),active:this.active?{...this.active}:null,
-   ghost:this.active?landing(this.board,this.active):null,preview:this.preview,status:this.status,score:this.score,lines:this.lines,level:this.level};
+   ghost:this.active?landing(this.board,this.active):null,preview:this.preview,held:this.held,holdAvailable:this.holdAvailable,status:this.status,score:this.score,lines:this.lines,level:this.level};
  }
  /** Apply a semantic move/drop without resetting time; only a blocked gravity tick locks. */
  action(action: Action): void {
   if(this.status!=='running'||!this.active) return;
+  if(action==='hold'){this.hold();return;}
   if(action==='hard-drop'){this.active=landing(this.board,this.active);return;}
   const candidate=action==='rotate'?rotate(this.active):{...this.active,
    x:this.active.x+(action==='left'?-1:action==='right'?1:0),y:this.active.y+(action==='down'?1:0)};
@@ -54,6 +58,19 @@ export class Game {
  private next():Kind {
   const kind=this.source.next();if(!KINDS.includes(kind))throw new Error('Invalid piece source output');return kind;
  }
+ /** Exchange identities at normal spawn, consuming a preview only for an empty slot.
+  * A successful exchange starts a fresh gravity interval and spends this lock cycle.
+  * Source failures propagate to the session fault boundary.
+  */
+ private hold():void {
+  if(!this.holdAvailable||!this.active)return;
+  const incoming=this.held??this.preview;
+  if(this.held===null)this.preview=this.next();
+  this.held=this.active.kind;this.holdAvailable=false;this.accumulator=0;
+  const promoted=spawn(incoming);
+  if(canPlace(this.board,promoted))this.active=promoted;
+  else {this.active=null;this.status='game-over';}
+ }
  private tick(): void {
   if(!this.active) return;
   const below={...this.active,y:this.active.y+1};
@@ -63,7 +80,7 @@ export class Game {
   this.score+=[0,100,300,500,800][cleared]!*this.level;
   this.lines+=cleared;
   const promoted=spawn(this.preview); this.preview=this.next();
-  if(canPlace(this.board,promoted)) this.active=promoted;
-  else { this.active=null; this.status='game-over'; }
+  if(canPlace(this.board,promoted)) {this.active=promoted;this.holdAvailable=true;}
+  else { this.active=null; this.status='game-over';this.holdAvailable=false; }
  }
 }

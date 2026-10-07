@@ -47,11 +47,12 @@ Recommended first execution range: T-027–T-030, delivering and reviewing miles
             Evidence: Separate code review; npm run typecheck; npm test; npm run build; relevant real-browser ghost/input/playable regressions. Complete 2.1 exits without claiming hold/kicks. Publish report and reconcile review issue then milestone closure. Report: docs/dev/features/001_a043a43/2.1.md.
             Completion evidence (2026-10-07): Whole 2.1 code review found no unresolved product defect; 120 unit/48 browser tests, strict typecheck and build pass. Ordinary shipped-page screenshot inspected and retained. Ghost/drop acceptance covered; hold/kicks explicitly deferred. Native focus/other-platform limits retained. Milestone report and task evidence published before hosted review/milestone closure.
     - [ ] Milestone 2.2 — Hold and held-piece presentation
-        - [ ] T-031 — Implement hold state, source order and lock-cycle entitlement
+        - [x] T-031 — Implement hold state, source order and lock-cycle entitlement
             Outcome: Empty-slot promotion and populated swap follow exact source/spawn/timing rules; restart, blocked spawn and faults retain their contracts.
             Scope: src/engine/game.ts, types.ts and focused engine hold/source/lifecycle tests; snapshot fixture consumers.
             Depends on: T-030; milestone 2.1 verified and closed.
             Evidence: npm test -- tests/unit/engine; npm run typecheck. Count source calls, orientation reset, unavailable hold no-op, accumulator reset, entitlement only after lock, drop-without-lock, blocked incoming spawn and invalid/exhausted source. F-03 / FA-03.
+            Completion evidence (2026-10-07): RED: six behavioral failures among seven hold tests before implementation. GREEN: all seven hold contracts, 127 total unit tests and TypeScript pass. Verified empty/populated source counts, blocked spawns, timing reset, lock entitlement, restart and source faults.
         - [ ] T-032 — Route C and preserve hold lifecycle and fault handling
             Outcome: One-shot focus-scoped C command reaches the engine; inactive/fault/disposed sessions cannot process it.
             Scope: src/session/keyboard.ts, controller.ts and session/input/fault checks; controls documentation.
