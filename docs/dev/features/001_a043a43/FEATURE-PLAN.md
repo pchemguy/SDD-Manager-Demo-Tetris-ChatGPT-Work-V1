@@ -1,8 +1,12 @@
+# Archived feature source
+
+Historical/non-executable feature preparation. Current main PROJECT/design/SPEC/PLAN/layout and [TASKS](../../TASKS.md) own the project. This archived source and its adjacent review are retained for provenance; original review hashes identify their published preparation checkpoints, before execution/navigation updates.
+
 # Piece-control feature delivery plan
 
 ## Objective and inputs
 
-Deliver [FEATURE-SPEC](FEATURE-SPEC.md) F-01–F-05 and FA-01–FA-07 while preserving applicable main A-01–A-09 behavior. Use the accepted [feature architecture](FEATURE_ARCHITECTURE.md), [feature decomposition](FEATURE_DECOMPOSITION.md), and [scoped layout](FEATURE-layout.md). [Package context](features/001_a043a43/README.md) establishes campaign identity, starting baseline, working branch and integration target.
+Deliver [FEATURE-SPEC](FEATURE-SPEC.md) F-01–F-05 and FA-01–FA-07 while preserving applicable main A-01–A-09 behavior. Use the accepted [feature architecture](FEATURE_ARCHITECTURE.md), [feature decomposition](FEATURE_DECOMPOSITION.md), and [scoped layout](FEATURE-layout.md). [Package context](README.md) establishes campaign identity, starting baseline, working branch and integration target.
 
 Planning entry is `65a088f8f2ceb824177ad9fb53c6618b7ac9d636`. The developer requested the next feature step after specification publication. Its existing QC report is current: all nine recorded document hashes match. This is preparation only; executable tasks and implementation require their subsequent stages.
 

@@ -1,6 +1,10 @@
+# Archived feature source
+
+Historical/non-executable feature preparation. Current main PROJECT/design/SPEC/PLAN/layout and [TASKS](../../TASKS.md) own the project. This archived source and its adjacent review are retained for provenance; original review hashes identify their published preparation checkpoints, before execution/navigation updates.
+
 # Piece-control feature decomposition
 
-This delta refines [Feature architecture](FEATURE_ARCHITECTURE.md) and preserves unaffected [main components](DECOMPOSITION.md).
+This delta refines [Feature architecture](FEATURE_ARCHITECTURE.md) and preserves unaffected [main components](../../DECOMPOSITION.md).
 
 | Component | Affected responsibility and collaboration | State and verification seam |
 | --- | --- | --- |

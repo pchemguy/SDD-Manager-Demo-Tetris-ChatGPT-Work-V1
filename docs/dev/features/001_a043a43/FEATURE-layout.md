@@ -1,6 +1,10 @@
+# Archived feature source
+
+Historical/non-executable feature preparation. Current main PROJECT/design/SPEC/PLAN/layout and [TASKS](../../TASKS.md) own the project. This archived source and its adjacent review are retained for provenance; original review hashes identify their published preparation checkpoints, before execution/navigation updates.
+
 # Piece-control feature physical layout
 
-This scoped ownership delta supplements [layout](layout.md) for [Feature plan](FEATURE-PLAN.md) and [Feature decomposition](FEATURE_DECOMPOSITION.md). Main layout remains the owner of unaffected repository-wide locations. Incorporate these accepted placements into main layout during feature integration; this document does not claim that proposed files exist.
+This scoped ownership delta supplements [layout](../../layout.md) for [Feature plan](FEATURE-PLAN.md) and [Feature decomposition](FEATURE_DECOMPOSITION.md). Main layout remains the owner of unaffected repository-wide locations. Incorporate these accepted placements into main layout during feature integration; this document does not claim that proposed files exist.
 
 | Location | Intended feature ownership and consumers |
 | --- | --- |

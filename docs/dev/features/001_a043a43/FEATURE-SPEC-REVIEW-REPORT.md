@@ -1,3 +1,7 @@
+# Archived feature source
+
+Historical/non-executable feature preparation. Current main PROJECT/design/SPEC/PLAN/layout and [TASKS](../../TASKS.md) own the project. This archived source and its adjacent review are retained for provenance; original review hashes identify their published preparation checkpoints, before execution/navigation updates.
+
 # Piece-control feature specification review
 
 ## Current gate and scope

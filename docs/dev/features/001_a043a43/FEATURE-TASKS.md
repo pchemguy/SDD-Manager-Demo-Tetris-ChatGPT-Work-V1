@@ -1,10 +1,14 @@
+# Archived feature source
+
+Historical/non-executable feature preparation. Current main PROJECT/design/SPEC/PLAN/layout and [TASKS](../../TASKS.md) own the project. This archived source and its adjacent review are retained for provenance; original review hashes identify their published preparation checkpoints, before execution/navigation updates. This checklist is frozen before T-040 transfer; pending marks here are historical, never an executable backlog. Main TASKS preserves all live statuses and original hosted associations.
+
 # Piece-control feature tasks
 
 ## Authority and context
 
 This active list derives from accepted [FEATURE-PLAN](FEATURE-PLAN.md), [scoped layout](FEATURE-layout.md), [FEATURE-SPEC](FEATURE-SPEC.md), [feature architecture](FEATURE_ARCHITECTURE.md) and [decomposition](FEATURE_DECOMPOSITION.md). [Planning QC](FEATURE-PLAN-REVIEW-REPORT.md) establishes current upstream readiness; [task QC](FEATURE-TASKS-REVIEW-REPORT.md) assesses this breakdown.
 
-Task preparation baseline: `299822a2861ef5221892f0ab6fcecb5b84cfd4da`. Campaign `001_a043a43`; working branch `feature/001_a043a43-piece-controls`, target `main`. Main [TASKS](TASKS.md) has completed T-001–T-026. Feature tasks start at T-027, referencing that baseline without reopening or copying its checklist. Affected baseline owners include T-002/T-003 geometry/board, T-005 engine, T-006 renderer, T-007 input, T-009/T-010 score/time, T-011 preview, T-013–T-020 lifecycle/presentation/failures, and T-022–T-026 docs/delivery/review.
+Task preparation baseline: `299822a2861ef5221892f0ab6fcecb5b84cfd4da`. Campaign `001_a043a43`; working branch `feature/001_a043a43-piece-controls`, target `main`. Main [TASKS](../../TASKS.md) has completed T-001–T-026. Feature tasks start at T-027, referencing that baseline without reopening or copying its checklist. Affected baseline owners include T-002/T-003 geometry/board, T-005 engine, T-006 renderer, T-007 input, T-009/T-010 score/time, T-011 preview, T-013–T-020 lifecycle/presentation/failures, and T-022–T-026 docs/delivery/review.
 
 The developer accepted the written plan/layout on 2026-10-07. Preparation does not authorize task execution or project hosted objects. On execution, phase 1 publication/closure is the predecessor gate; project phase 2 label, five milestones and all these task issues before the first task. Tracking is already enabled, with normal scoped commit/push authority established. Confirm actual API identities instead of guessing associations.
 

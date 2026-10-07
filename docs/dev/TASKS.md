@@ -4,7 +4,7 @@
 
 This list derives the complete intended work from accepted [PLAN](PLAN.md), [layout](layout.md), [SPEC](SPEC.md) and its [gameplay](spec/gameplay.md) and [session](spec/session.md) children, [ARCHITECTURE](ARCHITECTURE.md), and [DECOMPOSITION](DECOMPOSITION.md). [TASKS review](TASKS-REVIEW-REPORT.md) establishes preparation readiness. The execution checklist and per-task evidence below record implementation status.
 
-Preparation baseline: `470ee46e48cc58c919fb5ac799691579126e42c1` on `main`. Execution uses `phase/1-classic-browser-tetris`, targeting `main` in the established GitHub repository. Record its actual starting checkpoint when implementation begins; do not infer that it remains the preparation baseline after task-list publication.
+Preparation baseline: `470ee46e48cc58c919fb5ac799691579126e42c1` on `main`. Phase-one execution used `phase/1-classic-browser-tetris`, targeting `main`; its verified baseline/publication is retained below. Phase-two execution uses `feature/001_a043a43-piece-controls`, targeting established `main`, from accepted feature campaign `001_a043a43` based on `a043a43`. The developer authorized the full T-027–T-042 range, including merge and push, on 2026-10-07.
 
 Phase 1 is complete: all T-001–T-026 tasks, six milestone reviews/closures and full acceptance are verified. The developer authorized T-013–T-026 from `7358a53b3b62aecaf60cb36779aa6f57fd7bc9ac` on 2026-10-07. The phase branch started from `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef` and is retained at `4b86ff2f3522265c2ba0acceb63cf09a7015d731`. Explicit two-parent merge `81943b1c6f1c244315e9b87a0c3e100f4d4953c4` into `main` passed merged-state checks, was pushed and was read back exactly from the remote. Only after that observation is the phase parent checked. GitHub tracking readback confirms all 26 task issues and all six native milestones closed with exact identities/associations; the phase label remains. See the [phase report](reports/phases/1/PHASE-REPORT.md) and [implementation report](reports/IMPLEMENTATION-REPORT.md) for complete verification/publication evidence.
 
@@ -14,9 +14,9 @@ Execute a human-selected bounded range through sdd-implement. A partial phase pu
 
 Each delivery task includes its relevant tests and documentation, plus strict typechecking when code is introduced. Unit check syntax is `npm test -- <test path>`; browser check syntax is `npm run test:browser -- <test path>`. Concrete test filenames below are intended paths under layout-owned directories and may be refined without moving ownership or changing outcomes. `npm test` runs once, not in watch mode.
 
-Each task records the commands actually run, their outcomes, applicable contract coverage/limits, and required repairs before its completion commit/push. Commands listed below are future verification obligations, not executed evidence. Keep the source/test/doc changes and owning checkbox coherent in each task checkpoint; sdd-implement owns completion updates. Preserve previously passing capability checks.
+Each task records the commands actually run, their outcomes, applicable contract coverage/limits, and required repairs before its completion commit/push. Evidence fields state required checks; separate completion evidence records actual execution. Keep the source/test/doc changes and owning checkbox coherent in each task checkpoint; sdd-implement owns completion updates. Preserve previously passing capability checks.
 
-Every milestone/phase review requires both code review and testing. Fix bugs, critical issues, and SPEC/PLAN violations before its completion. Reports contain Findings/Blockers and a TODO section (`None` when empty); permitted non-critical deferrals retain identity, evidence, rationale, options, and follow-up scope. Planned report paths are given as code rather than links because those files do not exist yet.
+Every milestone/phase review requires both code review and testing. Fix bugs, critical issues, and SPEC/PLAN violations before its completion. Reports contain Findings/Blockers and a TODO section (`None` when empty); permitted non-critical deferrals retain identity, evidence, rationale, options, and follow-up scope. Report paths identify the required retained outputs; actual status is recorded per task.
 
 ## Phase 1 — Complete classic browser Tetris
 
@@ -193,3 +193,112 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
 There are 26 tasks: 20 delivery tasks, five delivery-milestone review tasks, and one phase review task. The first useful complete milestone is T-001 through T-008; T-001 is the initial dependency/browser risk gate. Review tasks count in any selected next-N range. A request to implement a subset stops at its selected verified checkpoint without adding later tasks or an unrequested review task.
 
 The developer-selected T-013–T-026 continuation and eligible integration/publication are complete. Stop after phase 1 delivery; no additional product work, phase or installed-plugin revision is selected. Historical task evidence retains each checkpoint’s actual state.
+
+## Phase-two authority and task continuity
+
+Main TASKS is the sole executable owner of T-001–T-042. Stable phase/milestone/task IDs, outcomes, prerequisite order and original GitHub issue identities are preserved. The archived feature list is historical and non-executable, frozen before this handoff. Original F-01–F-04 references in task evidence identify the accepted campaign contracts, now owned by main G-07–G-10; F-05 is incorporated into S-01–S-06. Main SPEC/PLAN/layout and current reviews govern remaining execution. The original task-derivation reviews remain historical evidence.
+
+The full range continues through delivery review, phase review, explicit two-parent merge, merged-state checks, push and remote containment. Phase 2 remains unchecked until published main integration is observed.
+
+## Phase 2 — Piece-control extension
+
+- [ ] Phase 2 — Piece-control extension
+    - [x] Milestone 2.1 — Ghost and delayed hard drop
+        - [x] T-027 — Implement shared landing and detached ghost snapshots
+            Outcome: Shared downward-reachable landing and pure detached ghost data, with existing consumers kept type-correct.
+            Scope: src/engine/board.ts, types.ts, game.ts; engine rule/snapshot tests and affected fixture snapshots.
+            Depends on: none; phase setup, current upstream QC and confirmed hosted projection are prerequisites.
+            Evidence: npm test -- tests/unit/engine; npm run typecheck. Cover every kind/orientation, first obstruction, grounded landing, null active, detached values and zero source/time effects. F-01 / FA-01.
+            Completion evidence (2026-10-07): Initial RED: 31 tests executed, failing on missing landing API/ghost fields (no collection failure). GREEN: 31 landing/snapshot cases and 106 engine regressions pass; strict typecheck passes. Covers all kinds/orientations, first obstruction, grounded placement, terminal null, detached ghost and source/time purity. Phase 2 projection read back before work; full range T-027–T-042 selected. Existing npm proxy warning remains non-fatal.
+        - [x] T-028 — Render ghost and expose prediction during ordinary play
+            Outcome: Visible ghost outline follows active placement without obscuring active cells; pause/game-over rendering remains correct.
+            Scope: src/view/renderer.ts and tests/browser/rendering.spec.ts; controlled fixtures and relevant player instructions.
+            Depends on: T-027.
+            Evidence: npm run test:browser -- tests/browser/rendering.spec.ts; npm run typecheck. Inspect rendered cells and overlap/paused/terminal screenshots; use the ordinary page as well as controlled states. F-01 / ghost portions of FA-05.
+            Completion evidence (2026-10-07): RED: two new browser pixel checks failed on absent outlines; baseline rendering check passed. GREEN: 3/3 real Chromium rendering tests and strict typecheck pass, covering ghost redraw on ordinary page movement, frozen pause, and active-over-ghost overlap; baseline all-cell center pixels unchanged. Player guide distinguishes current ghost from deferred controls.
+        - [x] T-029 — Integrate one-shot Space drop with scheduled locking
+            Outcome: Space uses the shared landing without immediate lock, timing reset, score or source effects; focus/repeat/default rules apply.
+            Scope: src/engine/game.ts, types.ts, src/session/keyboard.ts and affected controller consumers; focused engine/session/browser tests and player controls.
+            Depends on: T-027, T-028.
+            Evidence: npm test -- tests/unit/engine; npm test -- tests/unit/session; npm run test:browser -- tests/browser/input.spec.ts; npm run typecheck. Include 999 ms + drop + 1 ms, grounded no-op, post-drop movement, paused/terminal input, repeat/scroll suppression and unchanged entitlement. F-02 / FA-02 and Space portions of FA-05.
+            Completion evidence (2026-10-07): RED: 3 unit failures showed absent drop action/mapping; new real-browser drop check also failed before changes. GREEN: 120 unit tests, strict typecheck and 10 focused browser checks pass. Corrected the browser fixture expectation to include the established first-frame baseline after resume; no product timing change. Space lands without locking/reset/source/score changes, including 999+1 ms and post-drop movement; repeat/paused scrolling prevented and player instructions updated.
+        - [x] T-030 — Review, test and report milestone 2.1
+            Outcome: Review the complete ghost/drop increment and demonstrate landing-to-lock adjustment; repair required blockers and retain evidence.
+            Scope: All 2.1 affected code/tests/docs; feature report 2.1.md and selected sanitized screenshots.
+            Depends on: T-027, T-028, T-029; their hosted issues closed.
+            Evidence: Separate code review; npm run typecheck; npm test; npm run build; relevant real-browser ghost/input/playable regressions. Complete 2.1 exits without claiming hold/kicks. Publish report and reconcile review issue then milestone closure. Report: docs/dev/features/001_a043a43/2.1.md.
+            Completion evidence (2026-10-07): Whole 2.1 code review found no unresolved product defect; 120 unit/48 browser tests, strict typecheck and build pass. Ordinary shipped-page screenshot inspected and retained. Ghost/drop acceptance covered; hold/kicks explicitly deferred. Native focus/other-platform limits retained. Milestone report and task evidence published before hosted review/milestone closure.
+    - [x] Milestone 2.2 — Hold and held-piece presentation
+        - [x] T-031 — Implement hold state, source order and lock-cycle entitlement
+            Outcome: Empty-slot promotion and populated swap follow exact source/spawn/timing rules; restart, blocked spawn and faults retain their contracts.
+            Scope: src/engine/game.ts, types.ts and focused engine hold/source/lifecycle tests; snapshot fixture consumers.
+            Depends on: T-030; milestone 2.1 verified and closed.
+            Evidence: npm test -- tests/unit/engine; npm run typecheck. Count source calls, orientation reset, unavailable hold no-op, accumulator reset, entitlement only after lock, drop-without-lock, blocked incoming spawn and invalid/exhausted source. F-03 / FA-03.
+            Completion evidence (2026-10-07): RED: six behavioral failures among seven hold tests before implementation. GREEN: all seven hold contracts, 127 total unit tests and TypeScript pass. Verified empty/populated source counts, blocked spawns, timing reset, lock entitlement, restart and source faults.
+        - [x] T-032 — Route C and preserve hold lifecycle and fault handling
+            Outcome: One-shot focus-scoped C command reaches the engine; inactive/fault/disposed sessions cannot process it.
+            Scope: src/session/keyboard.ts, controller.ts and session/input/fault checks; controls documentation.
+            Depends on: T-031.
+            Evidence: npm test -- tests/unit/session; npm run test:browser -- tests/browser/input.spec.ts tests/browser/session.spec.ts tests/browser/failures.spec.ts; npm run typecheck. Verify repeat, modifiers/editable origins, interruption, single action after restarts and source-fault resource cleanup. F-03/F-05 / FA-03 and FA-06.
+            Completion evidence (2026-10-07): RED: one key mapping and three browser hold/fault cases failed before C routing. GREEN: session unit tests, TypeScript and 15 focused browser cases pass. Repeat/filter/inactive/restart behavior and invalid/exhausted hold source faults release all owned listeners/frames and retain last drawing.
+        - [x] T-033 — Present held piece and validate added page resources
+            Outcome: Labeled held preview/empty state and entitlement remain distinct from next preview; both panels fit the desktop layout and fail startup safely.
+            Scope: src/view/renderer.ts, status.ts, src/main.ts, index.html, style.css; browser rendering/presentation/initialization tests and fixtures.
+            Depends on: T-031, T-032.
+            Evidence: npm run test:browser -- tests/browser/rendering.spec.ts tests/browser/presentation.spec.ts tests/browser/initialization.spec.ts; npm run typecheck. All held kinds, empty-slot cleanup, pause/restart, 800 × 600, independent missing/wrong-type held elements/context and no subscriptions/frames after failed setup. F-03/F-05 / FA-05/FA-06.
+            Completion evidence (2026-10-07): RED: five focused browser cases exposed absent held resource validation/presentation; interrupted broad RED run is not counted. GREEN: 42 rendering/preview/presentation/initialization cases and TypeScript pass, including all seven held kinds, restart cleanup and independent missing/wrong-type/context failures. Corrected T-032 recorded browser count to actual 15.
+        - [x] T-034 — Review, test and report milestone 2.2
+            Outcome: Review complete held-piece rules, input, presentation and failure boundaries; repair required blockers and preserve the working ghost/drop path.
+            Scope: All 2.2 changes and dependent consumers; feature report 2.2.md and selected sanitized evidence.
+            Depends on: T-031, T-032, T-033; their hosted issues closed.
+            Evidence: Separate code review; npm run typecheck; npm test; npm run build; all browser checks. Verify 2.2 exits, source/timing/entitlement interactions and prior regressions. Publish review report, close review issue then milestone. Report: docs/dev/features/001_a043a43/2.2.md.
+            Completion evidence (2026-10-07): Separate whole-hold code/visual review repaired a reproduced full-page height defect and clarified comments/navigation. GREEN: TypeScript, 128 unit tests, build and 64 browser tests pass. Inspected retained 800x600 image; no unresolved product defect or TODO. Native focus/platform limits retained.
+    - [x] Milestone 2.3 — Clockwise wall kicks
+        - [x] T-035 — Implement pure clockwise kick data and legal candidate selection
+            Outcome: Ordered family/transition tables select the first legal rotated placement using independent original-origin offsets.
+            Scope: Proposed src/engine/kicks.ts; existing pieces.ts/board.ts helpers; focused tests/unit/engine kick tests.
+            Depends on: T-034; milestone 2.2 verified and closed.
+            Evidence: npm test -- tests/unit/engine; npm run typecheck. Check all eight rows against F-04, non-cumulative candidates, first-success precedence, later successes, walls/floor/stack/top bounds, total rejection and O no-op. F-04 / FA-04.
+            Completion evidence (2026-10-07): RED: selector skeleton produced behavioral table/selection failures; two generated T fixtures assumed unreachable later winners and were corrected to prove earlier-candidate precedence from occupied-cell containment. GREEN: 147 kick tests, all engine regressions and TypeScript pass. All eight rows, independent offsets, candidate precedence/later successes, top/floor/wall/stack bounds, rejection, O and detached tables are checked.
+        - [x] T-036 — Integrate kicks with ghost, hold and delayed-drop timing
+            Outcome: Engine rotations apply the pure policy, refresh ghost and retain score/source/gravity/hold guarantees.
+            Scope: src/engine/game.ts and affected engine/browser scenario tests; player rule documentation.
+            Depends on: T-035.
+            Evidence: npm test -- tests/unit/engine; npm run test:browser -- tests/browser/playable-slice.spec.ts tests/browser/rendering.spec.ts; npm run typecheck. Combine hold → kick → drop → move → tick, including post-drop kicked descent and blocked lock. Revise only baseline rotation expectations explicitly changed by F-04. F-01–F-04 / FA-04/FA-06.
+            Completion evidence (2026-10-07): RED: two engine expectations and the combined real-browser scenario failed before selector integration. GREEN: 277 unit tests, TypeScript and nine focused browser cases pass. Two baseline no-kick assertions were revised only for accepted I wall-kick behavior; rejected wall movement and progression invariants remain. Combined hold/wall-kick/drop/floor-kick/move/tick proves unchanged source, score, entitlement and original tick timing.
+        - [x] T-037 — Review, test and report milestone 2.3
+            Outcome: Review all kick/drop/hold interactions and demonstrate adjustment before locking; repair blockers.
+            Scope: Complete 2.3 capability and relevant baseline behavior; feature report 2.3.md and sanitized browser evidence.
+            Depends on: T-035, T-036; their hosted issues closed.
+            Evidence: Separate code review; npm run typecheck; npm test; npm run build; all browser checks. Validate 2.3 exits, unchanged rejection state, candidate order, shared landing and usable controls. Publish report and close review issue then milestone. Report: docs/dev/features/001_a043a43/2.3.md.
+            Completion evidence (2026-10-07): Separate kick/integration code review found no unresolved product issue. Added public-action complete rejection with unchanged snapshot and 999+1ms lock; inspected retained kicked-board image. TypeScript, 278 unit tests, build and 65 browser cases pass; screenshot-only combined scenario rerun passes. All 2.3 exits satisfied with existing platform limits.
+    - [ ] Milestone 2.4 — Static acceptance and document incorporation
+        - [x] T-038 — Reproduce complete static delivery and update player/developer guides
+            Outcome: Locked installation, complete shipped-page acceptance, runtime independence and accurate controls/documentation are evidenced.
+            Scope: README.md, docs/USER-GUIDE.md; tests/browser/production.spec.ts and affected acceptance/support cases; feature ACCEPTANCE.md and selected production images.
+            Depends on: T-037; milestone 2.3 verified and closed.
+            Evidence: npm ci; npm run typecheck; npm test; npm run build; npm run test:browser. Reproduce browser provisioning from fresh cache where needed; actual static HTTP play exercises all four mechanics without a debug interface; inspect shipped assets and block external runtime requests. Map FA-01–FA-07 and applicable A-01–A-09 with native-focus/platform limits. No fixed final test count is required.
+            Completion evidence (2026-10-07): Locked npm ci and fresh ignored browser-cache extraction succeed. TypeScript, 278 unit tests, build and all 66 Chromium cases pass. Strengthened shipped hold-state height assertion reproduced a 605px layout; outer padding repair passes the full 66-case rerun. Actual static entry exercises all four controls; inspected production image and exactly three shipped assets, same-origin GET-only/no sockets/external runtime requests. Guides and complete acceptance evidence retain platform limits. Post-browser inventory contained two older generated hashes; a standalone documented rebuild cleaned them and verified the final three-file inventory.
+        - [x] T-039 — Incorporate accepted design, behavior and delivery documents
+            Outcome: Main PROJECT/design/SPEC/PLAN/layout describe the coherent full intended project, with affected conformance reassessed.
+            Scope: Main project/design, specification children, PLAN/layout and adjacent affected QC reports through sdd-integrate-feature; active feature sources retained until task/evidence disposition.
+            Depends on: T-038.
+            Evidence: Compare incorporation against accepted feature contracts; resolve local links/anchors, source ownership and changed QC gates. Preserve phase 1 evidence; remove editing-history narrative and contradictory exclusions from current-state documents. Document-only changes do not rerun unchanged product tests without cause. F-01–F-05 / 2.4 document integration exit.
+            Completion evidence (2026-10-07): Incorporated full PROJECT/design/SPEC children/root/PLAN/layout with canonical G-07–G-10 and FA-01–FA-07. Removed contradictory exclusions/no-kick rules, preserved all exact eight kick rows and baseline acceptance. Reassessed current specification/planning gates with matching SHA-256 identities; retained historical phase-one QC. All local links/anchors and five phase-two plan milestones pass. Product code unchanged; task handoff explicitly remains T-040.
+        - [x] T-040 — Transfer task ownership and archive eligible feature preparation sources
+            Outcome: Main TASKS becomes sole owner of all feature tasks including pending review items, retaining IDs, state/evidence and hosted associations; eligible feature sources/reviews are archived with repaired navigation.
+            Scope: TASKS, FEATURE-TASKS, their affected reviews and package sources/navigation through sdd-integrate-feature; existing feature prefix retained.
+            Depends on: T-039.
+            Evidence: Verify exactly one executable owner per ID across both lists, pending tasks remain unchecked, no issue is recreated or closed by transfer, phase 1 identities/status remain intact, and archive/report links resolve. T-040 completion and later T-041/T-042 updates belong to the reconciled main owner; archived FEATURE-TASKS is explicitly historical/non-executable. Do not archive any source still needed as active authority; retain it if eligibility fails and resolve before this task completes.
+            Completion evidence (2026-10-07): Main TASKS now solely owns all 42 stable IDs; exact phase-one block and completed feature evidence preserved, with T-040–T-042 pending at handoff. Nine eligible feature sources/reviews archived as historical/non-executable; 234 local links/anchors and canonical QC identities pass. Existing sixteen GitHub source briefs reconciled/read back with unchanged identities, states and milestone associations; no hosted object created or closed by transfer.
+        - [ ] T-041 — Review, test and report milestone 2.4
+            Outcome: Review final static delivery, documentation reconciliation and archive ownership; repair required blockers and retain complete acceptance.
+            Scope: All 2.4 changes and final product; reconciled TASKS owner; feature report 2.4.md.
+            Depends on: T-038, T-039, T-040; their hosted issues closed.
+            Evidence: Separate code/document review; npm run typecheck; npm test; npm run build; all browser checks. Verify main conformance reports, sole task ownership, archive navigation, shipped graph, FA-01–FA-07 and retained main acceptance. Publish report and close review issue then milestone. Report: docs/dev/features/001_a043a43/2.4.md.
+    - [ ] Milestone 2.5 — Whole-phase review
+        - [ ] T-042 — Review, test, report and integrate the completed feature phase
+            Outcome: Whole-boundary review, final reports, hosted reconciliation, explicit main integration and merged-state publication establish feature completion.
+            Scope: Final product/doc/task scope; reconciled TASKS; feature PHASE-REPORT.md and IMPLEMENTATION-REPORT.md, existing Git branch/target.
+            Depends on: T-030, T-034, T-037, T-041; every delivery milestone verified complete and hosted-closed.
+            Evidence: Separate full code review; npm run typecheck; npm test; npm run build; npm run test:browser; complete acceptance and permitted TODO aggregation. Publish phase/final reports, close review issue/milestone, then explicitly merge verified feature into main with two parents, check merged state, push and read back containment. Record actual commits/parents/limits; a branch pass is not published integration. Reports: docs/dev/features/001_a043a43/PHASE-REPORT.md and IMPLEMENTATION-REPORT.md.

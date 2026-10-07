@@ -1,8 +1,12 @@
+# Archived feature source
+
+Historical/non-executable feature preparation. Current main PROJECT/design/SPEC/PLAN/layout and [TASKS](../../TASKS.md) own the project. This archived source and its adjacent review are retained for provenance; original review hashes identify their published preparation checkpoints, before execution/navigation updates.
+
 # Ghost, hold, hard drop and wall-kick specification
 
 ## Scope and authority
 
-This active feature delta adds four accepted mechanics to the desktop game specified by [SPEC](SPEC.md). Design owners are [Feature architecture](FEATURE_ARCHITECTURE.md) and [Feature decomposition](FEATURE_DECOMPOSITION.md); [package context](features/001_a043a43/README.md) pins the baseline. These are intended requirements, not implemented capability.
+This active feature delta adds four accepted mechanics to the desktop game specified by [SPEC](../../SPEC.md). Design owners are [Feature architecture](FEATURE_ARCHITECTURE.md) and [Feature decomposition](FEATURE_DECOMPOSITION.md); [package context](README.md) pins the baseline. These are intended requirements, not implemented capability.
 
 The accepted defaults retain clockwise-only rotation, the 10 × 20 board without hidden rows, existing spawn geometry, existing score/progression, and browser-controlled movement repeat. Counterclockwise/180-degree controls, spin/combo/drop bonuses, configurable rules, touch controls and commercial-edition conformance are outside this feature.
 
@@ -16,7 +20,7 @@ The accepted defaults retain clockwise-only rotation, the 10 × 20 board without
 | S-04/S-05/SYS-05 | Detached snapshot and presentation gain ghost/held/hold-entitlement data. |
 | A-01/A-02/A-04/A-05/A-06/A-07/A-08/A-09 | Retain applicable acceptance and add FA-01–FA-07 below. |
 
-Unaffected contracts remain owned by [gameplay](spec/gameplay.md) and [session](spec/session.md). Active feature requirements govern the declared deltas during feature execution; complete main documents are reconciled through accepted feature incorporation.
+Unaffected contracts remain owned by [gameplay](../../spec/gameplay.md) and [session](../../spec/session.md). Active feature requirements govern the declared deltas during feature execution; complete main documents are reconciled through accepted feature incorporation.
 
 ## F-01 — Landing and ghost
 

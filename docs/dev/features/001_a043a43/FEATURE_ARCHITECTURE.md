@@ -1,8 +1,12 @@
+# Archived feature source
+
+Historical/non-executable feature preparation. Current main PROJECT/design/SPEC/PLAN/layout and [TASKS](../../TASKS.md) own the project. This archived source and its adjacent review are retained for provenance; original review hashes identify their published preparation checkpoints, before execution/navigation updates.
+
 # Piece-control feature architecture
 
 ## Objective and baseline
 
-Add ghost, hold, hard drop, and clockwise wall kicks to the desktop TypeScript game. The accepted correction requires hard drop to use scheduled gravity locking. This feature delta supplements [Architecture](ARCHITECTURE.md) and the [project brief](PROJECT.md); its identity and baseline are in the [feature package](features/001_a043a43/README.md).
+Add ghost, hold, hard drop, and clockwise wall kicks to the desktop TypeScript game. The accepted correction requires hard drop to use scheduled gravity locking. This feature delta supplements [Architecture](../../ARCHITECTURE.md) and the [project brief](../../PROJECT.md); its identity and baseline are in the [feature package](README.md).
 
 ## Arrangement and ownership
 
