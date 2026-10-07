@@ -44,11 +44,12 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Depends on: T-002.
             Evidence: npm test -- tests/unit/engine/board.test.ts; npm run typecheck. Include floor/wall/stack boundaries, occupied-only collision, simultaneous and nonadjacent clears, no-clear preservation, and empty-row insertion. Trace: G-01/G-05, A-02/A-03 compaction scope.
             Completion evidence (2026-10-07): Corrected parameterized-test setup before accepting RED: 8 behavioral failures against operation scaffolds, 1 existing empty-board check passed. GREEN required correcting one fixture that accidentally retained an occupied cell from its preceding stack case. Focused board tests pass 9/9; geometry regression 14/14 and npm run typecheck pass. Includes 1–4 and nonadjacent clears, stable ordering, floor/wall/stack/empty-frame bounds, exact locking and atomic rejection. Proxy warning remains non-fatal.
-        - [ ] T-004 — Implement the seven-piece bag and deterministic test sources
+        - [x] T-004 — Implement the seven-piece bag and deterministic test sources
             Outcome: Production bags contain each kind exactly once, and tests can supply controlled sequences through the same source boundary.
             Scope: src/engine/piece-source.ts, tests/unit/engine/piece-source.test.ts, and tests/support/piece-source.ts.
             Depends on: T-002.
             Evidence: npm test -- tests/unit/engine/piece-source.test.ts; npm run typecheck. Check bag cardinality/uniqueness, consecutive bag boundaries, supplied randomness, and exact deterministic consumption without asserting one production random sequence. Trace: G-03, SYS-02, A-04 source scope.
+            Completion evidence (2026-10-07): Source tests observed 3 missing-behavior failures against a bag scaffold; deterministic-source case already passed. After shuffle implementation, focused suite passes 4/4 and npm run typecheck passes. Enumerated all 5,040 shuffle choice combinations to establish every permutation is possible; checked consecutive complete bags, cross-boundary repetition, six random draws per bag, finite controlled consumption and exhaustion. Proxy warning remains non-fatal.
         - [ ] T-005 — Implement the initial engine play loop
             Outcome: Engine owns board/active/preview state, applies legal moves/rotation/soft drop, advances level-1 gravity, locks on blocked gravity ticks, clears rows, promotes pieces, and detects blocked spawn. Provide a snapshot boundary for browser assembly.
             Scope: src/engine/game.ts, tests/unit/engine/game.test.ts, and reusable scenarios under tests/support/. Scoring/level progression and pause/restart remain assigned to later tasks.
