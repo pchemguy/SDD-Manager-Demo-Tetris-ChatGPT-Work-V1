@@ -31,8 +31,9 @@ Priority reflects impact on workflow correctness and developer intervention, rat
 | SDD-F004 | Agent explanations confuse policy, authorization and observed state | Observed error; proposed supporting amendment | High | Proposed; not separately accepted |
 | SDD-F005 | Amendment notes lack a durable, accurately reported register | Developer's current collection request; proposed generalization | Medium | This report establishes the demo register; plugin guidance proposed |
 | SDD-F006 | Environment recovery needs representative capability evidence and proactive alternatives | Demo evidence; developer accepts addition and flags placement | Medium | Consumer repairs verified; general/specific placement proposed; plugin revision outstanding |
+| SDD-F007 | Campaign directories omit the descriptive branch slug | Developer observation during feature preparation; proposed convention amendment | Medium | Recorded; naming and compatibility rules proposed; implementation outstanding |
 
-All six plugin findings remain open. Operational recovery in the consumer repository is not verification of amended plugin behavior.
+All seven plugin findings remain open. Operational recovery in the consumer repository is not verification of amended plugin behavior.
 
 ## SDD-F001 — Require proactive coordination throughout the manager
 
@@ -177,13 +178,41 @@ Use progressive disclosure: core instructions carry the general obligations and 
 
 Validate both layers: a non-browser tooling failure must trigger scoped recovery without loading browser guidance; an engine-only task must not acquire browser/font/Canvas prerequisites. For relevant browser work, validate an unavailable download route with a supported alternative, malformed HTTP-200 artifacts, successive-context failure, DOM text without glyph pixels and fresh-cache reproduction as applicable to the planned checks. Review ownership and routing for gaps or duplicate policy. These amended-plugin scenarios remain unexecuted; the consumer evidence establishes the motivating failures and repairs only.
 
+## SDD-F007 — Preserve descriptive slugs in campaign directory names
+
+### Context and consequence
+
+During preparation of the piece-control extension, the branch was named `feature/001_a043a43-piece-controls`, while its package directory was `docs/dev/features/001_a043a43/`. The developer asked why the directory omitted `piece-controls` and whether this was a template defect, then requested that the concern be added to this register.
+
+The installed 0.14.9 workflow-identity convention explicitly uses `feature/<campaign>-<slug>` for branches and `docs/dev/features/<campaign>/` for directories. The agent followed that convention; the mismatch is a convention-design concern rather than an execution naming error. The campaign identity `001_a043a43` carries sequence and baseline, while `piece-controls` conveys purpose. Omitting the slug from the directory makes feature packages harder to identify in directory listings and requires opening their README for context.
+
+### Proposed amendment and compatibility
+
+> New feature package directories SHOULD include the same descriptive slug as their associated working branch: `feature/<campaign>-<slug>` maps to `docs/dev/features/<campaign>-<slug>/`. Keep `<campaign>` as the stable sequence/baseline identity, separately from the descriptive slug. Record the actual branch, directory, target and full baseline in the package README.
+
+For this example, the proposed directory is `docs/dev/features/001_a043a43-piece-controls/`, with stable campaign ID `001_a043a43`. This is a proposed convention change, not an instruction already present in the installed plugin. The developer requested recording the finding; no directory rename or installed-plugin revision is performed by this report update.
+
+Review equivalent naming for formal review/revision and phase-nested steering directories before selecting a consistent cross-workflow policy. Their inclusion is a design question for plugin revision, not an automatically accepted expansion. Phase-number directory conventions need not acquire a campaign identity.
+
+Allocation and discovery must parse the stable campaign prefix, preserve the repository-wide sequence across workflows, and detect duplicate campaign reservations despite differing slugs. When a branch requires a collision suffix, establish and record the corresponding descriptive directory name without reallocating the campaign. Preserve established packages and explicit naming overrides on continuation; do not rename existing paths automatically. An explicitly selected rename must repair incoming/outgoing links, archive paths and retained references atomically and verify that active sources remain discoverable.
+
+### Proposed ownership and validation
+
+- **sdd-conventions:** canonical identity, branch/directory mapping, slug and collision rules, and compatibility for established names.
+- **sdd-manage:** allocation, setup, discovery and continuation using the actual recorded association.
+- **sdd-integrate-feature:** incorporation/archive paths and navigation repair using that association.
+- **Dependent references/templates:** reconcile package examples, handoffs and path assumptions without creating a separate registry.
+
+Validate creation of a new descriptive package; allocation beside existing unsuffixed packages; continuation of legacy and explicitly overridden names; duplicate sequence identities with different slugs; collision suffixes; archive/link integrity; and an explicitly requested rename. Verify that campaign ID stays stable as HEAD or descriptive context changes. No amended-plugin scenario has been run for this finding.
+
 ## Consolidated revision handoff
 
 1. Strengthen proactive coordination and explicit optional-capability decision handling (SDD-F001/F002). Apply the latest default-enabled-on-token policy with explicit activation confirmation; retain the earlier opt-in exchange as finding context.
 2. Strengthen scoped-authorization recognition, automatic reviewer context and supported continuation examples (SDD-F003). Retain platform-control boundaries and secret handling.
 3. Align diagnosis and reporting language with actual decisions/evidence (SDD-F004/F005). Existing records must not manufacture user decisions.
 4. Review SDD-F006 placement before implementation: put general recovery coordination in sdd-manage and evidence adequacy in sdd-verify; route technical execution and conditionally loaded browser guidance without duplicating policy. Reuse the demo evidence without imposing browser checks on unrelated projects or claiming general compatibility.
-5. Review cross-skill consistency and run consumer-behavior scenarios before marking plugin amendments verified. Structural text checks alone do not prove proactive coordination or correct review responses.
+5. Align descriptive feature branch/package naming while preserving stable campaign identity and existing packages (SDD-F007); review allocation, collision, discovery and archive consumers together.
+6. Review cross-skill consistency and run consumer-behavior scenarios before marking plugin amendments verified. Structural text checks alone do not prove proactive coordination or correct review responses.
 
 The principle of proactivity, token-triggered default tracking with confirmation, and authorization/reviewer-response obligations were explicitly requested or clarified by the developer. Detailed wording, cross-file placement and the supporting recommendations remain proposals. This report is not an accepted plugin revision plan and does not change the installed version.
 
@@ -214,3 +243,7 @@ This is a late activation and evidence reconciliation; no claim is made that tra
 The developer subsequently requested implementation of the rest of phase 1. T-013–T-026 completed the consumer product and review evidence. Explicit merge `81943b1c6f1c244315e9b87a0c3e100f4d4953c4` into main passed 85 unit / 45 browser checks plus typecheck/build, was pushed and was read back from the remote. All 26 task issues and six milestones are closed; phase-parent completion follows that observed publication. Current acceptance and lifecycle state belong to [TASKS](docs/dev/TASKS.md), the [phase report](docs/dev/reports/phases/1/PHASE-REPORT.md) and [implementation report](docs/dev/reports/IMPLEMENTATION-REPORT.md). Historical tracking counts and pause statements above describe their original checkpoints.
 
 The installed plugin remains 0.14.9, and all six plugin findings remain open. This continuation supplies further consumer evidence for SDD-F006's conditional browser placement; it neither revises plugin sources nor verifies amended manager behavior.
+
+## Feature-preparation findings follow-up
+
+SDD-F007 was added during preparation of [piece controls](docs/dev/features/001_a043a43/README.md), after the published phase 1 completion described above. The register contains seven open plugin findings. This update records the naming concern and proposed remedy; it does not rename the consumer package or change the installed plugin.
