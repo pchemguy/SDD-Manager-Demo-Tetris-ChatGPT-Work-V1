@@ -297,7 +297,7 @@ The full range continues through delivery review, phase review, explicit two-par
             Depends on: T-038, T-039, T-040; their hosted issues closed.
             Evidence: Separate code/document review; npm run typecheck; npm test; npm run build; all browser checks. Verify main conformance reports, sole task ownership, archive navigation, shipped graph, FA-01–FA-07 and retained main acceptance. Publish report and close review issue then milestone. Report: docs/dev/features/001_a043a43/2.4.md.
             Completion evidence (2026-10-07): Separate whole-product/document/task review repaired reproduced terminal Hold wording and clarified PLAN ownership; current QC identities refreshed. TypeScript, 278 unit tests, build, 66 browser tests and final three-asset static inventory pass. Canonical contracts, 42 unique IDs/sole owner, exact phase-one preservation, nine historical feature sources, links and unchanged hosted associations verified. Acceptance/report retained; no unresolved product TODO; platform limits explicit.
-    - [ ] Milestone 2.5 — Whole-phase review
+    - [x] Milestone 2.5 — Whole-phase review
         - [x] T-042 — Review, test, report and integrate the completed feature phase
             Outcome: Whole-boundary review, final reports, hosted reconciliation, explicit main integration and merged-state publication establish feature completion.
             Scope: Final product/doc/task scope; reconciled TASKS; feature PHASE-REPORT.md and IMPLEMENTATION-REPORT.md, existing Git branch/target.
