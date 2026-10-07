@@ -8,7 +8,7 @@ import { sequenceSource } from '../support/piece-source';
 import { lockGrounded, moveTo } from '../support/scenarios';
 const mode=new URLSearchParams(location.search).get('mode');
 const previewKind=KINDS.find(kind=>kind===new URLSearchParams(location.search).get('kind'))??'T';
-const game=new Game(sequenceSource(mode==='hold'?[previewKind,'I','O','T']:mode==='preview'?['O',previewKind,'I']:mode==='rotate'?['T','I','O']:mode==='progress'?[...Array(25).fill('O'),'T','I','L']:Array(30).fill('O')));
+const game=new Game(sequenceSource(mode==='hold'?[previewKind,'I','O','T']:mode==='preview'?['O',previewKind,'I']:mode==='rotate'?['T','I','O','Z','L','J','S']:mode==='progress'?[...Array(25).fill('O'),'T','I','L']:Array(30).fill('O')));
 if(mode==='hold')game.action('hold');
 if(mode==='progress') {for(let i=0;i<4;i++)for(const x of [0,2,4,6,8]){moveTo(game,x);lockGrounded(game);}for(const x of [0,2,4,6]){moveTo(game,x);lockGrounded(game);}}
 if(mode==='clear') for(const x of [0,2,4,6]) {moveTo(game,x);lockGrounded(game);}

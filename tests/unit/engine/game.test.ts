@@ -28,9 +28,9 @@ it('legal grounded rotation can free descent while preserving the next tick',()=
  game.advance(900); for(let i=0;i<3;i++) game.action('rotate'); game.advance(100);
  expect(game.snapshot().active).toEqual({kind:'I',orientation:0,x:3,y:17}); expect(game.snapshot().board.flat().filter(Boolean)).toHaveLength(0);
 });
-it('rejects wall movement and no-kick rotation without changing timing or state',()=>{
+it('rejects wall movement, then kicks rotation without postponing the scheduled tick',()=>{
  const game=new Game(sequenceSource(['I','O','Z'])); game.action('rotate'); moveTo(game,-2); game.advance(900);
- const before=game.snapshot(); game.action('left'); game.action('rotate'); expect(game.snapshot()).toEqual(before);
+ const before=game.snapshot(); game.action('left'); expect(game.snapshot()).toEqual(before);game.action('rotate');expect(game.snapshot().active).toEqual({kind:'I',orientation:2,x:0,y:0});
  game.advance(100); expect(game.snapshot().active?.y).toBe(1);
 });
 it('fills and simultaneously clears two rows through five legal O placements',()=>{

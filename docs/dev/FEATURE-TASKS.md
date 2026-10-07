@@ -78,11 +78,12 @@ Selected execution range: full T-027–T-042, authorized by the developer on 202
             Depends on: T-034; milestone 2.2 verified and closed.
             Evidence: npm test -- tests/unit/engine; npm run typecheck. Check all eight rows against F-04, non-cumulative candidates, first-success precedence, later successes, walls/floor/stack/top bounds, total rejection and O no-op. F-04 / FA-04.
             Completion evidence (2026-10-07): RED: selector skeleton produced behavioral table/selection failures; two generated T fixtures assumed unreachable later winners and were corrected to prove earlier-candidate precedence from occupied-cell containment. GREEN: 147 kick tests, all engine regressions and TypeScript pass. All eight rows, independent offsets, candidate precedence/later successes, top/floor/wall/stack bounds, rejection, O and detached tables are checked.
-        - [ ] T-036 — Integrate kicks with ghost, hold and delayed-drop timing
+        - [x] T-036 — Integrate kicks with ghost, hold and delayed-drop timing
             Outcome: Engine rotations apply the pure policy, refresh ghost and retain score/source/gravity/hold guarantees.
             Scope: src/engine/game.ts and affected engine/browser scenario tests; player rule documentation.
             Depends on: T-035.
             Evidence: npm test -- tests/unit/engine; npm run test:browser -- tests/browser/playable-slice.spec.ts tests/browser/rendering.spec.ts; npm run typecheck. Combine hold → kick → drop → move → tick, including post-drop kicked descent and blocked lock. Revise only baseline rotation expectations explicitly changed by F-04. F-01–F-04 / FA-04/FA-06.
+            Completion evidence (2026-10-07): RED: two engine expectations and the combined real-browser scenario failed before selector integration. GREEN: 277 unit tests, TypeScript and nine focused browser cases pass. Two baseline no-kick assertions were revised only for accepted I wall-kick behavior; rejected wall movement and progression invariants remain. Combined hold/wall-kick/drop/floor-kick/move/tick proves unchanged source, score, entitlement and original tick timing.
         - [ ] T-037 — Review, test and report milestone 2.3
             Outcome: Review all kick/drop/hold interactions and demonstrate adjustment before locking; repair blockers.
             Scope: Complete 2.3 capability and relevant baseline behavior; feature report 2.3.md and sanitized browser evidence.

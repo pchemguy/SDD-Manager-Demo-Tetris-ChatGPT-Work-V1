@@ -1,6 +1,7 @@
 /** Gameplay state owner. Scoring uses the level before each simultaneous clear. */
 import { canPlace, clearRows, createBoard, landing, lock } from './board';
-import { rotate, spawn } from './pieces';
+import { spawn } from './pieces';
+import { kickedRotation } from './kicks';
 import { KINDS, type Action, type Kind, type Piece, type PieceSource, type Snapshot, type Status } from './types';
 
 export class Game {
@@ -38,7 +39,8 @@ export class Game {
   if(this.status!=='running'||!this.active) return;
   if(action==='hold'){this.hold();return;}
   if(action==='hard-drop'){this.active=landing(this.board,this.active);return;}
-  const candidate=action==='rotate'?rotate(this.active):{...this.active,
+  if(action==='rotate'){const candidate=kickedRotation(this.board,this.active);if(candidate)this.active=candidate;return;}
+  const candidate={...this.active,
    x:this.active.x+(action==='left'?-1:action==='right'?1:0),y:this.active.y+(action==='down'?1:0)};
   if(canPlace(this.board,candidate)) this.active=candidate;
  }

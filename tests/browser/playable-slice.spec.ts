@@ -37,3 +37,12 @@ test('blocked spawn shows game over and later inputs/time preserve the final boa
  await expect(page.getByRole('status')).toHaveText('Game over');const final=await snapshot(page);expect(final.active).toBeNull();expect(final.board.flat().filter(Boolean)).toHaveLength(40);
  await page.locator('#game').focus();await page.keyboard.press('ArrowLeft');await page.keyboard.press('ArrowDown');await page.getByRole('button',{name:'Advance one second'}).click();expect(await snapshot(page)).toEqual(final);expect(await cells(page)).toHaveLength(40);
 });
+
+test('hold, wall/floor kicks and drop preserve adjustment until a blocked tick',async({page})=>{
+ await page.goto('/tests/fixtures/playable.html?mode=rotate');await page.keyboard.press('c');await page.keyboard.press('ArrowUp');
+ for(let i=0;i<5;i++)await page.keyboard.press('ArrowLeft');await page.keyboard.press('ArrowUp');
+ expect((await snapshot(page)).active).toEqual({kind:'I',orientation:2,x:0,y:0});await page.keyboard.press('Space');await page.keyboard.press('ArrowUp');
+ expect((await snapshot(page)).active).toEqual({kind:'I',orientation:3,x:2,y:16});await page.keyboard.press('ArrowRight');await page.keyboard.press('ArrowUp');
+ expect((await snapshot(page)).ghost).toEqual({kind:'I',orientation:0,x:3,y:18});await page.getByRole('button',{name:'Advance one second'}).click();expect((await snapshot(page)).active.y).toBe(17);expect((await snapshot(page)).board.flat().filter(Boolean)).toHaveLength(0);
+ await page.locator('#game').focus();await page.keyboard.press('Space');await page.getByRole('button',{name:'Advance one second'}).click();expect((await snapshot(page)).active.kind).toBe('O');expect((await snapshot(page)).holdAvailable).toBe(true);
+});
