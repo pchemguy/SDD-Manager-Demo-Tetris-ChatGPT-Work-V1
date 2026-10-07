@@ -12,11 +12,11 @@ Full T-027–T-042 implementation was authorized on 2026-10-07. Campaign baselin
 
 Strict checking, 278 unit and 66 real Chromium checks, locked installation, fresh-cache browser/font provisioning, build/static play and shipped/network independence pass. Verified environment: Linux x64, Node 24.19.0/npm 11.9.0, Playwright 1.63.0, Chromium 153.0.8010.0. Current canonical PROJECT/design/SPEC/PLAN/layout and sole main TASKS are reconciled; preparation/reviews are archived here and original task/hosted identities preserved.
 
-Final Git publication uses verified identical Git data objects and fast-forward-only refs after normal push server errors; API and Git readback establish actual remote publication. Final main integration is pending below, separate from a passing feature branch.
+Final Git publication uses verified identical Git data objects and fast-forward-only refs after normal push server errors; API and Git readback establish actual remote publication. Final main integration is verified below, separately from the feature-branch checks.
 
 ## Final integration observation
 
-Pending main merge/check/publish/readback; phase completion is not yet asserted. This section is replaced with actual merge parents and observed target publication after integration.
+Integrated into `main` with explicit merge `65a8e8c5d16322a566f86b66334a39a0eaef2311`. Ordered parents: prior main `a043a43252c8fdf1307a33d34ce244e8c7280161` and verified feature tip `43b33b2c24fe6445fd1ecd482e7149b3fe730436`. Merged-state strict typecheck, 278 unit tests, production build, 66 Chromium cases, canonical document/link identities and final three-asset inspection pass. Main publication was observed exactly through both GitHub API and Git `ls-remote`; remote ancestry contains the complete feature tip. All 42 original task issues and eleven native milestones were read back closed before integration. Phase completion is checked only after this target-publication observation. The following documentation-only checkpoint records these facts without changing tested product code.
 
 ## TODO and limits
 

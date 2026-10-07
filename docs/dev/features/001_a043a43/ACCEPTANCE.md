@@ -1,6 +1,6 @@
 # Piece-control acceptance evidence
 
-Verified on 2026-10-07 from the shipped application on the feature branch. Final main integration is a separate pending gate. Linux x64, Node 24.19.0/npm 11.9.0, Playwright 1.63.0 and Chromium 153.0.8010.0.
+Verified on 2026-10-07 from the shipped application on the feature branch. Merged-state checks pass and main integration `65a8e8c` is published; [final report](IMPLEMENTATION-REPORT.md) records ordered parents and remote observations. Linux x64, Node 24.19.0/npm 11.9.0, Playwright 1.63.0 and Chromium 153.0.8010.0.
 
 ## Reproduction and delivery
 

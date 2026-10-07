@@ -2,7 +2,7 @@
 
 A classic-style, single-player TypeScript game with Canvas rendering, shuffled seven-piece bags, ghost landing outlines, hold, delayed-lock hard drop, clockwise wall/floor kicks, a next-piece preview, score and level progression, pause/resume, restart and game over. It runs entirely in the browser without a gameplay server or saved state.
 
-The piece-control implementation has passed milestone reviews on `feature/001_a043a43-piece-controls`; final main integration remains pending. Locked installation, strict checking, 278 unit tests and 66 Chromium checks pass. Phase 1 evidence remains preserved. [Player guide](docs/USER-GUIDE.md) explains all controls and scheduled locking; [feature acceptance](docs/dev/features/001_a043a43/ACCEPTANCE.md) records current checks.
+The complete piece-control extension is integrated and published in `main` through explicit merge `65a8e8c`. Locked installation, strict checking, 278 unit tests and 66 Chromium checks pass, including the merged production page. All 42 original task issues and eleven milestones are closed. [Player guide](docs/USER-GUIDE.md) explains all controls and scheduled locking; [final feature report](docs/dev/features/001_a043a43/IMPLEMENTATION-REPORT.md) records complete verification/publication evidence.
 
 ## Install and play locally
 

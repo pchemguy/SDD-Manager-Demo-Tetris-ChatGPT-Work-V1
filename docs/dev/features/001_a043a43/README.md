@@ -1,6 +1,6 @@
 # Piece-control extension
 
-Campaign `001_a043a43`; baseline `a043a43252c8fdf1307a33d34ce244e8c7280161`. Working branch `feature/001_a043a43-piece-controls`, integration target `main`. Full T-027–T-042 execution is authorized. Product, static acceptance and whole-phase review pass; main integration/publication remains the final gate.
+Campaign `001_a043a43`; baseline `a043a43252c8fdf1307a33d34ce244e8c7280161`. Working branch `feature/001_a043a43-piece-controls`, integration target `main`. Full T-027–T-042 execution is authorized. Complete: product, static acceptance and whole-phase review pass; explicit merge `65a8e8c` is verified and published in `main`.
 
 Current authority: [Project](../../PROJECT.md), [architecture](../../ARCHITECTURE.md), [decomposition](../../DECOMPOSITION.md), [SPEC](../../SPEC.md), [PLAN](../../PLAN.md), [layout](../../layout.md) and sole executable [TASKS](../../TASKS.md). The feature sources below are historical and non-executable after incorporation.
 

@@ -2,7 +2,7 @@
 
 ## Result and integration gate
 
-Whole-phase checks pass on reviewed source `711e30d6b2684d26e622bb6c1746f5ffd70feb18`, following four delivery milestone reviews/verified closures. Ghost, hold, delayed hard drop and clockwise SRS-based wall/floor kicks satisfy main G-07–G-10, session contracts, FA-01–FA-07 and retained A-01–A-09. T-027–T-041 are published/hosted-closed; T-042 publishes this review and final feature report. Main integration/publication remains the mandatory final gate, recorded below after observation.
+Whole-phase checks pass on reviewed source `711e30d6b2684d26e622bb6c1746f5ffd70feb18`, following four delivery milestone reviews/verified closures. Ghost, hold, delayed hard drop and clockwise SRS-based wall/floor kicks satisfy main G-07–G-10, session contracts, FA-01–FA-07 and retained A-01–A-09. T-027–T-041 are published/hosted-closed; T-042 publishes this review and final feature report. Main integration/publication is verified below.
 
 ## Separate whole-boundary code review
 
@@ -22,7 +22,7 @@ Native desktop focus/visibility delivery, Windows and other browsers remain unve
 
 ## Final integration observation
 
-Pending explicit two-parent merge, merged-state checks, target publication and remote containment. The phase checklist remains unchecked until those observations are recorded.
+Integrated into `main` with explicit merge `65a8e8c5d16322a566f86b66334a39a0eaef2311`. Ordered parents: prior main `a043a43252c8fdf1307a33d34ce244e8c7280161` and verified feature tip `43b33b2c24fe6445fd1ecd482e7149b3fe730436`. Merged-state strict typecheck, 278 unit tests, production build, 66 Chromium cases, canonical document/link identities and final three-asset inspection pass. Main publication was observed exactly through both GitHub API and Git `ls-remote`; remote ancestry contains the complete feature tip. All 42 original task issues and eleven native milestones were read back closed before integration. Phase completion is checked only after this target-publication observation. The following documentation-only checkpoint records these facts without changing tested product code.
 
 ## TODO aggregation
 

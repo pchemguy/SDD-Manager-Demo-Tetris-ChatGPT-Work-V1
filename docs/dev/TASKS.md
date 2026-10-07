@@ -198,11 +198,11 @@ The developer-selected T-013–T-026 continuation and eligible integration/publi
 
 Main TASKS is the sole executable owner of T-001–T-042. Stable phase/milestone/task IDs, outcomes, prerequisite order and original GitHub issue identities are preserved. The archived feature list is historical and non-executable, frozen before this handoff. Original F-01–F-04 references in task evidence identify the accepted campaign contracts, now owned by main G-07–G-10; F-05 is incorporated into S-01–S-06. Main SPEC/PLAN/layout and current reviews govern remaining execution. The original task-derivation reviews remain historical evidence.
 
-The full range continues through delivery review, phase review, explicit two-parent merge, merged-state checks, push and remote containment. Phase 2 remains unchecked until published main integration is observed.
+The full range continues through delivery review, phase review, explicit two-parent merge, merged-state checks, push and remote containment. Phase 2 is complete: merge `65a8e8c5d16322a566f86b66334a39a0eaef2311` passed merged-state checks and was published/read back exactly in main. Only after remote containment was confirmed is its phase parent checked. The existing feature branch is retained at `43b33b2c24fe6445fd1ecd482e7149b3fe730436`. All 42 task issues and eleven native milestones are closed; final feature reports retain parents/checks/limits.
 
 ## Phase 2 — Piece-control extension
 
-- [ ] Phase 2 — Piece-control extension
+- [x] Phase 2 — Piece-control extension
     - [x] Milestone 2.1 — Ghost and delayed hard drop
         - [x] T-027 — Implement shared landing and detached ghost snapshots
             Outcome: Shared downward-reachable landing and pure detached ghost data, with existing consumers kept type-correct.
@@ -304,3 +304,5 @@ The full range continues through delivery review, phase review, explicit two-par
             Depends on: T-030, T-034, T-037, T-041; every delivery milestone verified complete and hosted-closed.
             Evidence: Separate full code review; npm run typecheck; npm test; npm run build; npm run test:browser; complete acceptance and permitted TODO aggregation. Publish phase/final reports, close review issue/milestone, then explicitly merge verified feature into main with two parents, check merged state, push and read back containment. Record actual commits/parents/limits; a branch pass is not published integration. Reports: docs/dev/features/001_a043a43/PHASE-REPORT.md and IMPLEMENTATION-REPORT.md.
             Completion evidence (2026-10-07): Whole-phase code/document review found no unresolved product defect or permissible TODO. Verified four delivery milestones/fifteen preceding feature issues closed. TypeScript, 278 unit tests, build, 66 browser tests, current QC/link identities and three-asset/pure-import graph pass. Phase/final reports publish integration eligibility and retained limits; exact two-parent main merge, merged checks and target readback remain the final mandatory gate, with phase parent still unchecked.
+
+            Final integration evidence (2026-10-07, T-042): Integrated into `main` with explicit merge `65a8e8c5d16322a566f86b66334a39a0eaef2311`. Ordered parents: prior main `a043a43252c8fdf1307a33d34ce244e8c7280161` and verified feature tip `43b33b2c24fe6445fd1ecd482e7149b3fe730436`. Merged-state strict typecheck, 278 unit tests, production build, 66 Chromium cases, canonical document/link identities and final three-asset inspection pass. Main publication was observed exactly through both GitHub API and Git `ls-remote`; remote ancestry contains the complete feature tip. All 42 original task issues and eleven native milestones were read back closed before integration. Phase completion is checked only after this target-publication observation. The following documentation-only checkpoint records these facts without changing tested product code.

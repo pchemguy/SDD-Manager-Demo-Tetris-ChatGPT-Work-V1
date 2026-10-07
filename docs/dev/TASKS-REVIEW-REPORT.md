@@ -2,11 +2,11 @@
 
 ## Current gate
 
-Ready on incorporated-document conformance. Reviewed 2026-10-07 by the main agent applying SDD Manager 0.14.9; this is not independent review or a main-publication claim. Exact reviewed input identities follow.
+Complete on task-list conformance; verified integration/publication is recorded in TASKS and final phase reports. Reviewed 2026-10-07 by the main agent applying SDD Manager 0.14.9; this is not independent review or a main-publication claim. Exact reviewed input identities follow.
 
 | Source | SHA-256 |
 | --- | --- |
-| TASKS.md | `d789219a71a8262a85b48d6fc51859dfd5b0c06d93a0068a40ccd103efefac7d` |
+| TASKS.md | `8a32645709a320f16b4bab9b4ed4f1896905d3a31ca888f2d4c93b38880d8688` |
 | PLAN.md | `de39735f1d61f408f7dac9c76b1b60ad6c2fb4aeec150c1f6193ad7fd82f5972` |
 | layout.md | `07ef47a400a0b862d595463c0dcb7e47ff151ca630d4bebb3429d376debd73c5` |
 | PROJECT.md | `71ce83508f4a14f00f22c71fc806d50d0a79a5171534d832ece7481b176720e9` |
@@ -18,11 +18,11 @@ Ready on incorporated-document conformance. Reviewed 2026-10-07 by the main agen
 
 ## Assessment
 
-Whole-boundary conformance passes; actual final integration/publication remains tracked in TASKS and phase reports. Reconciled main TASKS is the sole executable owner; archived FEATURE-TASKS is explicitly historical/non-executable. T-001–T-026 retain their exact completed phase-one task block. T-027–T-040 retain completed evidence; T-041 is verified and published; T-042 performs final review/integration. IDs, outcomes, prerequisite order and original hosted issue/milestone identities are unchanged. No object is recreated or closed by transfer.
+Whole-boundary conformance passes and final main publication has been observed. Reconciled main TASKS is the sole executable owner; archived FEATURE-TASKS is explicitly historical/non-executable. T-001–T-026 retain their exact completed phase-one task block. T-027–T-040 retain completed evidence; All T-027–T-042 checkpoints are verified and published, including explicit main integration and observed remote containment. IDs, outcomes, prerequisite order and original hosted issue/milestone identities are unchanged. No object is recreated or closed by transfer.
 
 The hierarchy has two phases, eleven milestone parents and 42 unique tasks. Phase one retains 20 delivery tasks and six reviews. Phase two has eleven delivery tasks and five reviews: 2.1 has 3+review, 2.2 3+review, 2.3 2+review, 2.4 3+review, and 2.5 exactly one whole-phase review. The two-task kick increment is retained because immutable policy and engine integration are distinct cohesive units; adding a third task would fragment one responsibility. Every capability/review matches the incorporated PLAN, physical layout and acceptance exits. No prerequisite points forward or creates a review/milestone cycle.
 
-Original F references in historical task evidence map to current G-07–G-10/S-01–S-06; FA acceptance remains in main SPEC. Remaining review scopes cover complete acceptance, archives/links/current QC, whole-boundary code review and explicit merge/check/push/readback. Historical feature preparation/QC and phase-one reviews remain navigable. Canonical scopes were assessed at handoff; verified status/evidence-only checkpoint updates maintain the exact TASKS identity below without changing accepted task outcomes. Phase completion still requires published main integration.
+Original F references in historical task evidence map to current G-07–G-10/S-01–S-06; FA acceptance remains in main SPEC. Remaining review scopes cover complete acceptance, archives/links/current QC, whole-boundary code review and explicit merge/check/push/readback. Historical feature preparation/QC and phase-one reviews remain navigable. Canonical scopes were assessed at handoff; verified status/evidence-only checkpoint updates maintain the exact TASKS identity below without changing accepted task outcomes. Both phase parents are checked only after their required published main integration observations.
 
 ## Findings and TODO
 
