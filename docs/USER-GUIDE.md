@@ -18,7 +18,7 @@ Keys outside the gameplay region, editable fields, and Ctrl/Alt/Meta shortcuts a
 
 ## Falling, locking and scoring
 
-Gravity begins at one step per second and accelerates every ten cleared lines. A piece that reaches the floor or stack remains movable until the next scheduled gravity tick cannot move it down. Moving or rotating never resets that tick; moving off a ledge can allow it to descend. There is no hard drop, ghost, hold or movement queue.
+Gravity begins at one step per second and accelerates every ten cleared lines. A piece that reaches the floor or stack remains movable until the next scheduled gravity tick cannot move it down. Moving or rotating never resets that tick; moving off a ledge can allow it to descend. A ghost outline shows the lowest downward-reachable position; solid active cells cover it when grounded. Hard drop, hold and wall kicks are planned feature increments; they are not yet available in this checkpoint. There is no movement queue.
 
 Complete rows clear together and remaining rows fall in their original order. One, two, three or four cleared rows award 100, 300, 500 or 800 points respectively, multiplied by the level before that clear. Dropping earns no extra points. Level starts at 1 and rises after every ten cleared lines. Gravity reaches a minimum interval of 100 ms.
 

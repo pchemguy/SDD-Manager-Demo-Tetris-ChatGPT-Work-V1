@@ -8,13 +8,18 @@ export class Renderer {
   context.canvas.width=10*CELL; context.canvas.height=20*CELL;
   if(previewContext){previewContext.canvas.width=4*CELL;previewContext.canvas.height=4*CELL;}
  }
- /** Draw board and optional orientation-zero preview; remove stale cells each time. */
+ /** Draw locked cells, ghost, active piece and optional orientation-zero preview; remove stale cells each time. */
  draw(snapshot: Snapshot): void {
   const ctx=this.context; ctx.fillStyle='#0f172a'; ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
   ctx.strokeStyle='#1e293b'; ctx.lineWidth=1;
   for(let x=0;x<=10;x++) {ctx.beginPath();ctx.moveTo(x*CELL+0.5,0);ctx.lineTo(x*CELL+0.5,480);ctx.stroke();}
   for(let y=0;y<=20;y++) {ctx.beginPath();ctx.moveTo(0,y*CELL+0.5);ctx.lineTo(240,y*CELL+0.5);ctx.stroke();}
   snapshot.board.forEach((row,y)=>row.forEach((kind,x)=>{if(kind) this.cell(x,y,kind);}));
+  // Draw prediction first so grounded active cells cover its outline.
+  if(snapshot.ghost){
+   ctx.strokeStyle='#94a3b8';ctx.lineWidth=2;
+   for(const {x,y} of occupied(snapshot.ghost))ctx.strokeRect(x*CELL+3,y*CELL+3,CELL-6,CELL-6);
+  }
   if(snapshot.active) for(const {x,y} of occupied(snapshot.active)) this.cell(x,y,snapshot.active.kind);
   if(this.previewContext){
    const preview=this.previewContext;preview.fillStyle='#0f172a';preview.fillRect(0,0,96,96);

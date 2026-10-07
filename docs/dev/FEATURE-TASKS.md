@@ -28,11 +28,12 @@ Recommended first execution range: T-027–T-030, delivering and reviewing miles
             Depends on: none; phase setup, current upstream QC and confirmed hosted projection are prerequisites.
             Evidence: npm test -- tests/unit/engine; npm run typecheck. Cover every kind/orientation, first obstruction, grounded landing, null active, detached values and zero source/time effects. F-01 / FA-01.
             Completion evidence (2026-10-07): Initial RED: 31 tests executed, failing on missing landing API/ghost fields (no collection failure). GREEN: 31 landing/snapshot cases and 106 engine regressions pass; strict typecheck passes. Covers all kinds/orientations, first obstruction, grounded placement, terminal null, detached ghost and source/time purity. Phase 2 projection read back before work; full range T-027–T-042 selected. Existing npm proxy warning remains non-fatal.
-        - [ ] T-028 — Render ghost and expose prediction during ordinary play
+        - [x] T-028 — Render ghost and expose prediction during ordinary play
             Outcome: Visible ghost outline follows active placement without obscuring active cells; pause/game-over rendering remains correct.
             Scope: src/view/renderer.ts and tests/browser/rendering.spec.ts; controlled fixtures and relevant player instructions.
             Depends on: T-027.
             Evidence: npm run test:browser -- tests/browser/rendering.spec.ts; npm run typecheck. Inspect rendered cells and overlap/paused/terminal screenshots; use the ordinary page as well as controlled states. F-01 / ghost portions of FA-05.
+            Completion evidence (2026-10-07): RED: two new browser pixel checks failed on absent outlines; baseline rendering check passed. GREEN: 3/3 real Chromium rendering tests and strict typecheck pass, covering ghost redraw on ordinary page movement, frozen pause, and active-over-ghost overlap; baseline all-cell center pixels unchanged. Player guide distinguishes current ghost from deferred controls.
         - [ ] T-029 — Integrate one-shot Space drop with scheduled locking
             Outcome: Space uses the shared landing without immediate lock, timing reset, score or source effects; focus/repeat/default rules apply.
             Scope: src/engine/game.ts, types.ts, src/session/keyboard.ts and affected controller consumers; focused engine/session/browser tests and player controls.
