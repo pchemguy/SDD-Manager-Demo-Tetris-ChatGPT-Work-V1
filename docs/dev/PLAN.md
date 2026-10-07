@@ -102,9 +102,9 @@ Detailed testing strategy belongs to sdd-tdd and executable checks to TASKS. Eng
 
 GitHub is the established Git publication destination. TASKS and verified hosted identities record active tracking; preparation alone does not activate additional phases. If issue tracking is enabled for implementation, project only the eligible phase before its first task and apply required issue/milestone closure gates; local verification remains authoritative.
 
-## Preparation boundary
+## Governing boundaries
 
-The adjacent [PLAN review report](PLAN-REVIEW-REPORT.md) covers this plan and layout against the accepted SPEC/design. After this checkpoint is accepted, sdd-tasks derives bounded delivery and review tasks. Dependency installation, scaffolding, task execution, hosted phase activation, and deployment are outside this planning operation.
+The adjacent [PLAN review report](PLAN-REVIEW-REPORT.md) assesses full-project strategy and layout against accepted SPEC/design. TASKS owns executable units, completion evidence and hosted associations; implementation reports own actual verification/publication results. This plan selects capability order and exit gates, without becoming a second executable checklist.
 
 ## Piece-control verification and integration
 

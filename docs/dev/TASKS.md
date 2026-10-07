@@ -291,11 +291,12 @@ The full range continues through delivery review, phase review, explicit two-par
             Depends on: T-039.
             Evidence: Verify exactly one executable owner per ID across both lists, pending tasks remain unchecked, no issue is recreated or closed by transfer, phase 1 identities/status remain intact, and archive/report links resolve. T-040 completion and later T-041/T-042 updates belong to the reconciled main owner; archived FEATURE-TASKS is explicitly historical/non-executable. Do not archive any source still needed as active authority; retain it if eligibility fails and resolve before this task completes.
             Completion evidence (2026-10-07): Main TASKS now solely owns all 42 stable IDs; exact phase-one block and completed feature evidence preserved, with T-040–T-042 pending at handoff. Nine eligible feature sources/reviews archived as historical/non-executable; 234 local links/anchors and canonical QC identities pass. Existing sixteen GitHub source briefs reconciled/read back with unchanged identities, states and milestone associations; no hosted object created or closed by transfer.
-        - [ ] T-041 — Review, test and report milestone 2.4
+        - [x] T-041 — Review, test and report milestone 2.4
             Outcome: Review final static delivery, documentation reconciliation and archive ownership; repair required blockers and retain complete acceptance.
             Scope: All 2.4 changes and final product; reconciled TASKS owner; feature report 2.4.md.
             Depends on: T-038, T-039, T-040; their hosted issues closed.
             Evidence: Separate code/document review; npm run typecheck; npm test; npm run build; all browser checks. Verify main conformance reports, sole task ownership, archive navigation, shipped graph, FA-01–FA-07 and retained main acceptance. Publish report and close review issue then milestone. Report: docs/dev/features/001_a043a43/2.4.md.
+            Completion evidence (2026-10-07): Separate whole-product/document/task review repaired reproduced terminal Hold wording and clarified PLAN ownership; current QC identities refreshed. TypeScript, 278 unit tests, build, 66 browser tests and final three-asset static inventory pass. Canonical contracts, 42 unique IDs/sole owner, exact phase-one preservation, nine historical feature sources, links and unchanged hosted associations verified. Acceptance/report retained; no unresolved product TODO; platform limits explicit.
     - [ ] Milestone 2.5 — Whole-phase review
         - [ ] T-042 — Review, test, report and integrate the completed feature phase
             Outcome: Whole-boundary review, final reports, hosted reconciliation, explicit main integration and merged-state publication establish feature completion.

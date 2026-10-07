@@ -4,7 +4,7 @@ Campaign `001_a043a43`; baseline `a043a43252c8fdf1307a33d34ce244e8c7280161`. Wor
 
 Current authority: [Project](../../PROJECT.md), [architecture](../../ARCHITECTURE.md), [decomposition](../../DECOMPOSITION.md), [SPEC](../../SPEC.md), [PLAN](../../PLAN.md), [layout](../../layout.md) and sole executable [TASKS](../../TASKS.md). The feature sources below are historical and non-executable after incorporation.
 
-Reports: [2.1](2.1.md), [2.2](2.2.md), [2.3](2.3.md), [acceptance](ACCEPTANCE.md). Phase-one implementation evidence remains under the [historical report directory](../../reports/phases/1/PHASE-REPORT.md).
+Reports: [2.1](2.1.md), [2.2](2.2.md), [2.3](2.3.md), [2.4](2.4.md), [acceptance](ACCEPTANCE.md). Phase-one implementation evidence remains under the [historical report directory](../../reports/phases/1/PHASE-REPORT.md).
 
 Archived preparation:
 

@@ -12,7 +12,7 @@ Ready on incorporated-document conformance. Reviewed 2026-10-07 by the main agen
 | SPEC.md | `de236e3b6498a86490faee7db3d6a0da1d4ac547c98aa0d7c12a1817f43446fa` |
 | spec/gameplay.md | `10f3a6a5930fa96bee222166b0c406616deee41b95d8f146565b2acb87f62731` |
 | spec/session.md | `a72f42e30a53efce3e7ff6666ac8090f37bfc8fa143ff0cd88c6e8fe53dd4115` |
-| PLAN.md | `4584567df36965db9856355a145e257478d6095a67fc5adc453917aff6ae2646` |
+| PLAN.md | `de39735f1d61f408f7dac9c76b1b60ad6c2fb4aeec150c1f6193ad7fd82f5972` |
 | layout.md | `07ef47a400a0b862d595463c0dcb7e47ff151ca630d4bebb3429d376debd73c5` |
 
 ## Assessment

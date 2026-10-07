@@ -20,6 +20,6 @@ test('800 by 600 page fits square board, preview, labels and visibly focused con
 test('pause and game over preserve the scored board and text status',async({page})=>{
  await page.goto('/tests/fixtures/playable.html?mode=progress');const pixels=()=>page.locator('#board').evaluate(c=>(c as HTMLCanvasElement).toDataURL());
  const board=await pixels();await page.keyboard.press('p');await expect(page.getByRole('status')).toHaveText('Paused');await expect(page.locator('#score')).toHaveText('1200');expect(await pixels()===board).toBe(true);
- await page.goto('/tests/fixtures/playable.html?mode=over');await page.getByRole('button',{name:'Advance one second'}).click();await expect(page.getByRole('status')).toHaveText('Game over');
+ await page.goto('/tests/fixtures/playable.html?mode=over');await page.getByRole('button',{name:'Advance one second'}).click();await expect(page.getByRole('status')).toHaveText('Game over');await expect(page.locator('#hold-state')).toHaveText('Empty · Unavailable');
  const final=await pixels();await page.locator('#game').focus();await page.keyboard.press('p');await page.keyboard.press('ArrowDown');expect(await pixels()===final).toBe(true);await expect(page.locator('#score')).toHaveText('0');
 });

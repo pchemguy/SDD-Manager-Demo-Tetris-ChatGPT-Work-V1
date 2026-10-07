@@ -6,8 +6,8 @@ Ready on incorporated-document conformance. Reviewed 2026-10-07 by the main agen
 
 | Source | SHA-256 |
 | --- | --- |
-| TASKS.md | `8b308c5bc27657f04618113eeb086fcbf40913582a8602f427ee951c3ebb69c5` |
-| PLAN.md | `4584567df36965db9856355a145e257478d6095a67fc5adc453917aff6ae2646` |
+| TASKS.md | `7e90abfb1b05ae2d95e737ec3c6436bc0f918a58c92af672191e839165cb30aa` |
+| PLAN.md | `de39735f1d61f408f7dac9c76b1b60ad6c2fb4aeec150c1f6193ad7fd82f5972` |
 | layout.md | `07ef47a400a0b862d595463c0dcb7e47ff151ca630d4bebb3429d376debd73c5` |
 | PROJECT.md | `71ce83508f4a14f00f22c71fc806d50d0a79a5171534d832ece7481b176720e9` |
 | ARCHITECTURE.md | `622cfd7dfeb716c037ba822af942df6eca5c61143995dc5aef48f3facdb4be55` |
@@ -18,7 +18,7 @@ Ready on incorporated-document conformance. Reviewed 2026-10-07 by the main agen
 
 ## Assessment
 
-Ready for remaining authorized T-040–T-042 checkpoints. Reconciled main TASKS is the sole executable owner; archived FEATURE-TASKS is explicitly historical/non-executable. T-001–T-026 retain their exact completed phase-one task block. T-027–T-039 retain all completed evidence; T-040–T-042 remain pending before this checkpoint's completion. IDs, outcomes, prerequisite order and original hosted issue/milestone identities are unchanged. No object is recreated or closed by transfer.
+Conformance passes for the remaining authorized review/integration checkpoints. Reconciled main TASKS is the sole executable owner; archived FEATURE-TASKS is explicitly historical/non-executable. T-001–T-026 retain their exact completed phase-one task block. T-027–T-040 retain completed evidence; T-041/T-042 remain pending before this review checkpoint. IDs, outcomes, prerequisite order and original hosted issue/milestone identities are unchanged. No object is recreated or closed by transfer.
 
 The hierarchy has two phases, eleven milestone parents and 42 unique tasks. Phase one retains 20 delivery tasks and six reviews. Phase two has eleven delivery tasks and five reviews: 2.1 has 3+review, 2.2 3+review, 2.3 2+review, 2.4 3+review, and 2.5 exactly one whole-phase review. The two-task kick increment is retained because immutable policy and engine integration are distinct cohesive units; adding a third task would fragment one responsibility. Every capability/review matches the incorporated PLAN, physical layout and acceptance exits. No prerequisite points forward or creates a review/milestone cycle.
 

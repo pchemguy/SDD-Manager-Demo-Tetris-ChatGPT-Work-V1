@@ -17,7 +17,7 @@ Ready on incorporated-document conformance. Reviewed 2026-10-07 by the main agen
 
 Reviewed complete project scope, three-block ownership and all gameplay/session requirements against accepted feature F-01–F-05. Main G-07–G-10 own landing, delayed hard drop, hold and exact clockwise tables; S-01–S-06 own input, snapshots, presentation and failure behavior. Removed contradictory feature exclusions and no-kick/immediate-lock wording. Existing board/spawn/score/time and terminal/fault distinctions remain intact. All eight offset rows were compared literally with the accepted source, including downward-positive signs and no hidden rows.
 
-A-01–A-09 remain end-to-end acceptance; FA-01–FA-07 are incorporated as additional measurable acceptance. No browser rule enters the engine or duplicate landing rule enters the view. Checked source order, empty/populated hold, 999+1ms locking, ghost detach/null, hold entitlement and reset, orientation-zero spawn, restart and added resource validation. Every accepted feature contract has a main owner; the active feature documents remain only until the planned archival/task handoff.
+A-01–A-09 remain end-to-end acceptance; FA-01–FA-07 are incorporated as additional measurable acceptance. No browser rule enters the engine or duplicate landing rule enters the view. Checked source order, empty/populated hold, 999+1ms locking, ghost detach/null, hold entitlement and reset, orientation-zero spawn, restart and added resource validation. Every accepted feature contract has a main owner; feature preparation is archived as historical/non-executable after the verified task handoff.
 
 ## Findings and TODO
 
