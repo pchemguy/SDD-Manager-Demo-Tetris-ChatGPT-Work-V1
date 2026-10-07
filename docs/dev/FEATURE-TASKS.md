@@ -46,7 +46,7 @@ Selected execution range: full T-027–T-042, authorized by the developer on 202
             Depends on: T-027, T-028, T-029; their hosted issues closed.
             Evidence: Separate code review; npm run typecheck; npm test; npm run build; relevant real-browser ghost/input/playable regressions. Complete 2.1 exits without claiming hold/kicks. Publish report and reconcile review issue then milestone closure. Report: docs/dev/features/001_a043a43/2.1.md.
             Completion evidence (2026-10-07): Whole 2.1 code review found no unresolved product defect; 120 unit/48 browser tests, strict typecheck and build pass. Ordinary shipped-page screenshot inspected and retained. Ghost/drop acceptance covered; hold/kicks explicitly deferred. Native focus/other-platform limits retained. Milestone report and task evidence published before hosted review/milestone closure.
-    - [ ] Milestone 2.2 — Hold and held-piece presentation
+    - [x] Milestone 2.2 — Hold and held-piece presentation
         - [x] T-031 — Implement hold state, source order and lock-cycle entitlement
             Outcome: Empty-slot promotion and populated swap follow exact source/spawn/timing rules; restart, blocked spawn and faults retain their contracts.
             Scope: src/engine/game.ts, types.ts and focused engine hold/source/lifecycle tests; snapshot fixture consumers.
