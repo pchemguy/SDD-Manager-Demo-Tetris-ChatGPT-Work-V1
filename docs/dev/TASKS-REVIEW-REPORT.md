@@ -6,7 +6,7 @@ Ready on incorporated-document conformance. Reviewed 2026-10-07 by the main agen
 
 | Source | SHA-256 |
 | --- | --- |
-| TASKS.md | `7e90abfb1b05ae2d95e737ec3c6436bc0f918a58c92af672191e839165cb30aa` |
+| TASKS.md | `5182863c5bb2a99de88c0f4e246f2c459c4bd46f0b78f93e69cf2141c9b1a1d5` |
 | PLAN.md | `de39735f1d61f408f7dac9c76b1b60ad6c2fb4aeec150c1f6193ad7fd82f5972` |
 | layout.md | `07ef47a400a0b862d595463c0dcb7e47ff151ca630d4bebb3429d376debd73c5` |
 | PROJECT.md | `71ce83508f4a14f00f22c71fc806d50d0a79a5171534d832ece7481b176720e9` |

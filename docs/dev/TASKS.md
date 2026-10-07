@@ -272,7 +272,7 @@ The full range continues through delivery review, phase review, explicit two-par
             Depends on: T-035, T-036; their hosted issues closed.
             Evidence: Separate code review; npm run typecheck; npm test; npm run build; all browser checks. Validate 2.3 exits, unchanged rejection state, candidate order, shared landing and usable controls. Publish report and close review issue then milestone. Report: docs/dev/features/001_a043a43/2.3.md.
             Completion evidence (2026-10-07): Separate kick/integration code review found no unresolved product issue. Added public-action complete rejection with unchanged snapshot and 999+1ms lock; inspected retained kicked-board image. TypeScript, 278 unit tests, build and 65 browser cases pass; screenshot-only combined scenario rerun passes. All 2.3 exits satisfied with existing platform limits.
-    - [ ] Milestone 2.4 — Static acceptance and document incorporation
+    - [x] Milestone 2.4 — Static acceptance and document incorporation
         - [x] T-038 — Reproduce complete static delivery and update player/developer guides
             Outcome: Locked installation, complete shipped-page acceptance, runtime independence and accurate controls/documentation are evidenced.
             Scope: README.md, docs/USER-GUIDE.md; tests/browser/production.spec.ts and affected acceptance/support cases; feature ACCEPTANCE.md and selected production images.
