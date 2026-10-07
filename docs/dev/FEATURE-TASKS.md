@@ -71,7 +71,7 @@ Selected execution range: full T-027–T-042, authorized by the developer on 202
             Depends on: T-031, T-032, T-033; their hosted issues closed.
             Evidence: Separate code review; npm run typecheck; npm test; npm run build; all browser checks. Verify 2.2 exits, source/timing/entitlement interactions and prior regressions. Publish review report, close review issue then milestone. Report: docs/dev/features/001_a043a43/2.2.md.
             Completion evidence (2026-10-07): Separate whole-hold code/visual review repaired a reproduced full-page height defect and clarified comments/navigation. GREEN: TypeScript, 128 unit tests, build and 64 browser tests pass. Inspected retained 800x600 image; no unresolved product defect or TODO. Native focus/platform limits retained.
-    - [ ] Milestone 2.3 — Clockwise wall kicks
+    - [x] Milestone 2.3 — Clockwise wall kicks
         - [x] T-035 — Implement pure clockwise kick data and legal candidate selection
             Outcome: Ordered family/transition tables select the first legal rotated placement using independent original-origin offsets.
             Scope: Proposed src/engine/kicks.ts; existing pieces.ts/board.ts helpers; focused tests/unit/engine kick tests.
