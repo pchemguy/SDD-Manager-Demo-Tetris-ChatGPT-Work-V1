@@ -14,7 +14,7 @@ Evidence consists of the conversation, inspected installed skill instructions, r
 
 1. The developer explicitly authorized operations involved in the established SDD workflows and repeatedly objected to redundant authorization requests. The supplied repository token provided authentication and, in the context of the developer's request, signaled their intended operational authority. A credential string alone is not unrestricted authority for arbitrary destinations or effects.
 2. When an automatic reviewer needs authorization context, the agent must proactively supply the existing developer grant and identify the specific operation and requested authority through the supported channel. It must not send the same authorization question back to the developer unnecessarily. Platform controls still govern execution.
-3. GitHub issue/label/milestone tracking is a separate opt-in. The developer explicitly confirmed this after the agent incorrectly claimed that general workflow authorization required activating tracking. The outstanding amendment is proactive coordination and explicit decision handling, not compulsory tracking.
+3. Latest developer clarification (2026-10-07 15:00 Europe/Moscow): when the user supplies a GitHub token, GitHub issue/label/milestone tracking should be selected by default, but the manager must still ask for confirmation. This refines the preceding separate-opt-in clarification: the default recommendation is enabled; actual activation still requires confirmation. General Git publication authority must not be mistaken for that confirmation.
 4. Proactive conduct applies throughout SDD Manager, not only to hosting. The manager must identify relevant capabilities, prerequisites, missing decisions and coordination gaps without waiting for the developer to discover them.
 5. Notes for later plugin amendments must now be collected in this root report. Report creation and publication do not mean the amendments have been implemented or their proposed wording accepted in full.
 
@@ -25,7 +25,7 @@ Priority reflects impact on workflow correctness and developer intervention, rat
 | ID | Finding | Origin | Priority | Disposition |
 | --- | --- | --- | --- | --- |
 | SDD-F001 | Manager waits for the developer to identify coordination gaps | Explicit developer amendment | High | Required principle; wording proposed; implementation outstanding |
-| SDD-F002 | Optional hosting choice was silently left unresolved | Explicit developer clarification and observed omission | High | Separate opt-in confirmed; proactive decision handling outstanding |
+| SDD-F002 | Token-triggered default tracking proposal and confirmation were missing | Explicit developer clarifications and observed omission | High | Default enabled with confirmation required; coordination amendment outstanding |
 | SDD-F003 | Existing authority was not carried into automatic-review responses and appropriate retries | Explicit developer amendments | High | Required behavior; enforcement/examples outstanding |
 | SDD-F004 | Agent explanations confuse policy, authorization and observed state | Observed error; proposed supporting amendment | High | Proposed; not separately accepted |
 | SDD-F005 | Amendment notes lack a durable, accurately reported register | Developer's current collection request; proposed generalization | Medium | This report establishes the demo register; plugin guidance proposed |
@@ -53,21 +53,23 @@ Primary targets: sdd-manage SKILL.md, coordination.md, workflows.md, phase-activ
 
 Behavioral validation: a new project request with a GitHub repository triggers a timely hosting-choice offer; a missing prerequisite is surfaced before dependent execution; an already-authorized routine operation proceeds without another permission request; an explicit pause is respected. Inspect actual agent behavior, not just the presence of MUST in a file.
 
-## SDD-F002 — Make optional hosting state an explicit decision
+## SDD-F002 — Default to GitHub tracking when a token is supplied, with confirmation
 
 ### Context and evidence
 
 PLAN and TASKS introduced conditional hosting and recorded no active tracking. Milestone [1.1](docs/dev/reports/phases/1/1.1.md) and [1.2](docs/dev/reports/phases/1/1.2.md) repeated “hosted tracking is inactive.” Those statements describe the absence of performed projection, but do not establish that the developer declined it. The choice was not proactively presented.
 
-When challenged, the agent made a second mistake: it claimed the developer's authorization for all workflow operations necessarily enabled tracking. The developer corrected that interpretation: GitHub tracking is a separate opt-in. Current state is therefore **not activated; opt-in choice unresolved**, rather than an established refusal or an automatic mandate to create objects.
+When challenged, the agent claimed that authorization for all workflow operations necessarily enabled tracking without another decision. The developer first clarified separate opt-in, then refined the desired policy: a supplied GitHub token should default the tracking choice to enabled, while still requiring confirmation. Current demo state is therefore **default recommendation: enable; activation confirmation pending**. It is neither an established refusal nor confirmation to create objects.
 
-The installed sdd-forge limits itself to requested hosted operations. sdd-manage coordinates hosting when requested or already active. phase-activation.md requires complete eligible-phase projection when tracking is active. Those rules are compatible with opt-in; their decision handoff needs strengthening.
+The installed sdd-forge limits itself to requested hosted operations. sdd-manage coordinates hosting when requested or already active. phase-activation.md requires complete eligible-phase projection when tracking is active. Their request boundary must be retained while the manager gains an explicit token-triggered default proposal and confirmation handoff.
 
 ### Proposed amendment
 
-> Before activating an eligible phase, the manager MUST establish whether hosted task tracking is requested, already active, explicitly declined, or undecided. If a supported host is available and the choice is undecided, it MUST proactively offer tracking, explain its concrete scope, and record the developer's decision in the existing execution context. Git publication and hosted tracking are distinct decisions. Supplied credentials and a hosted Git remote do not, by themselves, select tracking.
+> When the user supplies a GitHub token for the established repository workflow, the manager MUST select GitHub tracking as the default recommendation and proactively ask for confirmation before activating it. It MUST state the concrete projection and lifecycle scope. Record default recommendation, pending confirmation and confirmed activation as distinct facts; do not silently leave tracking off or create hosted objects before confirmation.
+>
+> Before phase activation, establish whether tracking is confirmed, already active, explicitly declined or awaiting a decision. Respect an explicit decline. When confirmation already covers the same repository/scope, carry it forward without asking again. Without a supplied token, proactively offer supported tracking where relevant, but do not invent credentials, account access or consent. Git publication and hosted tracking remain distinct workflow effects.
 
-The offer should state what will be managed: the eligible phase label, milestone labels, hosted milestones and task issues, their associations, and verification-based closures. Once opted in, perform required projection/readback and maintained lifecycle operations without repeated approvals. If declined, continue local/Git workflows without nagging. If unresolved, do not label the state as a refusal or silently claim that a tracking decision exists.
+The offer should state what will be managed: the eligible phase label, milestone labels, hosted milestones and task issues, their associations, and verification-based closures. Once opted in, perform required projection/readback and maintained lifecycle operations without repeated approvals. If declined, continue local/Git workflows without nagging. If unresolved, retain the default-enabled recommendation and pending-confirmation state; do not label it as a refusal or silently claim activation consent exists.
 
 If tracking is opted into after local execution has begun, reconcile the existing phase idempotently: discover existing objects, create only missing eligible objects, attach retained completion evidence, close verified tasks/milestones and leave incomplete work open. Do not replay completed product tasks or rewrite history to pretend projection preceded them.
 
@@ -75,7 +77,7 @@ If tracking is opted into after local execution has begun, reconcile the existin
 
 Targets: sdd-manage phase-activation.md, workflows.md, examples.md; sdd-implement startup handoff; sdd-forge GitHub projection/lifecycle guidance; sdd-report hosted-state wording.
 
-Validate undecided, opt-in, declined, already-active and late-opt-in cases. For this demo, a future late opt-in would reconcile one eligible phase, six milestones and 26 tasks; only T-001–T-012 and milestones 1.1–1.2 currently have completed local evidence. Phase completion remains pending. This is a conditional recovery proposal, not a hosted operation already performed or newly authorized by this report.
+Validate token-supplied/default-enabled/pending-confirmation, confirmed, declined, already-active, no-token and late-confirmation cases. The token-supplied case must produce a concrete activation proposal and confirmation question without any premature hosted write. For this demo, a future late opt-in would reconcile one eligible phase, six milestones and 26 tasks; only T-001–T-012 and milestones 1.1–1.2 currently have completed local evidence. Phase completion remains pending. This is a conditional recovery proposal, not a hosted operation already performed or newly authorized by this report.
 
 ## SDD-F003 — Carry existing authorization into review responses and supported retries
 
@@ -119,7 +121,7 @@ Agent-authored planning text can also become circular evidence: recording an ass
 
 Explain the actual cause and its evidence. Here, the cause is missing proactive opt-in coordination, not compulsory hosting ignored. Correct the diagnosis explicitly while retaining the observed absence of hosted objects. Where original traces are unavailable, label the evidence limit instead of quoting an invented rejection reason.
 
-Targets: sdd-manage review-and-revision.md and examples.md; sdd-report change kinds and completion/status reporting. Validation: challenge an omitted optional capability and confirm the agent identifies the unresolved choice, rather than automatically enabling it or blaming authentication without evidence.
+Targets: sdd-manage review-and-revision.md and examples.md; sdd-report change kinds and completion/status reporting. Validation: challenge an omitted optional capability and confirm the agent identifies the unresolved choice, rather than treating the default recommendation as completed confirmation or blaming authentication without evidence.
 
 ## SDD-F005 — Persist amendment notes and report their storage/status truthfully
 
@@ -153,17 +155,17 @@ Targets: sdd-implement startup/task execution, sdd-verify check selection/eviden
 
 ## Consolidated revision handoff
 
-1. Strengthen proactive coordination and explicit optional-capability decision handling (SDD-F001/F002). Preserve the developer's separate opt-in clarification.
+1. Strengthen proactive coordination and explicit optional-capability decision handling (SDD-F001/F002). Apply the latest default-enabled-on-token policy with explicit activation confirmation; retain the earlier opt-in exchange as finding context.
 2. Strengthen scoped-authorization recognition, automatic reviewer context and supported continuation examples (SDD-F003). Retain platform-control boundaries and secret handling.
 3. Align diagnosis and reporting language with actual decisions/evidence (SDD-F004/F005). Existing records must not manufacture user decisions.
 4. Add environment-recovery and representative-readiness examples (SDD-F006), reusing the demo evidence without claiming general compatibility.
 5. Review cross-skill consistency and run consumer-behavior scenarios before marking plugin amendments verified. Structural text checks alone do not prove proactive coordination or correct review responses.
 
-The principle of proactivity, hosting opt-in distinction and authorization/reviewer-response obligations were explicitly requested or clarified by the developer. Detailed wording, cross-file placement and the supporting recommendations remain proposals. This report is not an accepted plugin revision plan and does not change the installed version.
+The principle of proactivity, token-triggered default tracking with confirmation, and authorization/reviewer-response obligations were explicitly requested or clarified by the developer. Detailed wording, cross-file placement and the supporting recommendations remain proposals. This report is not an accepted plugin revision plan and does not change the installed version.
 
 ## Scope preserved and evidence limits
 
-Tetris implementation remains paused after T-012. Phase 1 is incomplete and unmerged. GitHub tracking has not been opted into or activated; the reports' statements about inactive tracking must not be read as proof of a developer refusal. No product-rule amendment is proposed here: the locking typo was corrected in conversation and the accepted next-blocked-gravity-tick rule is implemented and tested.
+Tetris implementation remains paused after T-012. Phase 1 is incomplete and unmerged. GitHub tracking has not been confirmed or activated. Under the latest policy, the supplied token makes enablement the default recommendation, with confirmation still pending; the milestone reports' inactive-state statements are not proof of a developer refusal. No product-rule amendment is proposed here: the locking typo was corrected in conversation and the accepted next-blocked-gravity-tick rule is implemented and tested.
 
 Successful existing practices include incremental commits/pushes, bounded milestone pauses, pure engine seams, accurate partial-acceptance reporting, and distinguishing behavioral RED from setup/characterization evidence. Their presence does not resolve the open coordination findings; they should remain intact during plugin revision.
 
