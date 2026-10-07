@@ -13,7 +13,7 @@ npm ci
 npm run dev
 ```
 
-Open the development-server URL shown in the console. Browser opening is manual; the scripts do not require PowerShell. On Windows, install the test browser with `npx playwright install chromium`. Linux tests automatically use the pinned `@sparticuz/chromium` package installed by npm, extracted to an ignored cache. This route works where the standard Playwright browser CDN is unavailable; it does not change the production application.
+Open the development-server URL shown in the console. Browser opening is manual; the scripts do not require PowerShell. On Windows, install the test browser with `npx playwright install chromium`. Linux x64 sandbox tests use the pinned `@sparticuz/chromium` package installed by npm, extracted to an ignored cache with local font configuration. The browser runs with multiple processes so successive Playwright contexts work. This route works where the standard Playwright browser CDN is unavailable; it does not change the production application.
 
 ```text
 npm run typecheck
@@ -39,5 +39,6 @@ The cloud toolchain passes locked installation, strict checking, production buil
 - [Plan review](docs/dev/PLAN-REVIEW-REPORT.md)
 - [Implementation tasks](docs/dev/TASKS.md)
 - [Task-list review](docs/dev/TASKS-REVIEW-REPORT.md)
+- [Milestone 1.1 review](docs/dev/reports/phases/1/1.1.md)
 
 Development uses [SDD Manager](SDD-MANAGER.md). See the [AI-assisted development disclosure](AI_DISCLOSURE.md).

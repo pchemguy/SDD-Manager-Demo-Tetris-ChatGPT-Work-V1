@@ -10,7 +10,7 @@ import type { LaunchOptions } from '@playwright/test';
 
 /** Extract packaged Chromium without archive ownership changes prohibited by the sandbox. */
 export async function browserLaunchOptions(): Promise<LaunchOptions> {
-  if (process.platform !== 'linux') return {};
+  if (process.platform !== 'linux' || process.arch !== 'x64') return {};
   const { default: chromium } = await import('@sparticuz/chromium');
   const require = createRequire(import.meta.url);
   const assets = resolve(dirname(require.resolve('@sparticuz/chromium')), '../bin');
@@ -33,6 +33,11 @@ export async function browserLaunchOptions(): Promise<LaunchOptions> {
     }
     await writeFile(marker, '153.0.0\n');
   }
+  // The vendor config names Lambda directories. Point it at our extracted fonts.
+  const xmlPath = (path: string) => path.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const fontCache = resolve(cache, 'font-cache');
+  await mkdir(fontCache, { recursive: true });
+  await writeFile(resolve(cache, 'fonts/fonts.conf'), `<?xml version="1.0"?>\n<fontconfig>\n<dir>${xmlPath(resolve(cache, 'fonts/fonts'))}</dir>\n<cachedir>${xmlPath(fontCache)}</cachedir>\n</fontconfig>\n`);
   // The vendor's single-process flag breaks a second Playwright context.
   // Multiprocess launch passes this sandbox's full suite.
   return { executablePath: resolve(cache, 'chromium'), args: chromium.args.filter(arg => arg !== '--single-process'),

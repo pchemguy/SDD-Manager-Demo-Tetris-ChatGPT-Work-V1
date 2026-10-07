@@ -6,7 +6,7 @@ This list derives the complete intended work from accepted [PLAN](PLAN.md), [lay
 
 Preparation baseline: `470ee46e48cc58c919fb5ac799691579126e42c1` on `main`. Execution uses `phase/1-classic-browser-tetris`, targeting `main` in the established GitHub repository. Record its actual starting checkpoint when implementation begins; do not infer that it remains the preparation baseline after task-list publication.
 
-Active execution: T-001–T-008, milestone 1.1. Phase branch started from `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef`; stop after the verified milestone report, publish the incomplete phase branch, and keep main unmerged. Hosted tracking is inactive.
+Completed selected range: T-001–T-008, milestone 1.1. Phase branch started from `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef`; stop after the verified milestone report, publish the incomplete phase branch, and keep main unmerged. Hosted tracking is inactive.
 
 Execute a human-selected bounded range through sdd-implement. A partial phase publishes task/review checkpoints and pauses on its phase branch. Only full verified phase completion permits default integration. Git publication is established; no hosted issue/milestone tracking has been activated by task preparation. If enabled, eligible-phase projection precedes the first task and closure gates apply.
 
@@ -21,7 +21,7 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
 ## Phase 1 — Complete classic browser Tetris
 
 - [ ] Phase 1 — Complete classic browser Tetris
-    - [ ] Milestone 1.1 — Playable falling-block slice
+    - [x] Milestone 1.1 — Playable falling-block slice
         - [x] T-001 — Establish the repository toolchain and Chromium launch gate
             Outcome: Repository-local npm dependencies, locked compatible versions, strict checking, Vite ES2020 production target, Vitest, and Playwright Test work in the standard sandbox. Create only the minimum buildable entry page/module needed to verify tools; this task does not deliver gameplay.
             Scope: package.json/package-lock.json, tsconfig.json, vite.config.ts, vitest.config.ts, playwright.config.ts, minimal index.html/src/main.ts, .gitignore tool-cache entries as needed, and README setup commands. Retain final .obsidian/.trash rules and token exclusion.
@@ -68,11 +68,12 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Depends on: T-006.
             Evidence: npm run test:browser -- tests/browser/playable-slice.spec.ts; npm test; npm run typecheck; npm run build. Play the ordinary page with real keyboard events, observe gravity/locking and game over, and demonstrate a controlled row clear. Record deferred score/preview/pause/restart behavior accurately. Trace: PLAN 1.1 integrated exit, partial A-01/A-02/A-03/A-04/A-06/A-07/A-09.
             Completion evidence (2026-10-07): Four real-browser cases first failed on missing keyboard/frame behavior with initial rendering already working. Implemented one owned input subscription/frame chain, then ordinary-page keyboard movement/drop/gravity/locking, controlled clockwise rotation, two-row clear and blocked-spawn game-over checks pass 4/4. Initial GREEN attempt revealed packaged single-process Chromium fails opening a second context; removing only that vendor flag repairs multiprocess context reuse, then complete browser suite passes 6/6. npm test passes 36/36, npm run typecheck and npm run build pass. Updated smoke assertion for the real gameplay entry and README partial capability limits; screenshot inspected at 800 × 600. Source/scheduler faults, full repeat/filter controls and interruptions stay in planned later milestones. Proxy/color warnings remain non-fatal.
-        - [ ] T-008 — Review, test, and report milestone 1.1
+        - [x] T-008 — Review, test, and report milestone 1.1
             Scope: Entire first slice, dependency/browser gate, engine/browser seams, tests, and current developer instructions.
             Depends on: T-001, T-002, T-003, T-004, T-005, T-006, T-007.
             Evidence: Separate code review plus npm test, npm run typecheck, npm run build, and relevant Chromium suite. Repair blockers, demonstrate play/locking/clearing, identify deferred contracts, and record usability/environment feedback for the developer's continue/amend/simplify/stop decision. Commit/push the report and verify containment; close the milestone if tracking is enabled.
-            Report: docs/dev/reports/phases/1/1.1.md.
+            Completion evidence (2026-10-07): Separate whole-slice code inspection and repaired visual/browser environment defects; final npm test 36/36, npm run typecheck, npm run build and Chromium suite 6/6 pass. Browser suite also passes 6/6 from freshly extracted cache. Font-rasterization regression failed before the local font configuration repair and passes after it; ES2020 declaration error repaired without changing target. Final 800 × 600 page and controlled rendering images inspected and retained. No unresolved milestone blocker or deferred review TODO; later product capabilities remain planned.
+            Report: [milestone 1.1 review](reports/phases/1/1.1.md).
     - [ ] Milestone 1.2 — Scoring, progression, and preview
         - [ ] T-009 — Add cleared-line totals, score, and level transitions
             Outcome: Each lock awards the required pre-clear-level score and updates total cleared lines and derived level.
@@ -173,4 +174,4 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
 
 There are 26 tasks: 20 delivery tasks, five delivery-milestone review tasks, and one phase review task. The first useful complete milestone is T-001 through T-008; T-001 is the initial dependency/browser risk gate. Review tasks count in any selected next-N range. A request to implement a subset stops at its selected verified checkpoint without adding later tasks or an unrequested review task.
 
-The next operation is selection of an implementation range through sdd-implement after this task list is accepted. This document does not itself authorize dependency installation, branch activation, hosted-object creation, or code execution.
+The authorized T-001–T-008 range is complete and pauses on the phase branch. The next selectable milestone range is T-009–T-012; await the developer’s direction before advancing. This document does not itself authorize another implementation range or hosted tracking.
