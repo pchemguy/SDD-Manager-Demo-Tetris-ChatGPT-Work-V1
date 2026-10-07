@@ -1,0 +1,15 @@
+:root { font-family: system-ui, sans-serif; color: #e2e8f0; background: #020617; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 20px; }
+header { margin-bottom: 12px; }
+h1 { font-size: 26px; margin: 0; letter-spacing: -.5px; }
+header p { color: #94a3b8; margin: 3px 0 0; font-size: 13px; }
+#game { display: flex; align-items: flex-start; gap: 28px; border-radius: 4px; }
+#game:focus-visible { outline: 2px solid #38bdf8; outline-offset: 5px; }
+canvas { display: block; width: 240px; height: 480px; flex-shrink: 0; border: 1px solid #334155; box-sizing: content-box; }
+aside { max-width: 310px; padding-top: 0; font-size: 14px; line-height: 1.55; }
+h2 { font-size: 16px; margin: 18px 0 6px; }
+aside p { margin: 0 0 18px; }
+#status { font-size: 20px; font-weight: 700; color: #38bdf8; }
+.note { color: #94a3b8; font-size: 13px; }

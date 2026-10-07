@@ -1,13 +1,7 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Browser Tetris</title>
-  </head>
-  <body>
-    <h1>Browser Tetris</h1>
-    <p id="status">Loading development setup…</p>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
-</html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Browser Tetris</title></head>
+<body><main><header><h1>Browser Tetris</h1><p>Classic falling blocks · first playable milestone</p></header>
+<section id="game" tabindex="0" aria-label="Tetris game, use arrow keys">
+<canvas id="board" width="240" height="480" aria-label="Tetris board, 10 columns by 20 rows">Canvas support is required to play.</canvas>
+<aside><p id="status" role="status" aria-live="polite">Loading…</p><h2>Controls</h2><p>← / → Move<br>↑ Rotate clockwise<br>↓ Soft drop</p><p>Fill a row to clear it.<br>A resting piece locks on the next blocked gravity tick.</p><p class="note">Milestone 1.1: fixed speed.<br>Score, preview, pause and restart follow in later milestones.</p><p>Click the game or press Tab to focus it.<br>Reload to start a new game.</p></aside>
+</section><noscript>JavaScript is required to play.</noscript></main><script type="module" src="/src/main.ts"></script></body></html>

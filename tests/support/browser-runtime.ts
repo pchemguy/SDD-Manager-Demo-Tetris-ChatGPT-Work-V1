@@ -33,6 +33,8 @@ export async function browserLaunchOptions(): Promise<LaunchOptions> {
     }
     await writeFile(marker, '153.0.0\n');
   }
-  return { executablePath: resolve(cache, 'chromium'), args: chromium.args,
+  // The vendor's single-process flag breaks a second Playwright context.
+  // Multiprocess launch passes this sandbox's full suite.
+  return { executablePath: resolve(cache, 'chromium'), args: chromium.args.filter(arg => arg !== '--single-process'),
     env: { ...process.env, FONTCONFIG_PATH: resolve(cache, 'fonts'), LD_LIBRARY_PATH: cache } };
 }

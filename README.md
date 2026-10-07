@@ -2,7 +2,7 @@
 
 A classic-style, single-player browser Tetris game developed in TypeScript.
 
-The project is implementing its first playable milestone. The toolchain setup page does not yet provide gameplay.
+The first playable milestone provides falling blocks, arrow-key movement/clockwise rotation/soft drop, next-tick locking, row clearing, shuffled bags, and game over. Focus the game to use the arrow keys; reload to begin again. This checkpoint uses fixed one-second gravity. Scoring, visible preview, pause/restart, interruption handling, and full failure handling are planned in later milestones.
 
 ## Development setup
 
@@ -23,7 +23,7 @@ npm run build
 npm run preview
 ```
 
-Unit tests are added with gameplay tasks; the tooling-only checkpoint has no unit cases. Browser checks use real Chromium. The production build is static content in `dist/`.
+Unit tests cover the browser-independent engine. Browser checks use real Chromium. The production build is static content in `dist/`.
 
 The cloud toolchain passes locked installation, strict checking, production build, and a real Chromium smoke test. Linux browser tests currently use Chromium 153.0.8010.0 with Playwright Test 1.63.0. Other operating systems use the standard Playwright installation and have not been verified here.
 
