@@ -33,3 +33,7 @@ Inspected output consists of `index.html` (1,664 bytes), one CSS asset (1,698 by
 The production network assertion observes HTML/CSS/JavaScript GETs solely from the static server, no WebSocket connections, no page/console errors, and no fixture controls. External requests are blocked by the test while keyboard/pause/restart remain functional. Source inspection finds no runtime service calls.
 
 Preserved the generated browser cache aside and forced fresh extraction of pinned assets. `npm run test:browser -- tests/browser/production.spec.ts tests/browser/toolchain.spec.ts` passes 3/3, including full built-page play/restart, network independence and text glyph rasterization. Strict typecheck passes. This verifies the fresh setup with successive browser contexts; it does not claim compatibility beyond the observed platform/browser.
+
+## T-025 consolidated recheck
+
+Final milestone review runs strict typecheck, all 85 unit cases, static build and all 45 browser cases successfully. Developer/player/report local links pass. All A-01–A-09 rows above have executed evidence within their stated limits. Code/documentation review and passing checks are separately recorded in [milestone 1.5](1.5.md); phase integration remains T-026 work.

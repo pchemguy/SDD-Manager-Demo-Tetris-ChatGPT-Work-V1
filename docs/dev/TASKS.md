@@ -155,7 +155,7 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Evidence: Separate code review plus all unit/typecheck/build checks and relevant browser normal/failure regressions. Verify complete A-01/A-07/A-08 scope, repair blockers, commit/push/read back the report, and close the milestone if tracking is enabled.
             Report: docs/dev/reports/phases/1/1.4.md.
             Completion evidence (2026-10-07): Separate milestone code inspection closed coverage finding M1.4-F001 with independent Canvas/type characterization checks. Unit 85/85, strict typecheck/build and full Chromium suite 43/43 pass. Report retains desktop/paused screenshots and validates source/scheduler errors, stopped resources, isolation and prior gameplay. No unresolved product blocker/TODO; native focus event limitation retained.
-    - [ ] Milestone 1.5 — Reproducible static delivery and complete acceptance
+    - [x] Milestone 1.5 — Reproducible static delivery and complete acceptance
         - [x] T-022 — Complete player and developer documentation
             Outcome: README and player guide accurately describe current controls/rules/status, prerequisites, install/run/check/build/static-serve commands, verified target limits, and SDD navigation.
             Scope: README.md, docs/USER-GUIDE.md, and in-scope source/API comments or layout links needing reconciliation.
@@ -174,11 +174,12 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Depends on: T-023.
             Evidence: Inspect built asset inventory and source graph; check no tests/fixtures or production debug global is shipped; verify credential files are ignored/untracked and absent from output without printing token values. Play the production page under static HTTP while inspecting requests/console errors. Retain successful build and browser regressions. Trace: SPEC runtime-service exclusion, S-06, SYS-07, A-09.
             Completion evidence (2026-10-07): Inspected three production files and application-only import graph; credentials are ignored/untracked and absent from output without exposing values, final ignore rules intact. Production network test sees only same-origin static GETs, no WebSockets, fixture controls or console/page errors; play works with external requests blocked. Preserved cache aside and forced fresh packaged-browser extraction; production/toolchain browser checks pass 3/3 with glyph rendering and successive contexts; strict typecheck passes. No production repair was needed.
-        - [ ] T-025 — Review, test, and report milestone 1.5
+        - [x] T-025 — Review, test, and report milestone 1.5
             Scope: Complete product acceptance, reproducible commands, production assets, browser evidence, and player/developer documentation.
             Depends on: T-022, T-023, T-024.
             Evidence: Separate code review plus complete unit/typecheck/build/browser checks; report evidence and limits for every A-01 through A-09. Demonstrate production play for the developer's final product decision, repair blockers, commit/push/read back the report, and close the milestone if tracking is enabled.
             Report: docs/dev/reports/phases/1/1.5.md.
+            Completion evidence (2026-10-07): Separate source/commands/guide/production review finds no unresolved product blocker. Full strict typecheck, unit 85/85, build and Chromium 45/45 pass; local documentation/report links pass. Acceptance matrix maps A-01 through A-09 to concrete checks, shipped output/network independence and retained production screenshots. Locked install and fresh cache evidence retained; native focus/other-platform limits explicit. Product TODO none; phase review/integration remains T-026.
     - [ ] Milestone 1.6 — Phase review
         - [ ] T-026 — Review, test, and report phase 1 and complete delivery
             Scope: Entire application, cross-milestone behavior, all acceptance, developer/player documentation, packaging, and retained milestone findings. This is the only task in milestone 1.6; there is no extra milestone-review task.
