@@ -6,7 +6,7 @@ This list derives the complete intended work from accepted [PLAN](PLAN.md), [lay
 
 Preparation baseline: `470ee46e48cc58c919fb5ac799691579126e42c1` on `main`. Execution uses `phase/1-classic-browser-tetris`, targeting `main` in the established GitHub repository. Record its actual starting checkpoint when implementation begins; do not infer that it remains the preparation baseline after task-list publication.
 
-All delivery tasks and milestone reviews through T-025 are complete; T-026 verifies the whole phase and final reports. Phase branch started from `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef`; the developer authorized T-013–T-026 from `7358a53b3b62aecaf60cb36779aa6f57fd7bc9ac` on 2026-10-07. GitHub tracking is active and maintained: issues T-001–T-025 and delivery milestones 1.1–1.5 are closed/read back. Review-task T-026 / milestone 1.6 reconciliation and main integration follow its published report checkpoint. The phase checkbox remains unchecked until merged-state verification and target publication/containment are observed.
+Phase 1 is complete: all T-001–T-026 tasks, six milestone reviews/closures and full acceptance are verified. The developer authorized T-013–T-026 from `7358a53b3b62aecaf60cb36779aa6f57fd7bc9ac` on 2026-10-07. The phase branch started from `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef` and is retained at `4b86ff2f3522265c2ba0acceb63cf09a7015d731`. Explicit two-parent merge `81943b1c6f1c244315e9b87a0c3e100f4d4953c4` into `main` passed merged-state checks, was pushed and was read back exactly from the remote. Only after that observation is the phase parent checked. GitHub tracking readback confirms all 26 task issues and all six native milestones closed with exact identities/associations; the phase label remains. See the [phase report](reports/phases/1/PHASE-REPORT.md) and [implementation report](reports/IMPLEMENTATION-REPORT.md) for complete verification/publication evidence.
 
 Execute a human-selected bounded range through sdd-implement. A partial phase publishes task/review checkpoints and pauses on its phase branch. Only full verified phase completion permits default integration. Git publication and maintained GitHub tracking are established. This was late tracking activation, reconciling existing verified work rather than replaying tasks or claiming projection preceded execution. Future task completions require verified issue closure, and milestone closure follows its review/evidence gates. [GitHub issues](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work/issues) and [milestones](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work/milestones) expose hosted state.
 
@@ -20,7 +20,7 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
 
 ## Phase 1 — Complete classic browser Tetris
 
-- [ ] Phase 1 — Complete classic browser Tetris
+- [x] Phase 1 — Complete classic browser Tetris
     - [x] Milestone 1.1 — Playable falling-block slice
         - [x] T-001 — Establish the repository toolchain and Chromium launch gate
             Outcome: Repository-local npm dependencies, locked compatible versions, strict checking, Vite ES2020 production target, Vitest, and Playwright Test work in the standard sandbox. Create only the minimum buildable entry page/module needed to verify tools; this task does not deliver gameplay.
@@ -192,4 +192,4 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
 
 There are 26 tasks: 20 delivery tasks, five delivery-milestone review tasks, and one phase review task. The first useful complete milestone is T-001 through T-008; T-001 is the initial dependency/browser risk gate. Review tasks count in any selected next-N range. A request to implement a subset stops at its selected verified checkpoint without adding later tasks or an unrequested review task.
 
-The developer selected T-013–T-026, including remaining milestone reviews, the phase review, and eligible integration/publication. Stop after verified phase 1 delivery; do not expand product scope or start another phase.
+The developer-selected T-013–T-026 continuation and eligible integration/publication are complete. Stop after phase 1 delivery; no additional product work, phase or installed-plugin revision is selected. Historical task evidence retains each checkpoint’s actual state.

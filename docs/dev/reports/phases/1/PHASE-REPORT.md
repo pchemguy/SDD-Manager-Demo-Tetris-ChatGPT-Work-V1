@@ -2,9 +2,9 @@
 
 ## Review identity and result
 
-The whole phase, T-001–T-026, is implemented and reviewed on `phase/1-classic-browser-tetris`, targeting `main`. Whole-phase review baseline: `cbe94ba6f8303d4808fff30484d178bf88f44802`; this T-026 checkpoint adds reports/current-state wording, without changing product behavior. Initial phase baseline: `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef`. Continuation T-013–T-026 was authorized from `7358a53b3b62aecaf60cb36779aa6f57fd7bc9ac`.
+The whole phase, T-001–T-026, is implemented, reviewed and published in `main`; `phase/1-classic-browser-tetris` retains its implementation history. Whole-phase review baseline: `cbe94ba6f8303d4808fff30484d178bf88f44802`; this T-026 checkpoint adds reports/current-state wording, without changing product behavior. Initial phase baseline: `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef`. Continuation T-013–T-026 was authorized from `7358a53b3b62aecaf60cb36779aa6f57fd7bc9ac`.
 
-Implementation acceptance is verified. Target integration/publication is pending at this review checkpoint; the phase checkbox remains unchecked until those exits are observed. The main agent performed whole-phase code inspection separately from checks; no independent reviewer is claimed. [TASKS](../../../TASKS.md), [SPEC](../../../SPEC.md), [PLAN](../../../PLAN.md) and [acceptance evidence](ACCEPTANCE.md) establish scope and traceability.
+Implementation acceptance and published integration are verified. At the initial T-026 review checkpoint, target integration was still pending and the phase checkbox remained unchecked. The observed integration and later parent completion are recorded below. The main agent performed whole-phase code inspection separately from checks; no independent reviewer is claimed. [TASKS](../../../TASKS.md), [SPEC](../../../SPEC.md), [PLAN](../../../PLAN.md) and [acceptance evidence](ACCEPTANCE.md) establish scope and traceability.
 
 ## Delivered capabilities
 
@@ -53,3 +53,9 @@ The full verified phase is eligible for an explicit two-parent merge. Refresh/pi
 ## Merged-state verification
 
 Prospective two-parent merge into `main`: target parent `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef`, working parent `4b86ff2f3522265c2ba0acceb63cf09a7015d731`. No conflicts occurred; before these evidence additions the merged tree exactly matched the verified working tip. Merged-state `npm run typecheck`, `npm test` (85/85), `npm run build` and `npm run test:browser` (45/45) all pass, including static production/failure acceptance. The only post-check changes are these documentation records, checked for whitespace/local links. Merge commit/publication and phase-parent completion remain pending until actual remote readback.
+
+## Published integration and completion
+
+Two-parent merge `81943b1c6f1c244315e9b87a0c3e100f4d4953c4` is published in `main`; remote readback returned that exact SHA. Its parents are `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef` (main) and `4b86ff2f3522265c2ba0acceb63cf09a7015d731` (phase tip), and Git ancestry confirms the phase tip is contained in published main. Merged-state strict typecheck, 85/85 unit tests, build and 45/45 browser tests pass. No conflict or production repair was needed.
+
+All 26 task issues and six native milestones are closed/read back with exact managed identities/associations; the phase label and working branch are retained. Phase-parent completion is recorded only after observed merged verification and publication. This follow-up changes documentation/checklist only; local links and whitespace are checked without repeating unchanged product tests. The requested phase 1 boundary is complete. Product TODO: None; native desktop events/other-platform limits and open plugin amendments remain as documented.

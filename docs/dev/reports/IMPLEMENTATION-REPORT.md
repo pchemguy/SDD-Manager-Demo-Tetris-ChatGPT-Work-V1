@@ -2,7 +2,7 @@
 
 ## Result and scope
 
-All 26 phase 1 tasks are implemented and reviewed. The accepted classic browser game, player/developer documentation, static delivery and verification evidence are complete on `phase/1-classic-browser-tetris`. Target `main` integration/publication is pending at this T-026 report checkpoint; full delivery is reported only after the explicit verified merge and remote readback recorded below.
+All 26 phase 1 tasks are implemented and reviewed. The accepted classic browser game, player/developer documentation, static delivery and verification evidence are complete on `phase/1-classic-browser-tetris`. The explicit two-parent merge into `main` and target publication/readback are complete. Full delivery is verified; the initial T-026 checkpoint and subsequent integration evidence are distinguished below.
 
 The application includes falling blocks, clockwise rotation/collision, scheduled locking, row clears and scoring, level progression, shuffled bags and next preview, pause/explicit resume, restart/game over, desktop controls and safe faults/disposal. It uses plain TypeScript with a browser-independent engine and Canvas/DOM presentation. Runtime play needs only static HTTP content and has no external gameplay backend or persistence. Accepted exclusions remain intact.
 
@@ -29,3 +29,9 @@ Actual merge parents, merged-state checks and target publication are appended af
 ## Merged-state verification
 
 Prospective two-parent merge into `main`: target parent `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef`, working parent `4b86ff2f3522265c2ba0acceb63cf09a7015d731`. No conflicts occurred; before these evidence additions the merged tree exactly matched the verified working tip. Merged-state `npm run typecheck`, `npm test` (85/85), `npm run build` and `npm run test:browser` (45/45) all pass, including static production/failure acceptance. The only post-check changes are these documentation records, checked for whitespace/local links. Merge commit/publication and phase-parent completion remain pending until actual remote readback.
+
+## Published integration and completion
+
+Two-parent merge `81943b1c6f1c244315e9b87a0c3e100f4d4953c4` is published in `main`; remote readback returned that exact SHA. Its parents are `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef` (main) and `4b86ff2f3522265c2ba0acceb63cf09a7015d731` (phase tip), and Git ancestry confirms the phase tip is contained in published main. Merged-state strict typecheck, 85/85 unit tests, build and 45/45 browser tests pass. No conflict or production repair was needed.
+
+All 26 task issues and six native milestones are closed/read back with exact managed identities/associations; the phase label and working branch are retained. Phase-parent completion is recorded only after observed merged verification and publication. This follow-up changes documentation/checklist only; local links and whitespace are checked without repeating unchanged product tests. The requested phase 1 boundary is complete. Product TODO: None; native desktop events/other-platform limits and open plugin amendments remain as documented.

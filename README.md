@@ -2,7 +2,7 @@
 
 A classic-style, single-player TypeScript game with Canvas rendering, shuffled seven-piece bags, a next-piece preview, score and level progression, pause/resume, restart and game over. It runs entirely in the browser without a gameplay server or saved state.
 
-All five delivery milestones are reviewed. Locked installation, strict checking, 85 unit checks and 45 Chromium checks pass, including production static play and output/network independence. Whole-phase review passes; integration/publication remains in progress. [Player guide](docs/USER-GUIDE.md) explains controls, scoring and the resting-piece locking rule.
+Phase 1 is complete and integrated into `main`. Locked installation, strict checking, 85 unit checks and 45 Chromium checks pass, including production static play and output/network independence. All 26 task issues and six milestones are closed with verified evidence. [Player guide](docs/USER-GUIDE.md) explains controls, scoring and the resting-piece locking rule.
 
 ## Install and play locally
 
