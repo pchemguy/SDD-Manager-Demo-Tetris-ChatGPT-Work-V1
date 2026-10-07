@@ -6,7 +6,7 @@ This list derives the complete intended work from accepted [PLAN](PLAN.md), [lay
 
 Preparation baseline: `470ee46e48cc58c919fb5ac799691579126e42c1` on `main`. Execution uses `phase/1-classic-browser-tetris`, targeting `main` in the established GitHub repository. Record its actual starting checkpoint when implementation begins; do not infer that it remains the preparation baseline after task-list publication.
 
-Completed range: T-001–T-008, milestone 1.1. Active selection: T-009–T-012, milestone 1.2; stop after its review. Phase branch started from `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef`; stop after the verified milestone report, publish the incomplete phase branch, and keep main unmerged. Hosted tracking is inactive.
+Completed ranges: T-001–T-008 (milestone 1.1) and T-009–T-012 (milestone 1.2). Paused after milestone 1.2 review. Phase branch started from `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef`; stop after the verified milestone report, publish the incomplete phase branch, and keep main unmerged. Hosted tracking is inactive.
 
 Execute a human-selected bounded range through sdd-implement. A partial phase publishes task/review checkpoints and pauses on its phase branch. Only full verified phase completion permits default integration. Git publication is established; no hosted issue/milestone tracking has been activated by task preparation. If enabled, eligible-phase projection precedes the first task and closure gates apply.
 
@@ -74,7 +74,7 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Evidence: Separate code review plus npm test, npm run typecheck, npm run build, and relevant Chromium suite. Repair blockers, demonstrate play/locking/clearing, identify deferred contracts, and record usability/environment feedback for the developer's continue/amend/simplify/stop decision. Commit/push the report and verify containment; close the milestone if tracking is enabled.
             Completion evidence (2026-10-07): Separate whole-slice code inspection and repaired visual/browser environment defects; final npm test 36/36, npm run typecheck, npm run build and Chromium suite 6/6 pass. Browser suite also passes 6/6 from freshly extracted cache. Font-rasterization regression failed before the local font configuration repair and passes after it; ES2020 declaration error repaired without changing target. Final 800 × 600 page and controlled rendering images inspected and retained. No unresolved milestone blocker or deferred review TODO; later product capabilities remain planned.
             Report: [milestone 1.1 review](reports/phases/1/1.1.md).
-    - [ ] Milestone 1.2 — Scoring, progression, and preview
+    - [x] Milestone 1.2 — Scoring, progression, and preview
         - [x] T-009 — Add cleared-line totals, score, and level transitions
             Outcome: Each lock awards the required pre-clear-level score and updates total cleared lines and derived level.
             Scope: src/engine/game.ts and tests/unit/engine/progression.test.ts; scenario support only where required.
@@ -93,11 +93,12 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Depends on: T-010.
             Evidence: npm run test:browser -- tests/browser/progression-preview.spec.ts; npm test; npm run typecheck; npm run build. Controlled browser sequences verify preview-to-active identity, orientation-0 preview drawing, and score/level updates; ordinary-page startup shows correct initial values. Trace: S-04/S-05, A-01/A-03/A-04/A-07 relevant scope.
             Completion evidence (2026-10-07): Two browser scenarios failed first on absent preview pixels/counter updates with working engine/fixture setup. Renderer and status implementation then passes both; seven additional already-working preview cases validate literal orientation-zero geometry/colors for every kind (not claimed as new RED cycles). Full Chromium suite passes 15/15, unit suite 50/50, strict typecheck and build pass. Real controlled clear verifies 1200/8/1 to 1500/10/2 and T-preview promotion followed by I-preview redraw. Ordinary startup and 800 × 600 screenshot inspected; README documents current capability. Proxy/color warnings remain non-fatal.
-        - [ ] T-012 — Review, test, and report milestone 1.2
+        - [x] T-012 — Review, test, and report milestone 1.2
             Scope: Scoring/gravity/preview increments and their interaction with the first playable slice.
             Depends on: T-009, T-010, T-011.
             Evidence: Separate code review plus unit, typecheck, build, and applicable browser checks; verify all 1.2 exits and prior slice regressions. Repair blockers, commit/push/read back the report, and close the milestone if tracking is enabled.
-            Report: docs/dev/reports/phases/1/1.2.md.
+            Completion evidence (2026-10-07): Separate code inspection confirms pre-clear multiplier, post-clear intervals, retained residuals and snapshot-only presentation. Closed coverage finding M1.2-F001 with an already-passing nonzero-score preservation scenario (characterization, not historical RED). Final unit suite 51/51, strict typecheck/build and full Chromium suite 15/15 pass. Inspected and retained 800 × 600 ordinary scored-page screenshot. No unresolved milestone blocker/TODO; later session/failure/production capabilities remain planned.
+            Report: [milestone 1.2 review](reports/phases/1/1.2.md).
     - [ ] Milestone 1.3 — Session controls and interruptions
         - [ ] T-013 — Implement engine pause, resume, and fresh-session reset
             Outcome: Engine status gates actions/time correctly and restart resets board, source, counters, level, active/preview, and accumulator without retaining pending movement.
@@ -177,4 +178,4 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
 
 There are 26 tasks: 20 delivery tasks, five delivery-milestone review tasks, and one phase review task. The first useful complete milestone is T-001 through T-008; T-001 is the initial dependency/browser risk gate. Review tasks count in any selected next-N range. A request to implement a subset stops at its selected verified checkpoint without adding later tasks or an unrequested review task.
 
-The authorized T-001–T-008 range is complete and pauses on the phase branch. The next selectable milestone range is T-009–T-012; await the developer’s direction before advancing. This document does not itself authorize another implementation range or hosted tracking.
+The authorized T-001–T-012 work is complete and pauses on the phase branch. The next selectable milestone range is T-013–T-016; await the developer’s direction before advancing. This document does not itself authorize another implementation range or hosted tracking.

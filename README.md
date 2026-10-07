@@ -40,5 +40,6 @@ The cloud toolchain passes locked installation, strict checking, production buil
 - [Implementation tasks](docs/dev/TASKS.md)
 - [Task-list review](docs/dev/TASKS-REVIEW-REPORT.md)
 - [Milestone 1.1 review](docs/dev/reports/phases/1/1.1.md)
+- [Milestone 1.2 review](docs/dev/reports/phases/1/1.2.md)
 
 Development uses [SDD Manager](SDD-MANAGER.md). See the [AI-assisted development disclosure](AI_DISCLOSURE.md).
