@@ -28,7 +28,7 @@ Preparation checkpoint `d25235e5472632fe591c0c89b961389d1a2bd1a4` and verified a
 
 Merged-state verification passes: 288 unit tests, strict typecheck, production build and all 68 Chromium checks. All 46 Markdown documents, 252 local links/anchors and current preparation source hashes pass. Standalone production output consists of exactly HTML/CSS/JS, with no test-harness or credential markers. The engine retains domain-only imports. Original hosted task/milestone state was read back: all 42 issues and eleven milestones remain closed; no new task or external comment was created.
 
-The coherent verified merge is ready for its two-parent commit and normal main push. Exact merge commit/publication observation will be added after readback. The revision branch is retained; no further task or phase is selected.
+Two-parent merge `8c18ea6f15115c83667b909cc066f5d54b532e31` was normally pushed to main and read back exactly through the GitHub ref API. Its parents are the refreshed baseline c8feba6 and verified amendment 2080b79. The complete amendment is published on the established target; this final report update changes documentation only and leaves tested product/test code unchanged. The revision branch is retained; no further task or phase is selected.
 
 ## Findings and TODO
 
