@@ -8,7 +8,7 @@ export class Renderer {
   context.canvas.width=10*CELL; context.canvas.height=20*CELL;
   for(const miniature of [previewContext,heldContext])if(miniature){miniature.canvas.width=4*CELL;miniature.canvas.height=4*CELL;}
  }
- /** Draw locked cells, ghost, active piece and optional orientation-zero preview; remove stale cells each time. */
+ /** Draw locked cells, ghost, active piece and optional orientation-zero next/held previews; remove stale cells each time. */
  draw(snapshot: Snapshot): void {
   const ctx=this.context; ctx.fillStyle='#0f172a'; ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
   ctx.strokeStyle='#1e293b'; ctx.lineWidth=1;

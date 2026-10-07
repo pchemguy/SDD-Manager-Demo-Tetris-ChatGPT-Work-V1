@@ -33,7 +33,7 @@ export class Game {
   return {board:this.board.map(row=>row.slice()),active:this.active?{...this.active}:null,
    ghost:this.active?landing(this.board,this.active):null,preview:this.preview,held:this.held,holdAvailable:this.holdAvailable,status:this.status,score:this.score,lines:this.lines,level:this.level};
  }
- /** Apply a semantic move/drop without resetting time; only a blocked gravity tick locks. */
+ /** Apply a semantic action; moves/drop preserve time, hold starts a fresh interval. Only a blocked gravity tick locks. */
  action(action: Action): void {
   if(this.status!=='running'||!this.active) return;
   if(action==='hold'){this.hold();return;}

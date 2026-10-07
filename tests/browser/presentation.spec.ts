@@ -5,6 +5,7 @@ test('800 by 600 page fits square board, preview, labels and visibly focused con
  for(const id of ['held','hold-state','instructions','board','preview','status','score','level','lines','pause','restart']){
   const box=await page.locator('#'+id).boundingBox();expect(box).not.toBeNull();expect(box!.x).toBeGreaterThanOrEqual(0);expect(box!.y).toBeGreaterThanOrEqual(0);expect(box!.x+box!.width).toBeLessThanOrEqual(800);expect(box!.y+box!.height).toBeLessThanOrEqual(600);
  }
+ expect(await page.evaluate(()=>document.documentElement.scrollHeight)).toBeLessThanOrEqual(600);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(800);
  const board=await page.locator('#board').boundingBox();expect((board!.width-2)/10).toBe((board!.height-2)/20);
  await expect(page.getByRole('button',{name:'Pause',exact:true})).toBeVisible();await expect(page.locator('#board')).toHaveAttribute('aria-label',/board/);

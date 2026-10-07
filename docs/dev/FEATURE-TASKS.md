@@ -16,7 +16,7 @@ Every task includes its own relevant tests/docs and completion evidence, plus ty
 
 Each completion checkpoint reconciles the owning checkbox, actual check results and commit/push; hosted issue closure follows verification/publication. Review tasks require code review separately from tests, blocker repair, reports and TODO aggregation with accurate limits. Delivery milestone closure follows all constituent issues including review. No phase completion claim precedes required main integration/publication.
 
-Recommended first execution range: T-027–T-030, delivering and reviewing milestone 2.1. This is a proposed selection for the developer; implementation has not started. A partial range pauses after verified publication on the feature branch.
+Selected execution range: full T-027–T-042, authorized by the developer on 2026-10-07. Continue through main incorporation, final integration and published readback.
 
 ## Phase 2 — Piece-control extension
 
@@ -65,11 +65,12 @@ Recommended first execution range: T-027–T-030, delivering and reviewing miles
             Depends on: T-031, T-032.
             Evidence: npm run test:browser -- tests/browser/rendering.spec.ts tests/browser/presentation.spec.ts tests/browser/initialization.spec.ts; npm run typecheck. All held kinds, empty-slot cleanup, pause/restart, 800 × 600, independent missing/wrong-type held elements/context and no subscriptions/frames after failed setup. F-03/F-05 / FA-05/FA-06.
             Completion evidence (2026-10-07): RED: five focused browser cases exposed absent held resource validation/presentation; interrupted broad RED run is not counted. GREEN: 42 rendering/preview/presentation/initialization cases and TypeScript pass, including all seven held kinds, restart cleanup and independent missing/wrong-type/context failures. Corrected T-032 recorded browser count to actual 15.
-        - [ ] T-034 — Review, test and report milestone 2.2
+        - [x] T-034 — Review, test and report milestone 2.2
             Outcome: Review complete held-piece rules, input, presentation and failure boundaries; repair required blockers and preserve the working ghost/drop path.
             Scope: All 2.2 changes and dependent consumers; feature report 2.2.md and selected sanitized evidence.
             Depends on: T-031, T-032, T-033; their hosted issues closed.
             Evidence: Separate code review; npm run typecheck; npm test; npm run build; all browser checks. Verify 2.2 exits, source/timing/entitlement interactions and prior regressions. Publish review report, close review issue then milestone. Report: docs/dev/features/001_a043a43/2.2.md.
+            Completion evidence (2026-10-07): Separate whole-hold code/visual review repaired a reproduced full-page height defect and clarified comments/navigation. GREEN: TypeScript, 128 unit tests, build and 64 browser tests pass. Inspected retained 800x600 image; no unresolved product defect or TODO. Native focus/platform limits retained.
     - [ ] Milestone 2.3 — Clockwise wall kicks
         - [ ] T-035 — Implement pure clockwise kick data and legal candidate selection
             Outcome: Ordered family/transition tables select the first legal rotated placement using independent original-origin offsets.
