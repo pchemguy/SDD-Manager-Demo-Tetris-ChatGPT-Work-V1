@@ -16,13 +16,14 @@ function initialize(doc:Document):void {
   };
   const region=required<HTMLElement>('game');
   const board=required<HTMLCanvasElement>('board','CANVAS'),preview=required<HTMLCanvasElement>('preview','CANVAS');
+  const held=required<HTMLCanvasElement>('held','CANVAS'),holdState=required<HTMLElement>('hold-state','P');
   const status=required<HTMLElement>('status');
   const counters={score:required<HTMLElement>('score'),level:required<HTMLElement>('level'),lines:required<HTMLElement>('lines')};
   const controls={pause:required<HTMLButtonElement>('pause','BUTTON'),restart:required<HTMLButtonElement>('restart','BUTTON')};
-  const boardContext=board.getContext('2d'),previewContext=preview.getContext('2d');
-  if(!boardContext||!previewContext)throw new Error('Canvas 2D unavailable');
-  const renderer=new Renderer(boardContext,previewContext);
-  controller=new Controller(new Game(bagSource()),region,snapshot=>{renderer.draw(snapshot);showStatus(status,snapshot,counters,controls);},undefined,{controls,onError:()=>showError(doc,'Game stopped because of an internal failure. Reload this page to start again.')});
+  const boardContext=board.getContext('2d'),previewContext=preview.getContext('2d'),heldContext=held.getContext('2d');
+  if(!boardContext||!previewContext||!heldContext)throw new Error('Canvas 2D unavailable');
+  const renderer=new Renderer(boardContext,previewContext,heldContext);
+  controller=new Controller(new Game(bagSource()),region,snapshot=>{renderer.draw(snapshot);showStatus(status,snapshot,counters,controls,holdState);},undefined,{controls,onError:()=>showError(doc,'Game stopped because of an internal failure. Reload this page to start again.')});
   region.focus();controller.start();
  }catch {
   controller?.dispose();

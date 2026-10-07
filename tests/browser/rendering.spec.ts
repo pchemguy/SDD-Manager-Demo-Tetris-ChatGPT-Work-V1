@@ -37,3 +37,11 @@ test('ordinary page shows a ghost which redraws after movement',async({page})=>{
  const pixel=()=>page.locator('#board').evaluate(c=>Array.from((c as HTMLCanvasElement).getContext('2d')!.getImageData(3*24+3,19*24+3,1,1).data));
  expect(await pixel()).toEqual([148,163,184,255]);await page.keyboard.press('ArrowRight');expect(await pixel()).toEqual([15,23,42,255]);
 });
+
+test('held state is distinct, frozen on pause and cleared on restart',async({page})=>{
+ await page.goto('/');await expect(page.locator('#hold-state')).toHaveText('Empty · Available');
+ await page.keyboard.press('c');await expect(page.locator('#hold-state')).toHaveText('Unavailable until lock');
+ const drawing=()=>page.locator('#held').evaluate(c=>(c as HTMLCanvasElement).toDataURL());const held=await drawing();
+ await page.keyboard.press('p');expect(await drawing()).toBe(held);await page.keyboard.press('r');await expect(page.locator('#hold-state')).toHaveText('Empty · Available');expect(await drawing()).not.toBe(held);
+ const colored=await page.locator('#held').evaluate(c=>{const data=(c as HTMLCanvasElement).getContext('2d')!.getImageData(0,0,96,96).data;let n=0;for(let i=0;i<data.length;i+=4)if(data[i]!==15||data[i+1]!==23||data[i+2]!==42)n++;return n;});expect(colored).toBe(0);
+});

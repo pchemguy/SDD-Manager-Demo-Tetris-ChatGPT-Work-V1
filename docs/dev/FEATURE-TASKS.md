@@ -58,12 +58,13 @@ Recommended first execution range: T-027–T-030, delivering and reviewing miles
             Scope: src/session/keyboard.ts, controller.ts and session/input/fault checks; controls documentation.
             Depends on: T-031.
             Evidence: npm test -- tests/unit/session; npm run test:browser -- tests/browser/input.spec.ts tests/browser/session.spec.ts tests/browser/failures.spec.ts; npm run typecheck. Verify repeat, modifiers/editable origins, interruption, single action after restarts and source-fault resource cleanup. F-03/F-05 / FA-03 and FA-06.
-            Completion evidence (2026-10-07): RED: one key mapping and three browser hold/fault cases failed before C routing. GREEN: session unit tests, TypeScript and 16 focused browser cases pass. Repeat/filter/inactive/restart behavior and invalid/exhausted hold source faults release all owned listeners/frames and retain last drawing.
-        - [ ] T-033 — Present held piece and validate added page resources
+            Completion evidence (2026-10-07): RED: one key mapping and three browser hold/fault cases failed before C routing. GREEN: session unit tests, TypeScript and 15 focused browser cases pass. Repeat/filter/inactive/restart behavior and invalid/exhausted hold source faults release all owned listeners/frames and retain last drawing.
+        - [x] T-033 — Present held piece and validate added page resources
             Outcome: Labeled held preview/empty state and entitlement remain distinct from next preview; both panels fit the desktop layout and fail startup safely.
             Scope: src/view/renderer.ts, status.ts, src/main.ts, index.html, style.css; browser rendering/presentation/initialization tests and fixtures.
             Depends on: T-031, T-032.
             Evidence: npm run test:browser -- tests/browser/rendering.spec.ts tests/browser/presentation.spec.ts tests/browser/initialization.spec.ts; npm run typecheck. All held kinds, empty-slot cleanup, pause/restart, 800 × 600, independent missing/wrong-type held elements/context and no subscriptions/frames after failed setup. F-03/F-05 / FA-05/FA-06.
+            Completion evidence (2026-10-07): RED: five focused browser cases exposed absent held resource validation/presentation; interrupted broad RED run is not counted. GREEN: 42 rendering/preview/presentation/initialization cases and TypeScript pass, including all seven held kinds, restart cleanup and independent missing/wrong-type/context failures. Corrected T-032 recorded browser count to actual 15.
         - [ ] T-034 — Review, test and report milestone 2.2
             Outcome: Review complete held-piece rules, input, presentation and failure boundaries; repair required blockers and preserve the working ghost/drop path.
             Scope: All 2.2 changes and dependent consumers; feature report 2.2.md and selected sanitized evidence.

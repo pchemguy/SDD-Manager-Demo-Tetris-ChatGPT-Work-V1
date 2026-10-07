@@ -2,7 +2,7 @@
 import {expect,test} from '@playwright/test';
 test('800 by 600 page fits square board, preview, labels and visibly focused controls',async({page},info)=>{
  await page.goto('/');
- for(const id of ['board','preview','status','score','level','lines','pause','restart']){
+ for(const id of ['held','hold-state','instructions','board','preview','status','score','level','lines','pause','restart']){
   const box=await page.locator('#'+id).boundingBox();expect(box).not.toBeNull();expect(box!.x).toBeGreaterThanOrEqual(0);expect(box!.y).toBeGreaterThanOrEqual(0);expect(box!.x+box!.width).toBeLessThanOrEqual(800);expect(box!.y+box!.height).toBeLessThanOrEqual(600);
  }
  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(800);
