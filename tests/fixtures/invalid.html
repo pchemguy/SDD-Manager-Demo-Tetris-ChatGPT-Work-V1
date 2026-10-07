@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><title>Initialization failure fixture</title></head><body>
+<section id="game" tabindex="0"><canvas id="board"></canvas><canvas id="preview"></canvas><p id="status" role="status"></p><span id="score"></span><span id="level"></span><span id="lines"></span><button id="pause">Pause</button><button id="restart">Restart</button></section>
+<div id="resources">0</div>
+<script>
+const mode=new URLSearchParams(location.search).get('mode');
+if(mode==='canvas')HTMLCanvasElement.prototype.getContext=()=>null;
+else document.getElementById(mode)?.remove();
+// Observe application subscription/scheduling effects without product debug hooks.
+let resources=0;const output=document.getElementById('resources');
+const add=EventTarget.prototype.addEventListener;
+EventTarget.prototype.addEventListener=function(name,...args){if(['keydown','blur','visibilitychange','click'].includes(name)){resources++;output.textContent=String(resources);}return add.call(this,name,...args);};
+window.requestAnimationFrame=()=>{resources++;output.textContent=String(resources);return 1;};
+</script><script type="module" src="/src/main.ts"></script></body></html>

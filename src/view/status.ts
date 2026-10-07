@@ -8,3 +8,12 @@ export function showStatus(element:HTMLElement,snapshot:Snapshot,counters?:Count
  if(controls){controls.pause.textContent=snapshot.status==='paused'?'Resume':'Pause';controls.pause.disabled=snapshot.status==='game-over';}
  element.textContent=snapshot.status==='game-over'?'Game over':snapshot.status==='paused'?'Paused':'Running';
 }
+
+/** Report a sanitized application failure even when the normal status node is absent. */
+export function showError(doc:Document,message:string):void {
+ let status=doc.querySelector<HTMLElement>('#status');
+ if(!status){status=doc.createElement('p');status.id='status';doc.body.append(status);}
+ status.setAttribute('role','status');status.setAttribute('aria-live','assertive');
+ status.dataset.state='error';status.textContent=message;
+ for(const id of ['pause','restart']){const button=doc.querySelector<HTMLButtonElement>('#'+id);if(button)button.disabled=true;}
+}
