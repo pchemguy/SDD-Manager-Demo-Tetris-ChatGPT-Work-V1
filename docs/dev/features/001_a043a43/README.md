@@ -1,10 +1,10 @@
 # Piece-control extension
 
-Campaign `001_a043a43`; baseline `a043a43252c8fdf1307a33d34ce244e8c7280161`. Working branch `feature/001_a043a43-piece-controls`, integration target `main`. Full T-027–T-042 execution is authorized. Product and static acceptance pass; final reviews/main publication remain pending.
+Campaign `001_a043a43`; baseline `a043a43252c8fdf1307a33d34ce244e8c7280161`. Working branch `feature/001_a043a43-piece-controls`, integration target `main`. Full T-027–T-042 execution is authorized. Product, static acceptance and whole-phase review pass; main integration/publication remains the final gate.
 
 Current authority: [Project](../../PROJECT.md), [architecture](../../ARCHITECTURE.md), [decomposition](../../DECOMPOSITION.md), [SPEC](../../SPEC.md), [PLAN](../../PLAN.md), [layout](../../layout.md) and sole executable [TASKS](../../TASKS.md). The feature sources below are historical and non-executable after incorporation.
 
-Reports: [2.1](2.1.md), [2.2](2.2.md), [2.3](2.3.md), [2.4](2.4.md), [acceptance](ACCEPTANCE.md). Phase-one implementation evidence remains under the [historical report directory](../../reports/phases/1/PHASE-REPORT.md).
+Reports: [2.1](2.1.md), [2.2](2.2.md), [2.3](2.3.md), [2.4](2.4.md), [acceptance](ACCEPTANCE.md), [phase review](PHASE-REPORT.md) and [implementation report](IMPLEMENTATION-REPORT.md). Phase-one implementation evidence remains under the [historical report directory](../../reports/phases/1/PHASE-REPORT.md).
 
 Archived preparation:
 

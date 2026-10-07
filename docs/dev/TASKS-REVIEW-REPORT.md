@@ -6,7 +6,7 @@ Ready on incorporated-document conformance. Reviewed 2026-10-07 by the main agen
 
 | Source | SHA-256 |
 | --- | --- |
-| TASKS.md | `5182863c5bb2a99de88c0f4e246f2c459c4bd46f0b78f93e69cf2141c9b1a1d5` |
+| TASKS.md | `e3a6de43fe218f0ed8c1836349ab2736e4662f17adce42de314d712bc9744a35` |
 | PLAN.md | `de39735f1d61f408f7dac9c76b1b60ad6c2fb4aeec150c1f6193ad7fd82f5972` |
 | layout.md | `07ef47a400a0b862d595463c0dcb7e47ff151ca630d4bebb3429d376debd73c5` |
 | PROJECT.md | `71ce83508f4a14f00f22c71fc806d50d0a79a5171534d832ece7481b176720e9` |
@@ -18,7 +18,7 @@ Ready on incorporated-document conformance. Reviewed 2026-10-07 by the main agen
 
 ## Assessment
 
-Conformance passes for the remaining authorized review/integration checkpoints. Reconciled main TASKS is the sole executable owner; archived FEATURE-TASKS is explicitly historical/non-executable. T-001–T-026 retain their exact completed phase-one task block. T-027–T-040 retain completed evidence; T-041/T-042 remain pending before this review checkpoint. IDs, outcomes, prerequisite order and original hosted issue/milestone identities are unchanged. No object is recreated or closed by transfer.
+Whole-boundary conformance passes; actual final integration/publication remains tracked in TASKS and phase reports. Reconciled main TASKS is the sole executable owner; archived FEATURE-TASKS is explicitly historical/non-executable. T-001–T-026 retain their exact completed phase-one task block. T-027–T-040 retain completed evidence; T-041 is verified and published; T-042 performs final review/integration. IDs, outcomes, prerequisite order and original hosted issue/milestone identities are unchanged. No object is recreated or closed by transfer.
 
 The hierarchy has two phases, eleven milestone parents and 42 unique tasks. Phase one retains 20 delivery tasks and six reviews. Phase two has eleven delivery tasks and five reviews: 2.1 has 3+review, 2.2 3+review, 2.3 2+review, 2.4 3+review, and 2.5 exactly one whole-phase review. The two-task kick increment is retained because immutable policy and engine integration are distinct cohesive units; adding a third task would fragment one responsibility. Every capability/review matches the incorporated PLAN, physical layout and acceptance exits. No prerequisite points forward or creates a review/milestone cycle.
 

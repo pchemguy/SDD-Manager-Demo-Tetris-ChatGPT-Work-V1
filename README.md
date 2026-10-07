@@ -58,3 +58,5 @@ The engine owns rules and detached snapshots, the controller owns input/time/lif
 - [GitHub task issues](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work/issues) and [milestones](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work/milestones)
 
 - [Piece-control campaign and reports](docs/dev/features/001_a043a43/README.md)
+
+- [Piece-control phase review](docs/dev/features/001_a043a43/PHASE-REPORT.md) and [implementation report](docs/dev/features/001_a043a43/IMPLEMENTATION-REPORT.md)
