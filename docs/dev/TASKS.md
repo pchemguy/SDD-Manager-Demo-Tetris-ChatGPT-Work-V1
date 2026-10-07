@@ -143,11 +143,12 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Depends on: T-018.
             Evidence: Focused unit and browser failure suites plus npm run typecheck. Inject invalid source output, exhaustion, scheduler failure, and repeated disposal; verify stopped processing, released resources, retained last display, and no secret/error-path exposure. Avoid treating faults as game over. Trace: G-03, S-03/S-06, SYS-03/SYS-04, A-08.
             Completion evidence (2026-10-07): Observed nine source/controller failures before hardening; focused engine/controller suites now pass 13/13, browser fault suite 6/6 and initialization regression 11/11 pass; strict typecheck passes. All source identities validated at consumption. Faults retain last display, stop input/frames, release owned listeners, disable controls and show fixed sanitized errors. Repeated disposal permanently disables the instance; pagehide disposes it. Browser observer initially counted 13 Playwright-owned listeners; corrected its target/event ownership scope and rechecked all six fault cases.
-        - [ ] T-020 — Harden elapsed-input rejection and snapshot isolation
+        - [x] T-020 — Harden elapsed-input rejection and snapshot isolation
             Outcome: Negative/NaN/infinite time is rejected before mutation, snapshots cannot mutate internal grid/piece state, and snapshot acquisition has no gameplay side effects. Add any missing bounded corrections to the existing engine boundary.
             Scope: src/engine/game.ts, tests/unit/engine/invariants.test.ts, and engine contract documentation.
             Depends on: T-019.
             Evidence: npm test -- tests/unit/engine/invariants.test.ts; npm test; npm run typecheck. Exercise invalid-time rejection in running/paused/completed states, nested snapshot mutation attempts, repeated snapshot reads, and unchanged state after rejected actions. Retain source/browser fault regressions. Trace: G-01/G-06, S-04, SYS-01/SYS-02, A-08.
+            Completion evidence (2026-10-07): All 14 new invariant cases pass as characterization of existing behavior; no manufactured RED or unnecessary behavior change. Full unit suite 85/85 and strict typecheck pass. Negative/NaN/infinite time rejects before state or residual mutation in every status; nested caller mutation cannot change engine rows/active/preview/counters; repeated reads consume no source/time. Engine API comments document those guarantees.
         - [ ] T-021 — Review, test, and report milestone 1.4
             Scope: Full presentation, initialization/runtime failures, disposal, isolation, and their interaction with gameplay/session behavior.
             Depends on: T-017, T-018, T-019, T-020.

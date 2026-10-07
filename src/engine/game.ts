@@ -25,7 +25,7 @@ export class Game {
   this.source=source;this.board=createBoard();this.score=0;this.lines=0;this.accumulator=0;
   this.active=spawn(this.next());this.preview=this.next();this.status='running';
  }
- /** Detached state: rendering and callers cannot mutate the board or active piece. */
+ /** Return detached rows/piece data; acquisition consumes no pieces or gameplay time. */
  snapshot(): Snapshot {
   return {board:this.board.map(row=>row.slice()),active:this.active?{...this.active}:null,
    preview:this.preview,status:this.status,score:this.score,lines:this.lines,level:this.level};
@@ -37,7 +37,9 @@ export class Game {
    x:this.active.x+(action==='left'?-1:action==='right'?1:0),y:this.active.y+(action==='down'?1:0)};
   if(canPlace(this.board,candidate)) this.active=candidate;
  }
- /** Advance active elapsed milliseconds, retaining fractions and promotion residuals. */
+ /** Advance active elapsed milliseconds, retaining fractions and promotion residuals.
+  * @throws RangeError for negative/nonfinite input before mutation, even when inactive.
+  */
  advance(elapsedMs: number): void {
   if(!Number.isFinite(elapsedMs)||elapsedMs<0) throw new RangeError('Elapsed time must be finite and nonnegative');
   if(this.status!=='running') return;
