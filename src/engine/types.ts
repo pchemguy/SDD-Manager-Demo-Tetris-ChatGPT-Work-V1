@@ -11,6 +11,7 @@ export interface PieceSource { next(): Kind }
 export interface Snapshot {
   readonly board: readonly (readonly (Kind | null)[])[];
   readonly active: Piece | null;
+  readonly ghost: Piece | null;
   readonly preview: Kind;
   readonly status: Status;
   readonly score: number;

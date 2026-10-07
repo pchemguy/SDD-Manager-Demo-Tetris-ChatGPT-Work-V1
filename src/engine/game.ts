@@ -1,5 +1,5 @@
 /** Gameplay state owner. Scoring uses the level before each simultaneous clear. */
-import { canPlace, clearRows, createBoard, lock } from './board';
+import { canPlace, clearRows, createBoard, landing, lock } from './board';
 import { rotate, spawn } from './pieces';
 import { KINDS, type Action, type Kind, type Piece, type PieceSource, type Snapshot, type Status } from './types';
 
@@ -28,7 +28,7 @@ export class Game {
  /** Return detached rows/piece data; acquisition consumes no pieces or gameplay time. */
  snapshot(): Snapshot {
   return {board:this.board.map(row=>row.slice()),active:this.active?{...this.active}:null,
-   preview:this.preview,status:this.status,score:this.score,lines:this.lines,level:this.level};
+   ghost:this.active?landing(this.board,this.active):null,preview:this.preview,status:this.status,score:this.score,lines:this.lines,level:this.level};
  }
  /** Attempt one semantic move; invalid movement/rotation and blocked soft drop are no-ops. */
  action(action: Action): void {

@@ -18,3 +18,5 @@ Active sources:
 - [Task review](../../FEATURE-TASKS-REVIEW-REPORT.md)
 
 Next boundary: developer selection of an implementation range; recommended T-027–T-030 delivers milestone 2.1. Preparation publication does not constitute feature implementation or integration.
+
+Execution selected by the developer on 2026-10-07: full T-027–T-042 from `0b17b1d849c2ecb6cc5ab25f647f2cde6db09e0d`. Phase 2 projection was verified before T-027: one phase label, five milestones and sixteen issues, with phase 1 completion/publication as predecessor evidence.

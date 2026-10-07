@@ -22,11 +22,12 @@ Recommended first execution range: T-027–T-030, delivering and reviewing miles
 
 - [ ] Phase 2 — Piece-control extension
     - [ ] Milestone 2.1 — Ghost and delayed hard drop
-        - [ ] T-027 — Implement shared landing and detached ghost snapshots
+        - [x] T-027 — Implement shared landing and detached ghost snapshots
             Outcome: Shared downward-reachable landing and pure detached ghost data, with existing consumers kept type-correct.
             Scope: src/engine/board.ts, types.ts, game.ts; engine rule/snapshot tests and affected fixture snapshots.
             Depends on: none; phase setup, current upstream QC and confirmed hosted projection are prerequisites.
             Evidence: npm test -- tests/unit/engine; npm run typecheck. Cover every kind/orientation, first obstruction, grounded landing, null active, detached values and zero source/time effects. F-01 / FA-01.
+            Completion evidence (2026-10-07): Initial RED: 31 tests executed, failing on missing landing API/ghost fields (no collection failure). GREEN: 31 landing/snapshot cases and 106 engine regressions pass; strict typecheck passes. Covers all kinds/orientations, first obstruction, grounded placement, terminal null, detached ghost and source/time purity. Phase 2 projection read back before work; full range T-027–T-042 selected. Existing npm proxy warning remains non-fatal.
         - [ ] T-028 — Render ghost and expose prediction during ordinary play
             Outcome: Visible ghost outline follows active placement without obscuring active cells; pause/game-over rendering remains correct.
             Scope: src/view/renderer.ts and tests/browser/rendering.spec.ts; controlled fixtures and relevant player instructions.
