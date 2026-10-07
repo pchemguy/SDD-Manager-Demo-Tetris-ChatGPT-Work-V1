@@ -12,4 +12,4 @@ const renderer=new Renderer(canvas.getContext('2d')!,document.querySelector<HTML
 const counters={score:document.querySelector<HTMLElement>('#score')!,level:document.querySelector<HTMLElement>('#level')!,lines:document.querySelector<HTMLElement>('#lines')!};
 const controls={pause:document.querySelector<HTMLButtonElement>('#pause')!,restart:document.querySelector<HTMLButtonElement>('#restart')!};
 const controller=new Controller(new Game(bagSource()),region,snapshot=>{renderer.draw(snapshot);showStatus(status,snapshot,counters,controls);},undefined,{controls});
-controller.start(); region.focus();
+region.focus();controller.start();

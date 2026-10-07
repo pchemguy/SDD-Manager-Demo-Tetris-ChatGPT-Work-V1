@@ -112,11 +112,12 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Depends on: T-013.
             Evidence: npm test -- tests/unit/session/keyboard.test.ts; npm run test:browser -- tests/browser/input.spec.ts; npm run typecheck. Include repeated keys, paused/game-over arrows, ignored modified/editable input, ordinary button activation, board focus, and no gameplay page scrolling. Trace: S-02, A-05/A-07.
             Completion evidence (2026-10-07): Key mapping tests failed 2/2 before implementation, then passed 2/2. Browser input tests observed repeated rotation and missing-control failures, then passed 2/2; npm run typecheck passes. Verified repeat/filtering, P/R commands, paused arrow scroll suppression, native Enter/Space button activation, editable/outside-control exclusion and board click focus. Interruption eligibility/timing follows T-015.
-        - [ ] T-015 — Coordinate browser interruptions and session timing
+        - [x] T-015 — Coordinate browser interruptions and session timing
             Outcome: Controller pauses on blur/hidden document, requires explicit eligible resume, resets its time baseline, and restarts without duplicate subscriptions/frame loops. Starting/restarting hidden or unfocused is paused.
             Scope: src/session/controller.ts, tests/unit/session/controller.test.ts, tests/support/scheduler.ts, and tests/browser/session.spec.ts.
             Depends on: T-014.
             Evidence: npm test -- tests/unit/session/controller.test.ts; npm run test:browser -- tests/browser/session.spec.ts; npm test; npm run typecheck; npm run build. Use controlled frame timestamps plus real browser blur/visibility and repeated restart checks; verify inactive time is excluded and restored focus does not resume automatically. Trace: S-01/S-03, SYS-04, A-05/A-06.
+            Completion evidence (2026-10-07): Controller suite observed 3 missing-interruption failures and 1 existing pause check, then passed 4/4; full npm test passes 62/62 and npm run build/typecheck pass. Browser session/input/play regressions pass 8/8. Verified fractional remainder, inactive eligibility, explicit resume and repeated restart with one frame. Native headless tab-switch probe stayed focused/visible even with focus emulation disabled; browser lifecycle assertions use explicitly controlled properties/events, not a native tab-switch claim. A pre-change long browser-clock probe overlapped a source reload and is not counted as RED evidence.
         - [ ] T-016 — Review, test, and report milestone 1.3
             Scope: Complete scored session lifecycle, commands, timing, focus, and prior gameplay integrations.
             Depends on: T-013, T-014, T-015.
