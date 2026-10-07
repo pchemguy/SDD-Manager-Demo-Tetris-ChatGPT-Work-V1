@@ -6,7 +6,7 @@ This list derives the complete intended work from accepted [PLAN](PLAN.md), [lay
 
 Preparation baseline: `470ee46e48cc58c919fb5ac799691579126e42c1` on `main`. Execution uses `phase/1-classic-browser-tetris`, targeting `main` in the established GitHub repository. Record its actual starting checkpoint when implementation begins; do not infer that it remains the preparation baseline after task-list publication.
 
-Previously completed ranges: T-001–T-008 (milestone 1.1) and T-009–T-012 (milestone 1.2). Developer authorized all remaining phase 1 work, T-013–T-026, on 2026-10-07; continuation baseline is 7358a53b3b62aecaf60cb36779aa6f57fd7bc9ac. Phase branch started from `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef`; stop after the verified milestone report, publish the incomplete phase branch, and keep main unmerged. GitHub tracking is active, confirmed on 2026-10-07 after T-012. Phase 1 projection and completion reconciliation are verified: one phase label, six native milestones and 26 task issues; T-001–T-012 and milestones 1.1–1.2 are closed with committed evidence. T-013–T-026 and milestones 1.3–1.6 remain open.
+All delivery tasks and milestone reviews through T-025 are complete; T-026 verifies the whole phase and final reports. Phase branch started from `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef`; the developer authorized T-013–T-026 from `7358a53b3b62aecaf60cb36779aa6f57fd7bc9ac` on 2026-10-07. GitHub tracking is active and maintained: issues T-001–T-025 and delivery milestones 1.1–1.5 are closed/read back. Review-task T-026 / milestone 1.6 reconciliation and main integration follow its published report checkpoint. The phase checkbox remains unchecked until merged-state verification and target publication/containment are observed.
 
 Execute a human-selected bounded range through sdd-implement. A partial phase publishes task/review checkpoints and pauses on its phase branch. Only full verified phase completion permits default integration. Git publication and maintained GitHub tracking are established. This was late tracking activation, reconciling existing verified work rather than replaying tasks or claiming projection preceded execution. Future task completions require verified issue closure, and milestone closure follows its review/evidence gates. [GitHub issues](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work/issues) and [milestones](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work/milestones) expose hosted state.
 
@@ -122,7 +122,7 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Scope: Complete scored session lifecycle, commands, timing, focus, and prior gameplay integrations.
             Depends on: T-013, T-014, T-015.
             Evidence: Separate code review plus unit/typecheck/build and relevant browser regressions; demonstrate pause/restart and focus interruption to inform the developer's next bounded decision. Repair blockers, commit/push/read back the report, and close the milestone if tracking is enabled.
-            Report: docs/dev/reports/phases/1/1.3.md.
+            Report: [milestone 1.3 review](reports/phases/1/1.3.md).
             Completion evidence (2026-10-07): Separate code review repaired M1.3-F001 repeated-Up scrolling with observed RED/GREEN. Full unit suite 62/62, strict typecheck/build and Chromium suite 20/20 pass. Report records pause/restart demonstration, controlled interruption evidence and native headless tab-switch limitation M1.3-L001. No unresolved product blocker/TODO; phase execution continues.
     - [x] Milestone 1.4 — Robust presentation and failure boundaries
         - [x] T-017 — Complete desktop presentation and keyboard accessibility
@@ -153,7 +153,7 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Scope: Full presentation, initialization/runtime failures, disposal, isolation, and their interaction with gameplay/session behavior.
             Depends on: T-017, T-018, T-019, T-020.
             Evidence: Separate code review plus all unit/typecheck/build checks and relevant browser normal/failure regressions. Verify complete A-01/A-07/A-08 scope, repair blockers, commit/push/read back the report, and close the milestone if tracking is enabled.
-            Report: docs/dev/reports/phases/1/1.4.md.
+            Report: [milestone 1.4 review](reports/phases/1/1.4.md).
             Completion evidence (2026-10-07): Separate milestone code inspection closed coverage finding M1.4-F001 with independent Canvas/type characterization checks. Unit 85/85, strict typecheck/build and full Chromium suite 43/43 pass. Report retains desktop/paused screenshots and validates source/scheduler errors, stopped resources, isolation and prior gameplay. No unresolved product blocker/TODO; native focus event limitation retained.
     - [x] Milestone 1.5 — Reproducible static delivery and complete acceptance
         - [x] T-022 — Complete player and developer documentation
@@ -178,15 +178,16 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Scope: Complete product acceptance, reproducible commands, production assets, browser evidence, and player/developer documentation.
             Depends on: T-022, T-023, T-024.
             Evidence: Separate code review plus complete unit/typecheck/build/browser checks; report evidence and limits for every A-01 through A-09. Demonstrate production play for the developer's final product decision, repair blockers, commit/push/read back the report, and close the milestone if tracking is enabled.
-            Report: docs/dev/reports/phases/1/1.5.md.
+            Report: [milestone 1.5 review](reports/phases/1/1.5.md).
             Completion evidence (2026-10-07): Separate source/commands/guide/production review finds no unresolved product blocker. Full strict typecheck, unit 85/85, build and Chromium 45/45 pass; local documentation/report links pass. Acceptance matrix maps A-01 through A-09 to concrete checks, shipped output/network independence and retained production screenshots. Locked install and fresh cache evidence retained; native focus/other-platform limits explicit. Product TODO none; phase review/integration remains T-026.
-    - [ ] Milestone 1.6 — Phase review
-        - [ ] T-026 — Review, test, and report phase 1 and complete delivery
+    - [x] Milestone 1.6 — Phase review
+        - [x] T-026 — Review, test, and report phase 1 and complete delivery
             Scope: Entire application, cross-milestone behavior, all acceptance, developer/player documentation, packaging, and retained milestone findings. This is the only task in milestone 1.6; there is no extra milestone-review task.
             Depends on: T-008, T-012, T-016, T-021, T-025 and completion/closure of all five delivery milestones; not the closure of milestone 1.6 itself.
             Evidence: Separate whole-phase code review plus final npm run typecheck, npm test, npm run build, and required Chromium/production acceptance. Resolve blockers; aggregate permitted milestone/phase TODOs with options/provenance; commit/push both phase and final implementation reports with phase/list status. Close the review task and final milestone if tracking is enabled. After this verified phase boundary, sdd-implement/sdd-manage performs the explicit merge to main, checks merged-state acceptance, pushes, and confirms remote containment before reporting complete delivery. Do not treat a partial range or pre-merge report as integrated completion.
-            Reports: docs/dev/reports/phases/1/PHASE-REPORT.md and docs/dev/reports/IMPLEMENTATION-REPORT.md.
+            Reports: [phase review](reports/phases/1/PHASE-REPORT.md) and [final implementation report](reports/IMPLEMENTATION-REPORT.md).
 
+            Completion evidence (2026-10-07): Whole-phase code inspection covers cross-milestone rules, time/input/reset/fault/resource boundaries, test isolation, documentation and static delivery; no unresolved product blocker/TODO. Final strict typecheck, unit 85/85, production build and Chromium 45/45 pass. Accepted contract hashes unchanged; engine browser independence, links, credential exclusion and final ignore rules verified. Phase/final reports retained; native desktop events/other platforms remain unverified. Task/milestone closure follows publication; explicit verified main merge/publication remains pending and phase checkbox stays unchecked until observed.
 ## Planned range boundaries
 
 There are 26 tasks: 20 delivery tasks, five delivery-milestone review tasks, and one phase review task. The first useful complete milestone is T-001 through T-008; T-001 is the initial dependency/browser risk gate. Review tasks count in any selected next-N range. A request to implement a subset stops at its selected verified checkpoint without adding later tasks or an unrequested review task.

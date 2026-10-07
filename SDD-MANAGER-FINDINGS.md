@@ -4,7 +4,7 @@
 
 This report collects outstanding SDD Manager amendments identified during the browser Tetris demonstration. It is a working findings register for subsequent plugin revision, with stable finding IDs, evidence, proposed wording, affected capabilities and behavioral validation criteria.
 
-Report date: 2026-10-07 (Europe/Moscow). Installed plugin: SDD Manager 0.14.9. Consumer repository: [SDD-Manager-Demo-Tetris-ChatGPT-Work](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work). Starting checkpoint for this report: `470fb01f95b6ce43b329db90c61576adb8a7887b`, on `phase/1-classic-browser-tetris`. The developer requested the report in the repository root and committed on the current branch. This report does not implement plugin changes, enable GitHub tracking, or resume Tetris implementation.
+Report date: 2026-10-07 (Europe/Moscow). Installed plugin: SDD Manager 0.14.9. Consumer repository: [SDD-Manager-Demo-Tetris-ChatGPT-Work](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work). Starting checkpoint for this report: `470fb01f95b6ce43b329db90c61576adb8a7887b`, on `phase/1-classic-browser-tetris`. The developer requested the report in the repository root and committed on the current branch. The initial report did not implement plugin changes, enable GitHub tracking, or resume Tetris implementation. Subsequent authorized consumer operations are recorded separately.
 
 The developer described the demonstration environment as ChatGPT Work web, Sol 6.1 Medium, lowest Pro tier, with a standard cloud computer sandbox. Executed product checks used the Linux x64 sandbox documented in the milestone reports. Model/tier statements are developer-provided context, not independently verified platform facts.
 
@@ -78,7 +78,7 @@ If tracking is opted into after local execution has begun, reconcile the existin
 
 Targets: sdd-manage phase-activation.md, workflows.md, examples.md; sdd-implement startup handoff; sdd-forge GitHub projection/lifecycle guidance; sdd-report hosted-state wording.
 
-Validate token-supplied/default-enabled/pending-confirmation, confirmed, declined, already-active, no-token and late-confirmation cases. The token-supplied case must produce a concrete activation proposal and confirmation question without any premature hosted write. For this demo, a future late opt-in would reconcile one eligible phase, six milestones and 26 tasks; only T-001–T-012 and milestones 1.1–1.2 currently have completed local evidence. Phase completion remains pending. This is a conditional recovery proposal, not a hosted operation already performed or newly authorized by this report.
+Validate token-supplied/default-enabled/pending-confirmation, confirmed, declined, already-active, no-token and late-confirmation cases. The token-supplied case must produce a concrete activation proposal and confirmation question without any premature hosted write. At the initial report checkpoint, the late-opt-in proposal covered one eligible phase, six milestones and 26 tasks; T-001–T-012 and milestones 1.1–1.2 then had completed local evidence. The confirmed reconciliation and subsequent continuation are recorded below. Those consumer operations do not verify this proposed plugin amendment.
 
 ## SDD-F003 — Carry existing authorization into review responses and supported retries
 
@@ -146,6 +146,8 @@ Standard Chromium downloads returned HTML instead of archives. A downloaded Chro
 
 The working route uses pinned npm assets, ownership-safe extraction, multiprocess launch and a local font configuration. Fresh-cache checks, glyph rasterization, cell-pixel checks and inspected screenshots provide evidence beyond package installation or DOM presence. This recommendation generalizes that lesson; it does not mandate this package for other projects.
 
+Further phase verification found a browser-specific evidence limit: native second-page activation did not change headless focus/visibility properties, even with focus emulation disabled. [Milestone 1.3](docs/dev/reports/phases/1/1.3.md) records controlled event-handler evidence separately from unverified native desktop delivery. Conditional browser guidance should preserve this distinction rather than equate a passing modeled handler test with native environment capability.
+
 ### Proposed amendment
 
 The developer identified a placement concern: this finding combines a general coordination obligation with technical lessons specific to browser testing. Keep the stable finding identity, but separate its normative policy from conditional guidance. Browser installation and rendering probes must not become requirements for every SDD project.
@@ -187,7 +189,7 @@ The principle of proactivity, token-triggered default tracking with confirmation
 
 ## Scope preserved and evidence limits
 
-Tetris implementation remains paused after T-012. Phase 1 is incomplete and unmerged. The developer confirmed GitHub tracking on 2026-10-07 at 15:04 Europe/Moscow. Reconciliation of this existing phase is complete; the milestone reports' inactive-state statements are not proof of a developer refusal. No product-rule amendment is proposed here: the locking typo was corrected in conversation and the accepted next-blocked-gravity-tick rule is implemented and tested.
+At initial report creation, Tetris implementation was paused after T-012 and phase 1 was incomplete/unmerged. Subsequent authorized continuation is recorded below. The developer confirmed GitHub tracking on 2026-10-07 at 15:04 Europe/Moscow. Reconciliation of this existing phase is complete; the milestone reports' inactive-state statements are not proof of a developer refusal. No product-rule amendment is proposed here: the locking typo was corrected in conversation and the accepted next-blocked-gravity-tick rule is implemented and tested.
 
 Successful existing practices include incremental commits/pushes, bounded milestone pauses, pure engine seams, accurate partial-acceptance reporting, and distinguishing behavioral RED from setup/characterization evidence. Their presence does not resolve the open coordination findings; they should remain intact during plugin revision.
 
@@ -206,3 +208,9 @@ On 2026-10-07 at 15:04 Europe/Moscow, the developer confirmed the proposed activ
 - Updated the existing TASKS context and historical milestone-report follow-ups. No separate local issue-map registry was added.
 
 This is a late activation and evidence reconciliation; no claim is made that tracking preceded the original task execution. The general plugin amendments above remain open; consumer recovery is not a plugin revision. Hosted metadata readback and documentation checks validate this follow-up; product tests were not rerun because gameplay code and task acceptance did not change.
+
+## Authorized phase continuation follow-up
+
+The developer subsequently requested implementation of the rest of phase 1. T-013–T-026 completes the consumer product and review evidence; explicit verified main integration/publication follows the T-026 report checkpoint. Current acceptance and lifecycle state belong to [TASKS](docs/dev/TASKS.md), the [phase report](docs/dev/reports/phases/1/PHASE-REPORT.md) and [implementation report](docs/dev/reports/IMPLEMENTATION-REPORT.md). Historical tracking counts and pause statements above describe their original checkpoints.
+
+The installed plugin remains 0.14.9, and all six plugin findings remain open. This continuation supplies further consumer evidence for SDD-F006's conditional browser placement; it neither revises plugin sources nor verifies amended manager behavior.

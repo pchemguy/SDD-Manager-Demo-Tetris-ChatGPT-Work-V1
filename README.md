@@ -2,7 +2,7 @@
 
 A classic-style, single-player TypeScript game with Canvas rendering, shuffled seven-piece bags, a next-piece preview, score and level progression, pause/resume, restart and game over. It runs entirely in the browser without a gameplay server or saved state.
 
-All five delivery milestones are reviewed. Locked installation, strict checking, 85 unit checks and 45 Chromium checks pass, including production static play and output/network independence. Whole-phase review and integration remain in progress. [Player guide](docs/USER-GUIDE.md) explains controls, scoring and the resting-piece locking rule.
+All five delivery milestones are reviewed. Locked installation, strict checking, 85 unit checks and 45 Chromium checks pass, including production static play and output/network independence. Whole-phase review passes; integration/publication remains in progress. [Player guide](docs/USER-GUIDE.md) explains controls, scoring and the resting-piece locking rule.
 
 ## Install and play locally
 
@@ -53,6 +53,6 @@ The engine owns rules and detached snapshots, the controller owns input/time/lif
 - [Delivery plan](docs/dev/PLAN.md), [layout](docs/dev/layout.md) and [plan review](docs/dev/PLAN-REVIEW-REPORT.md)
 - [Tasks and execution evidence](docs/dev/TASKS.md), [task-list review](docs/dev/TASKS-REVIEW-REPORT.md)
 - Milestone reviews: [1.1](docs/dev/reports/phases/1/1.1.md), [1.2](docs/dev/reports/phases/1/1.2.md), [1.3](docs/dev/reports/phases/1/1.3.md), [1.4](docs/dev/reports/phases/1/1.4.md), [1.5](docs/dev/reports/phases/1/1.5.md)
-- [Acceptance evidence](docs/dev/reports/phases/1/ACCEPTANCE.md)
+- [Acceptance evidence](docs/dev/reports/phases/1/ACCEPTANCE.md), [phase review](docs/dev/reports/phases/1/PHASE-REPORT.md) and [implementation report](docs/dev/reports/IMPLEMENTATION-REPORT.md)
 - [SDD Manager findings and proposed amendments](SDD-MANAGER-FINDINGS.md)
 - [GitHub task issues](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work/issues) and [milestones](https://github.com/pchemguy/SDD-Manager-Demo-Tetris-ChatGPT-Work/milestones)
