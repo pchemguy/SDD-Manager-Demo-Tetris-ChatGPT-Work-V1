@@ -6,7 +6,7 @@ This list derives the complete intended work from accepted [PLAN](PLAN.md), [lay
 
 Preparation baseline: `470ee46e48cc58c919fb5ac799691579126e42c1` on `main`. Execution uses `phase/1-classic-browser-tetris`, targeting `main` in the established GitHub repository. Record its actual starting checkpoint when implementation begins; do not infer that it remains the preparation baseline after task-list publication.
 
-Completed selected range: T-001–T-008, milestone 1.1. Phase branch started from `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef`; stop after the verified milestone report, publish the incomplete phase branch, and keep main unmerged. Hosted tracking is inactive.
+Completed range: T-001–T-008, milestone 1.1. Active selection: T-009–T-012, milestone 1.2; stop after its review. Phase branch started from `bf1b05e0621c79be4c21cf9ddd23dcd0604d7cef`; stop after the verified milestone report, publish the incomplete phase branch, and keep main unmerged. Hosted tracking is inactive.
 
 Execute a human-selected bounded range through sdd-implement. A partial phase publishes task/review checkpoints and pauses on its phase branch. Only full verified phase completion permits default integration. Git publication is established; no hosted issue/milestone tracking has been activated by task preparation. If enabled, eligible-phase projection precedes the first task and closure gates apply.
 
@@ -75,11 +75,12 @@ Every milestone/phase review requires both code review and testing. Fix bugs, cr
             Completion evidence (2026-10-07): Separate whole-slice code inspection and repaired visual/browser environment defects; final npm test 36/36, npm run typecheck, npm run build and Chromium suite 6/6 pass. Browser suite also passes 6/6 from freshly extracted cache. Font-rasterization regression failed before the local font configuration repair and passes after it; ES2020 declaration error repaired without changing target. Final 800 × 600 page and controlled rendering images inspected and retained. No unresolved milestone blocker or deferred review TODO; later product capabilities remain planned.
             Report: [milestone 1.1 review](reports/phases/1/1.1.md).
     - [ ] Milestone 1.2 — Scoring, progression, and preview
-        - [ ] T-009 — Add cleared-line totals, score, and level transitions
+        - [x] T-009 — Add cleared-line totals, score, and level transitions
             Outcome: Each lock awards the required pre-clear-level score and updates total cleared lines and derived level.
             Scope: src/engine/game.ts and tests/unit/engine/progression.test.ts; scenario support only where required.
             Depends on: T-008 and milestone 1.1 completion/closure.
             Evidence: npm test -- tests/unit/engine/progression.test.ts; npm run typecheck. Cover 0/1/2/3/4 rows, crossing ten-line boundaries, zero drop bonuses, and unchanged score on rejected actions. Trace: G-05, A-03 scoring/progression.
+            Completion evidence (2026-10-07): Progression suite observed 5 missing-counter/scoring failures; zero-bonus case already passed. After implementation, focused suite passes 6/6 and npm run typecheck passes. Public-action recipes establish final 1/2/3/4-row clears, zero-row locks/drop bonuses, an 8-to-12-line clear scored at level 1, and subsequent level-2 scoring. No private state loading or test API was added. Existing npm proxy warning remains non-fatal.
         - [ ] T-010 — Apply level-dependent gravity and residual active time
             Outcome: Gravity uses the current level interval and preserves fractional/residual time across piece promotion and score-driven level changes.
             Scope: src/engine/game.ts and tests/unit/engine/timing.test.ts.

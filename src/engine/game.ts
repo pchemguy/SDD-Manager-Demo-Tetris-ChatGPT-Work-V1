@@ -1,4 +1,4 @@
-/** Gameplay state owner. This first milestone uses fixed level-1 gravity and no scoring. */
+/** Gameplay state owner. Scoring uses the level before each simultaneous clear. */
 import { canPlace, clearRows, createBoard, lock } from './board';
 import { rotate, spawn } from './pieces';
 import type { Action, Piece, PieceSource, Snapshot, Status } from './types';
@@ -9,13 +9,16 @@ export class Game {
  private preview: Snapshot['preview'];
  private status: Status='running';
  private accumulator=0;
+ private score=0;
+ private lines=0;
+ private get level():number {return 1+Math.floor(this.lines/10);}
  constructor(private readonly source: PieceSource) {
   this.active=spawn(source.next()); this.preview=source.next();
  }
  /** Detached state: rendering and callers cannot mutate the board or active piece. */
  snapshot(): Snapshot {
   return {board:this.board.map(row=>row.slice()),active:this.active?{...this.active}:null,
-   preview:this.preview,status:this.status,score:0,lines:0,level:1};
+   preview:this.preview,status:this.status,score:this.score,lines:this.lines,level:this.level};
  }
  /** Attempt one semantic move; invalid movement/rotation and blocked soft drop are no-ops. */
  action(action: Action): void {
@@ -35,7 +38,10 @@ export class Game {
   if(!this.active) return;
   const below={...this.active,y:this.active.y+1};
   if(canPlace(this.board,below)) { this.active=below; return; }
-  lock(this.board,this.active); clearRows(this.board);
+  lock(this.board,this.active);
+  const cleared=clearRows(this.board);
+  this.score+=[0,100,300,500,800][cleared]!*this.level;
+  this.lines+=cleared;
   const promoted=spawn(this.preview); this.preview=this.source.next();
   if(canPlace(this.board,promoted)) this.active=promoted;
   else { this.active=null; this.status='game-over'; }
